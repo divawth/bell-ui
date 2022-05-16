@@ -1,7 +1,7 @@
 <Popover
   placement="{{placement}}"
   trigger="{{RAW_CUSTOM}}"
-  visible="{{visible}}"
+  visible="{{isVisible}}"
   gap="5"
 >
 
@@ -10,7 +10,7 @@
     {{#if status}} ${prefix}time-picker-{{status}}{{/if}}
     {{#if size}} ${prefix}time-picker-{{size}}{{/if}}
     {{#if block}} ${prefix}time-picker-block{{/if}}
-    {{#if visible}} ${prefix}time-picker-opened{{/if}}
+    {{#if isVisible}} ${prefix}time-picker-opened{{/if}}
     {{#if clearable}} ${prefix}time-picker-clearable{{/if}}
     {{#if disabled}} ${prefix}time-picker-disabled
     {{else}} ${prefix}time-picker-enabled
@@ -19,7 +19,9 @@
 
     {{#if !disabled}}
       tabindex="0"
-      on-click="toggle('visible')"
+      on-click="onClick()"
+      on-focus="set('isFocus', true)"
+      on-blur="set('isFocus', false)"
     {{/if}}
 
     {{#if inlineStyle}}
@@ -41,7 +43,7 @@
       <Icon
         name="close-circle-fill"
         className="${prefix}time-picker-clear-icon"
-        on-click.native="handleClearClick()"
+        on-click.native="onClearClick()"
       />
     {{/if}}
 

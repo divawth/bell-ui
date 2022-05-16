@@ -38,6 +38,7 @@ import {
 
 import {
   fireClickEvent,
+  onClickEventByEnterPress,
 } from '../event'
 
 const DEFAULT_HOUR_STEP = 1
@@ -112,7 +113,8 @@ export default Yox.define({
       this.get('secondList')
     )
 
-    props.visible = FALSE
+    props.isFocus = FALSE
+    props.isVisible = FALSE
     props.RAW_CUSTOM = RAW_CUSTOM
 
     return props
@@ -201,7 +203,7 @@ export default Yox.define({
           hour,
           minute,
           second,
-          visible: FALSE,
+          isVisible: FALSE,
           text: formatTime(hour, minute, second),
         })
 
@@ -216,7 +218,7 @@ export default Yox.define({
         event.stop()
 
         this.set({
-          visible: FALSE,
+          isVisible: FALSE,
           text: formatTime(
             this.get('hour'),
             this.get('minute'),
@@ -231,7 +233,12 @@ export default Yox.define({
 
   methods: {
 
-    handleClearClick(event: CustomEventInterface) {
+    onClick() {
+      this.toggle('isVisible')
+      fireClickEvent()
+    },
+
+    onClearClick(event: CustomEventInterface) {
 
       // 停止冒泡，否则会展开下拉框
       event.stop()
@@ -272,5 +279,9 @@ export default Yox.define({
     }
 
   },
+
+  afterMount() {
+    onClickEventByEnterPress(this)
+  }
 
 })

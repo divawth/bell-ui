@@ -8,7 +8,7 @@
     type="{{type}}"
     loading="{{loading}}"
     disabled="{{disabled}}"
-    on-click="handleButtonClick()"
+    on-click="onButtonClick()"
   >
     <slot />
   </Button>
@@ -16,7 +16,7 @@
   <Popover
     placement="{{placement}}"
     trigger="{{RAW_CLICK}}"
-    visible="{{menuVisible}}"
+    visible="{{isMenuVisible}}"
     disabled="{{disabled || loading}}"
     gap="5"
   >
@@ -45,7 +45,7 @@
           {{/if}}"
 
           {{#if !this.disabled}}
-            on-click="handleItemClick(this, index)"
+            on-click="onItemClick(this, index)"
           {{/if}}
         >
           {{this.text}}

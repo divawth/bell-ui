@@ -18,10 +18,10 @@ export default {
   `,
   methods: {
     ok() {
-      alert('ok')
+      this.$message.success('ok')
     },
     cancel() {
-      alert('cancel')
+      this.$message.success('cancel')
     },
   }
 }

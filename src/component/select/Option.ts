@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface } from 'yox'
+import Yox from 'yox'
 
 import template from './template/Option.hbs'
 
@@ -65,7 +65,7 @@ export default Yox.define({
   },
 
   methods: {
-    handleClick(): void {
+    onClick(): void {
       this.fireEvent(TRUE)
     },
     getText(): string {

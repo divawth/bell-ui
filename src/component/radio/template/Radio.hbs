@@ -16,6 +16,8 @@ class="${prefix}radio
 {{#if !disabled}}
   tabindex="0"
   on-click="onClick()"
+  on-focus="set('isFocus', true)"
+  on-blur="set('isFocus', false)"
 {{/if}}
 >
   <div class="${prefix}radio-icon"></div>

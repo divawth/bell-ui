@@ -43,7 +43,6 @@ import {
   Shortcut,
   formatDate,
   SimpleDate,
-  SimpleRange,
   toTimestamp,
   toSimpleDate,
 } from './util'
@@ -55,6 +54,7 @@ import {
 
 import {
   fireClickEvent,
+  onClickEventByEnterPress,
 } from '../event'
 
 const YEAR_FORMAT = 'yyyy'
@@ -147,7 +147,8 @@ export default Yox.define({
       RAW_TYPE_MONTH,
       RAW_CUSTOM,
 
-      visible: FALSE,
+      isFocus: FALSE,
+      isVisible: FALSE,
       formatText: props.format || defaultFormat[props.type || RAW_TYPE_DATE]
     }
   },
@@ -261,7 +262,7 @@ export default Yox.define({
         event.stop()
 
         // @ts-ignore
-        this.set('visible', FALSE)
+        this.set('isVisible', FALSE)
 
       },
       type: 'outside',
@@ -271,7 +272,12 @@ export default Yox.define({
 
   methods: {
 
-    handleClearClick(event: CustomEventInterface) {
+    onClick() {
+      this.toggle('isVisible')
+      fireClickEvent()
+    },
+
+    onClearClick(event: CustomEventInterface) {
 
       // 停止冒泡，否则会展开下拉框
       event.stop()
@@ -293,7 +299,7 @@ export default Yox.define({
 
     },
 
-    handleRemoveItem(event: CustomEventInterface, index: number) {
+    onItemRemove(event: CustomEventInterface, index: number) {
 
       event.stop()
 
@@ -302,7 +308,7 @@ export default Yox.define({
 
     },
 
-    handleShortcutClick(data: Shortcut) {
+    onShortcutClick(data: Shortcut) {
 
       const value = data.onClick.call(this)
       if (Yox.is.array(value)) {
@@ -370,7 +376,7 @@ export default Yox.define({
       if (!me.get('multiple')) {
         me.nextTick(
           function () {
-            me.set('visible', FALSE)
+            me.set('isVisible', FALSE)
           }
         )
       }
@@ -387,7 +393,7 @@ export default Yox.define({
       if (!this.get('multiple')) {
         this.nextTick(
           function () {
-            this.set('visible', FALSE)
+            this.set('isVisible', FALSE)
           }
         )
       }
@@ -408,10 +414,14 @@ export default Yox.define({
   },
 
   afterUpdate() {
-    if (this.get('visible') && this.get('multiple')) {
+    if (this.get('isVisible') && this.get('multiple')) {
       const overlay = this.$refs.overlay as any
       overlay.refreshOverlayRect()
     }
+  },
+
+  afterMount() {
+    onClickEventByEnterPress(this)
   }
 
 })

@@ -17,6 +17,8 @@ class="${prefix}switch
 {{#if !disabled && !loading}}
   tabindex="0"
   on-click="onClick()"
+  on-focus="set('isFocus', true)"
+  on-blur="set('isFocus', false)"
 {{/if}}
 >
 

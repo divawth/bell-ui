@@ -5,16 +5,21 @@ import template from './template/Radio.hbs'
 
 import {
   TRUE,
+  FALSE,
   UNDEFINED,
   RAW_STRING,
-  RAW_BOOLEAN,
   RAW_NUMBER,
+  RAW_BOOLEAN,
   RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
   findComponentUpward,
 } from '../util'
+
+import {
+  onClickEventByEnterPress,
+} from '../event'
 
 export default Yox.define({
 
@@ -43,19 +48,19 @@ export default Yox.define({
     }
   },
 
+  data() {
+    return {
+      isFocus: FALSE,
+    }
+  },
+
   events: {
     change: {
       listener(_, data) {
         if (data.value !== UNDEFINED) {
           const value = this.get('value')
-          const oldChecked = this.get('checked')
-          const newChecked = data.value == value
-          if (oldChecked !== newChecked) {
-            this.set({
-              checked: newChecked
-            })
-            this.fireChange(newChecked, value)
-          }
+          const checked = data.value == value
+          this.setChecked(checked)
         }
         if (data.disabled !== UNDEFINED) {
           this.set('disabled', data.disabled)
@@ -67,16 +72,15 @@ export default Yox.define({
 
   methods: {
     onClick() {
-      const checked = TRUE
+      this.setChecked(TRUE)
+    },
+    setChecked(checked: boolean) {
+      if (this.get('checked') === checked) {
+        return
+      }
       this.set({
         checked,
       })
-      this.fireChange(
-        checked,
-        this.get('value')
-      )
-    },
-    fireChange(checked: boolean, value: string | number | boolean) {
       this.fire(
         {
           type: 'change',
@@ -84,10 +88,10 @@ export default Yox.define({
         },
         {
           checked,
-          value,
+          value: this.get('value'),
         }
       )
-    }
+    },
   },
 
   beforeCreate(options) {
@@ -105,6 +109,10 @@ export default Yox.define({
       }
     }
 
+  },
+
+  afterMount() {
+    onClickEventByEnterPress(this)
   }
 
 })

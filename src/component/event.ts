@@ -1,5 +1,5 @@
 import Yox, { CustomEventInterface, Listener } from 'yox'
-import { TRUE } from './constant'
+import { DOCUMENT, RAW_EVENT_BEFORE_DESTROY, RAW_EVENT_KEYDOWN, TRUE, UNDEFINED } from './constant'
 
 const emitter = new Yox()
 
@@ -12,11 +12,11 @@ const emitter = new Yox()
  *
  * @param event
  */
-export function fireClickEvent(event: CustomEventInterface, isFromPopover?: boolean) {
+export function fireClickEvent(event?: CustomEventInterface, isFromPopover?: boolean) {
   // event 一般会被调用 `event.stop()`
   // 如果直接 fire 原事件，相当于 fire 了一个 stoped 事件，这是不对的
   emitter.fire(
-    new Yox.Event('click', event.originalEvent),
+    new Yox.Event('click', event ? event.originalEvent : UNDEFINED),
     { isFromPopover }
   )
 }
@@ -47,4 +47,26 @@ export function isClickEvent() {
     return Date.now() - endDragTime > 200
   }
   return TRUE
+}
+
+export function onClickEventByEnterPress(instance: any) {
+
+  const onKeydown = function (event: CustomEventInterface) {
+    const originalEvent = event.originalEvent as KeyboardEvent
+    if (originalEvent.keyCode === 13
+      && instance.get('isFocus')
+    ) {
+      instance.onClick()
+    }
+  }
+  Yox.dom.on(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown)
+
+  const onDestroy = function (component: Yox) {
+    if (component === instance) {
+      Yox.dom.off(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown)
+      Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, onDestroy)
+    }
+  }
+  Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, onDestroy)
+
 }

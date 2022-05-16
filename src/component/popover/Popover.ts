@@ -398,8 +398,8 @@ export default Yox.define({
       }
       const trigger = me.$refs.trigger as HTMLElement
       const overlay = me.$refs.overlay as HTMLElement
-      const target = event.originalEvent.target as HTMLElement
-      if (contains(trigger, target) || contains(overlay, target)) {
+      const target = event.originalEvent && event.originalEvent.target as HTMLElement
+      if (target && (contains(trigger, target) || contains(overlay, target))) {
         return
       }
       if (me.get('trigger') === RAW_CUSTOM) {

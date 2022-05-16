@@ -13,6 +13,8 @@ class="${prefix}checkbox
 {{#if !disabled}}
   tabindex="0"
   on-click="onClick()"
+  on-focus="set('isFocus', true)"
+  on-blur="set('isFocus', false)"
 {{/if}}
 
 {{#if style}}

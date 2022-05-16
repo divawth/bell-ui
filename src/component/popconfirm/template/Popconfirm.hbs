@@ -39,15 +39,16 @@
 
       <div class="${prefix}popconfirm-footer">
         <Button
+          autoFocus
           size="small"
-          on-click="handleCancelClick()"
+          on-click="onCancelClick()"
         >
           {{cancelText}}
         </Button>
         <Button
           size="small"
           type="{{okType || status}}"
-          on-click="handleOkClick()"
+          on-click="onOkClick()"
         >
           {{okText}}
         </Button>

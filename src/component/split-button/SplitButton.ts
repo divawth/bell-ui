@@ -81,7 +81,7 @@ export default Yox.define({
   data() {
     return {
       RAW_CLICK,
-      menuVisible: FALSE,
+      isMenuVisible: FALSE,
     }
   },
 
@@ -94,16 +94,16 @@ export default Yox.define({
     },
     open(event) {
       event.stop()
-      this.set('menuVisible', TRUE)
+      this.set('isMenuVisible', TRUE)
     },
     close(event) {
       event.stop()
-      this.set('menuVisible', FALSE)
+      this.set('isMenuVisible', FALSE)
     }
   },
 
   methods: {
-    handleButtonClick(event: CustomEventInterface) {
+    onButtonClick(event: CustomEventInterface) {
       event.stop()
       fireClickEvent(event)
       this.fire(
@@ -113,8 +113,8 @@ export default Yox.define({
         }
       )
     },
-    handleItemClick(item, index) {
-      this.set('menuVisible', FALSE)
+    onItemClick(item, index) {
+      this.set('isMenuVisible', FALSE)
       this.fire(
         {
           type: 'select',

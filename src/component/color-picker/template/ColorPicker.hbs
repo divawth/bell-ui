@@ -1,7 +1,7 @@
 <Popover
   placement="{{placement}}"
   trigger="{{RAW_CUSTOM}}"
-  visible="{{visible}}"
+  visible="{{isVisible}}"
   gap="5"
 >
 
@@ -10,7 +10,7 @@
     {{#if status}} ${prefix}color-picker-{{status}}{{/if}}
     {{#if size}} ${prefix}color-picker-{{size}}{{/if}}
     {{#if block}} ${prefix}color-picker-block{{/if}}
-    {{#if visible}} ${prefix}color-picker-opened{{/if}}
+    {{#if isVisible}} ${prefix}color-picker-opened{{/if}}
     {{#if disabled}} ${prefix}color-picker-disabled
     {{else}} ${prefix}color-picker-enabled
     {{/if}}
@@ -18,7 +18,9 @@
 
     {{#if !disabled}}
       tabindex="0"
-      on-click="toggle('visible')"
+      on-click="onClick()"
+      on-focus="set('isFocus', true)"
+      on-blur="set('isFocus', false)"
     {{/if}}
 
     {{#if inlineStyle}}

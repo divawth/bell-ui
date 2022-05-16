@@ -8,9 +8,10 @@ import { CustomEventInterface, Listener } from 'yox';
  *
  * @param event
  */
-export declare function fireClickEvent(event: CustomEventInterface, isFromPopover?: boolean): void;
+export declare function fireClickEvent(event?: CustomEventInterface, isFromPopover?: boolean): void;
 export declare function onClickEvent(listener: Listener): void;
 export declare function offClickEvent(listener: Listener): void;
 export declare function startDrag(): void;
 export declare function endDrag(): void;
 export declare function isClickEvent(): boolean;
+export declare function onClickEventByEnterPress(instance: any): void;

@@ -41,6 +41,11 @@ import {
   toPixel,
 } from '../util'
 
+import {
+  fireClickEvent,
+  onClickEventByEnterPress,
+} from '../event'
+
 export default Yox.define({
 
   template,
@@ -104,7 +109,8 @@ export default Yox.define({
 
     return {
       RAW_CUSTOM: RAW_CUSTOM,
-      visible: FALSE,
+      isFocus: FALSE,
+      isVisible: FALSE,
       mode,
       rgb,
       hsv,
@@ -182,7 +188,7 @@ export default Yox.define({
       listener(event) {
         event.stop()
         this.set({
-          visible: FALSE,
+          isVisible: FALSE,
         })
       },
       ns: 'popover',
@@ -251,6 +257,12 @@ export default Yox.define({
   },
 
   methods: {
+
+    onClick() {
+      this.toggle('isVisible')
+      fireClickEvent()
+    },
+
     setColor(value: string) {
 
       const { rgb, hsv, alpha } = parseColor(value, this.get('showAlpha'))
@@ -284,6 +296,10 @@ export default Yox.define({
         }
       )
     }
+  },
+
+  afterMount() {
+    onClickEventByEnterPress(this)
   },
 
   components: {

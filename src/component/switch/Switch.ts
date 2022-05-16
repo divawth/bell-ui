@@ -4,6 +4,7 @@ import template from './template/Switch.hbs'
 // import './style/Switch.styl'
 
 import {
+  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_DEFAULT,
@@ -14,6 +15,10 @@ import {
 import {
   oneOf,
 } from '../util'
+
+import {
+  onClickEventByEnterPress,
+} from '../event'
 
 export default Yox.define({
 
@@ -45,9 +50,17 @@ export default Yox.define({
     }
   },
 
+  data() {
+    return {
+      isFocus: FALSE,
+    }
+  },
+
   methods: {
-    onClick(event: CustomEventInterface) {
-      event.stop()
+    onClick(event?: CustomEventInterface) {
+      if (event) {
+        event.stop()
+      }
       this.fire(
         {
           type: 'change',
@@ -58,5 +71,9 @@ export default Yox.define({
         }
       )
     }
+  },
+
+  afterMount() {
+    onClickEventByEnterPress(this)
   }
 })

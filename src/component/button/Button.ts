@@ -6,6 +6,7 @@ import template from './template/Button.hbs'
 import Icon from '../icon/Icon'
 
 import {
+  FALSE,
   UNDEFINED,
   RAW_SMALL,
   RAW_LARGE,
@@ -62,6 +63,9 @@ export default Yox.define({
     ghost: {
       type: RAW_BOOLEAN,
     },
+    autoFocus: {
+      type: RAW_BOOLEAN,
+    },
     block: {
       type: RAW_BOOLEAN,
     },
@@ -76,6 +80,17 @@ export default Yox.define({
     },
     style: {
       type: RAW_STYLE_TYPE,
+    }
+  },
+
+  methods: {
+    onClick() {
+      this.fire(
+        {
+          type: 'click',
+          ns: 'button',
+        }
+      )
     }
   },
 
@@ -109,6 +124,12 @@ export default Yox.define({
       }
     }
 
+  },
+
+  afterMount() {
+    if (this.get('autoFocus')) {
+      this.$el.focus()
+    }
   }
 
 })

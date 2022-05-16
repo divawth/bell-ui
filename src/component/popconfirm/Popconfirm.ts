@@ -121,7 +121,7 @@ export default Yox.define({
   },
 
   methods: {
-    handleCancelClick(event: CustomEventInterface) {
+    onCancelClick(event: CustomEventInterface) {
       event.stop()
       fireClickEvent(event, TRUE)
       this.set('isVisible', FALSE)
@@ -130,7 +130,7 @@ export default Yox.define({
         ns: 'popconfirm',
       })
     },
-    handleOkClick(event: CustomEventInterface) {
+    onOkClick(event: CustomEventInterface) {
       event.stop()
       fireClickEvent(event, TRUE)
       this.set('isVisible', FALSE)

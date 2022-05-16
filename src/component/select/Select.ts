@@ -9,11 +9,6 @@ import Empty from '../empty/Empty'
 import Popover from '../popover/Popover'
 
 import {
-  oneOf,
-  toPixel,
-} from '../util'
-
-import {
   TRUE,
   FALSE,
   UNDEFINED,
@@ -36,11 +31,17 @@ import {
 } from '../constant'
 
 import {
+  oneOf,
+  toPixel,
+} from '../util'
+
+import {
   isOptionSelected,
 } from './util'
 
 import {
   fireClickEvent,
+  onClickEventByEnterPress,
 } from '../event'
 
 export default Yox.define({
@@ -98,7 +99,8 @@ export default Yox.define({
     return {
       RAW_TOP,
       RAW_CUSTOM,
-      visible: FALSE,
+      isFocus: FALSE,
+      isVisible: FALSE,
       selectedOptions: [],
     }
   },
@@ -141,7 +143,7 @@ export default Yox.define({
         }
 
         if (!me.get('multiple')) {
-          me.set('visible', FALSE)
+          me.set('isVisible', FALSE)
         }
 
       },
@@ -152,7 +154,7 @@ export default Yox.define({
 
         event.stop()
 
-        this.set('visible', FALSE)
+        this.set('isVisible', FALSE)
 
       },
       ns: 'popover',
@@ -161,7 +163,12 @@ export default Yox.define({
 
   methods: {
 
-    handleClearClick(event: CustomEventInterface) {
+    onClick() {
+      this.toggle('isVisible')
+      fireClickEvent()
+    },
+
+    onClearClick(event: CustomEventInterface) {
 
       // 停止冒泡，否则会展开下拉框
       event.stop()
@@ -173,7 +180,7 @@ export default Yox.define({
 
     },
 
-    handleRemoveOption(event: CustomEventInterface, index: number) {
+    onOptionRemove(event: CustomEventInterface, index: number) {
 
       event.stop()
 
@@ -330,10 +337,12 @@ export default Yox.define({
       },
       TRUE
     )
+
+    onClickEventByEnterPress(this)
   },
 
   afterUpdate() {
-    if (this.get('visible') && this.get('multiple')) {
+    if (this.get('isVisible') && this.get('multiple')) {
       const popover = this.$refs.popover as any
       popover.refreshOverlayRect()
     }
@@ -344,6 +353,6 @@ export default Yox.define({
       this.get('value'),
       props && props[RAW_SLOT_CHILDREN]
     )
-  }
+  },
 
 })

@@ -2,7 +2,7 @@
   ref="overlay"
   placement="{{placement}}"
   trigger="{{RAW_CUSTOM}}"
-  visible="{{visible}}"
+  visible="{{isVisible}}"
   gap="5"
 >
 
@@ -11,7 +11,7 @@
     {{#if status}} ${prefix}date-picker-{{status}}{{/if}}
     {{#if size}} ${prefix}date-picker-{{size}}{{/if}}
     {{#if block}} ${prefix}date-picker-block{{/if}}
-    {{#if visible}} ${prefix}date-picker-opened{{/if}}
+    {{#if isVisible}} ${prefix}date-picker-opened{{/if}}
     {{#if clearable}} ${prefix}date-picker-clearable{{/if}}
     {{#if disabled}} ${prefix}date-picker-disabled
     {{else}} ${prefix}date-picker-enabled
@@ -20,7 +20,9 @@
 
     {{#if !disabled}}
       tabindex="0"
-      on-click="toggle('visible')"
+      on-click="onClick()"
+      on-focus="set('isFocus', true)"
+      on-blur="set('isFocus', false)"
     {{/if}}
 
     {{#if inlineStyle}}
@@ -37,7 +39,7 @@
             <Tag
               simple
               closable
-              on-close="handleRemoveItem($event, index)"
+              on-close="onItemRemove($event, index)"
             >
               {{this}}
             </Tag>
@@ -72,7 +74,7 @@
       <Icon
         name="close-circle-fill"
         className="${prefix}date-picker-clear-icon"
-        on-click.native="handleClearClick()"
+        on-click.native="onClearClick()"
       />
     {{/if}}
 
@@ -93,7 +95,7 @@
         {{#each shortcuts}}
           <div
             class="${prefix}date-picker-shortcut-item"
-            on-click="handleShortcutClick(this)"
+            on-click="onShortcutClick(this)"
           >
             {{this.text}}
           </div>

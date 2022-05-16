@@ -350,6 +350,7 @@ type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error`,
 ghost | 是否是幽灵按钮 | boolean | - | -
 size | 按钮大小 | string | `default`, `large`, `small` | `default`
 shape | 按钮形状 | string | `circle`, `round` | -
+autoFocus | 自动聚焦 | boolean | - | -
 block | 开启后，按钮的长度为 100% | boolean | - | -
 loading |  是否为正在加载状态 | boolean | - | -
 disabled | 是否为禁用状态 | boolean | - | -
