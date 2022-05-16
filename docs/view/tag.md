@@ -58,30 +58,6 @@ export default {
 }
 ```
 
-> 两种大小
-
-```js
-export default {
-  template: `
-  <div>
-    <Tag>
-      标签
-    </Tag>
-    <Tag closable>
-      标签
-    </Tag>
-    <br><br>
-    <Tag size="large">
-      标签
-    </Tag>
-    <Tag size="large" closable>
-      标签
-    </Tag>
-  </div>
-  `
-}
-```
-
 > checkable
 
 ```js
@@ -144,33 +120,69 @@ export default {
 }
 ```
 
-> 纯色标签
+> 多彩标签
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
-    <div>
-      <Tag color="#f50">
-        #f50
-      </Tag>
-      <Tag color="#2db7f5">
-        #2db7f5
-      </Tag>
-      <br><br>
-      <Tag closable color="#f50">
-        #f50
-      </Tag>
-      <Tag closable color="#2db7f5">
-        #2db7f5
-      </Tag>
-      <br><br>
-      <Tag checkable color="#f50">
-        #f50
-      </Tag>
-      <Tag checkable closable color="#2db7f5">
-        #2db7f5
-      </Tag>
-    </div>
+    <Space vertical>
+      <Divider orientation="left">Presets</Divider>
+      <Space>
+        <Tag color="magenta">magenta</Tag>
+        <Tag color="red">red</Tag>
+        <Tag color="volcano">volcano</Tag>
+        <Tag color="orange">orange</Tag>
+        <Tag color="gold">gold</Tag>
+        <Tag color="lime">lime</Tag>
+        <Tag color="green">green</Tag>
+        <Tag color="cyan">cyan</Tag>
+        <Tag color="blue">blue</Tag>
+        <Tag color="purple">purple</Tag>
+      </Space>
+      <Space>
+        <Tag closable color="magenta">magenta</Tag>
+        <Tag closable color="red">red</Tag>
+        <Tag closable color="volcano">volcano</Tag>
+        <Tag closable color="orange">orange</Tag>
+        <Tag closable color="gold">gold</Tag>
+        <Tag closable color="lime">lime</Tag>
+        <Tag closable color="green">green</Tag>
+        <Tag closable color="cyan">cyan</Tag>
+        <Tag closable color="blue">blue</Tag>
+        <Tag closable color="purple">purple</Tag>
+      </Space>
+      <Divider orientation="left">Custom</Divider>
+      <Space>
+        <Tag color="#f50">
+          #f50
+        </Tag>
+        <Tag color="#2db7f5">
+          #2db7f5
+        </Tag>
+        <Tag color="#87d068">
+          #87d068
+        </Tag>
+        <Tag color="#108ee9">
+          #108ee9
+        </Tag>
+      </Space>
+      <Space>
+        <Tag closable color="#f50">
+          #f50
+        </Tag>
+        <Tag closable color="#2db7f5">
+          #2db7f5
+        </Tag>
+        <Tag closable color="#87d068">
+          #87d068
+        </Tag>
+        <Tag closable color="#108ee9">
+          #108ee9
+        </Tag>
+      </Space>
+    </Space>
   `
 }
 ```
@@ -181,7 +193,6 @@ export default {
 ---|---|---|---|---
 checked | 标签是否已选中 | - | - | -
 type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error` | -
-size | 大小 | string | `default`, `large` | `default`
 icon | 图标 | string | - | -
 closable | 是否可以关闭 | boolean | - | -
 checkable | 标签是否可以选择 | boolean | - | -

@@ -8,9 +8,7 @@ import Icon from '../icon/Icon'
 import {
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_SIZE_ARRAY,
   RAW_TYPE_ARRAY,
-  RAW_DEFAULT,
   RAW_STYLE_TYPE,
 } from '../constant'
 
@@ -27,10 +25,6 @@ export default Yox.define({
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
-    },
-    size: {
-      type: oneOf(RAW_SIZE_ARRAY),
-      value: RAW_DEFAULT,
     },
     checkable: {
       type: RAW_BOOLEAN,
@@ -50,6 +44,21 @@ export default Yox.define({
     style: {
       type: RAW_STYLE_TYPE,
     }
+  },
+
+  computed: {
+    presetName() {
+      const color = this.get('color')
+      if (color && /^[a-z]+$/.test(color)) {
+        return color
+      }
+    },
+    customColor() {
+      const color = this.get('color')
+      if (color && (/^#[\w\d]+$/.test(color) || /rgb/i.test(color))) {
+        return color
+      }
+    },
   },
 
   methods: {

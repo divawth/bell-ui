@@ -2,21 +2,21 @@
 class="${prefix}tag
 
 {{#if type}} ${prefix}tag-{{type}}{{/if}}
-{{#if size}} ${prefix}tag-{{size}}{{/if}}
+{{#if presetName}} ${prefix}tag-{{presetName}}{{/if}}
+{{#if customColor}} ${prefix}tag-pure{{/if}}
 
 {{#if checkable}} ${prefix}tag-checkable{{/if}}
 {{#if closable}} ${prefix}tag-closable{{/if}}
-{{#if color}} ${prefix}tag-pure{{/if}}
 
 {{#if checked}} ${prefix}tag-checked{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if color || style}}
+{{#if customColor || style}}
   style="{{[
-    color
+    customColor
       ? {
-          backgroundColor: !checkable || checked ? color : undefined,
-          color: checkable && !checked ? color : undefined,
+          backgroundColor: !checkable || checked ? customColor : undefined,
+          color: checkable && !checked ? customColor : undefined,
         }
       : undefined,
     style
@@ -42,7 +42,7 @@ class="${prefix}tag
 
   {{#if closable}}
     <div
-      class="${prefix}tag-close-button"
+      class="${prefix}tag-close"
       on-click="close.tag"
     >
       <Icon

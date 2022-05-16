@@ -1,20 +1,9 @@
 @import '../../../env'
 
+$tag-height = 22px
+$tag-padding-horizontal = 7px
 $tag-close-icon-size = 14px
 $tag-text-icon-gap = 4px
-
-$tag-size-hash = {
-  default: {
-    height: 24px,
-    font-size: 12px,
-    padding-horizontal: 8px,
-  },
-  large: {
-    height: 28px,
-    font-size: 14px,
-    padding-horizontal: 10px,
-  }
-}
 
 $tag-brand-hash = {
   primary: {
@@ -49,11 +38,68 @@ $tag-brand-hash = {
   },
 }
 
-
-tag-size-style(style)
-  ui-set('font-size', style['font-size'])
-  ui-set('height', style['height'])
-  ui-set('padding', 0 style['padding-horizontal'])
+$tag-preset-hash = {
+  magenta: {
+    color: #c41d7f,
+    bg-color: #fff0f6,
+    border-color: #ffadd2,
+    text-color: $brand-white,
+  },
+  red: {
+    color: #cf1322,
+    bg-color: #fff1f0,
+    border-color: #ffa39e,
+    text-color: $brand-white,
+  },
+  volcano: {
+    color: #d4380d,
+    bg-color: #fff2e8,
+    border-color: #ffbb96,
+    text-color: $brand-white,
+  },
+  orange: {
+    color: #d46b08,
+    bg-color: #fff7e6,
+    border-color: #ffd591,
+    text-color: $brand-white,
+  },
+  gold: {
+    color: #d48806,
+    bg-color: #fffbe6,
+    border-color: #ffe58f,
+    text-color: $brand-white,
+  },
+  lime: {
+    color: #7cb305,
+    bg-color: #fcffe6,
+    border-color: #eaff8f,
+    text-color: $brand-white,
+  },
+  green: {
+    color: #389e0d,
+    bg-color: #f6ffed,
+    border-color: #b7eb8f,
+    text-color: $brand-white,
+  },
+  cyan: {
+    color: #08979c,
+    bg-color: #e6fffb,
+    border-color: #87e8de,
+    text-color: $brand-white,
+  },
+  blue: {
+    color: #096dd9,
+    bg-color: #e6f7ff,
+    border-color: #91d5ff,
+    text-color: $brand-white,
+  },
+  purple: {
+    color: #531dab,
+    bg-color: #f9f0ff,
+    border-color: #d3adf7,
+    text-color: $brand-white,
+  },
+}
 
 tag-brand-style(style)
   ui-set('background-color', style['bg-color'])
@@ -61,7 +107,7 @@ tag-brand-style(style)
   ui-set('color', style['color'])
 
   {$selector-class-prefix + '-tag-icon'} > {$selector-class-prefix + '-icon'},
-  {$selector-class-prefix + '-tag-close-button'} > {$selector-class-prefix + '-icon'}
+  {$selector-class-prefix + '-tag-close'} > {$selector-class-prefix + '-icon'}
     ui-set('color', style['color'])
 
   &{$selector-class-prefix + '-tag-checked'}
@@ -70,26 +116,32 @@ tag-brand-style(style)
     ui-set('color', style['text-color'])
 
     {$selector-class-prefix + '-tag-icon'} > {$selector-class-prefix + '-icon'},
-    {$selector-class-prefix + '-tag-close-button'} > {$selector-class-prefix + '-icon'}
+    {$selector-class-prefix + '-tag-close'} > {$selector-class-prefix + '-icon'}
       ui-set('color', style['text-color'])
 
 {$selector-class-prefix + '-tag'}
   display inline-flex
+  justify-content space-between
   align-items center
   border 1px solid $brand-border
   background-color $brand-bg-light
   color $brand-content
+  font-size $font-size-small
+  line-height 1
+  height $tag-height
+  padding 0 $tag-padding-horizontal
   border-radius $border-radius-default
-  line-height $ui-multiple-line-height
   white-space nowrap
   box-sizing border-box
-  transition background-color $form-control-transition-duration, border-color $form-control-transition-duration, color $form-control-transition-duration
+  transition background-color $form-control-transition-duration,
+    border-color $form-control-transition-duration,
+    color $form-control-transition-duration
 
 {$selector-class-prefix + '-tag-checked'}
   background-color $brand-border
 
 {$selector-class-prefix + '-tag-closable'}
-  padding-right 0
+  padding-right $tag-padding-horizontal - 4
 
 {$selector-class-prefix + '-tag-checkable'}
   user-select none
@@ -99,7 +151,7 @@ tag-brand-style(style)
   line-height 0
   margin-right $tag-text-icon-gap
 
-{$selector-class-prefix + '-tag-close-button'}
+{$selector-class-prefix + '-tag-close'}
   line-height 0
   margin-left $tag-text-icon-gap
   user-select none
@@ -117,11 +169,11 @@ tag-brand-style(style)
 // 放在最后，避免被覆盖
 {$selector-class-prefix + '-tag'}
   ui-connect(
-    hash: $tag-size-hash,
-    each: tag-size-style
+    hash: $tag-brand-hash,
+    each: tag-brand-style
   )
   ui-connect(
-    hash: $tag-brand-hash,
+    hash: $tag-preset-hash,
     each: tag-brand-style
   )
 
@@ -130,6 +182,6 @@ tag-brand-style(style)
   background-color $brand-transparent-color
   color $brand-white
 
-  {$selector-class-prefix + '-tag-close-button'} > {$selector-class-prefix + '-icon'},
-  {$selector-class-prefix + '-tag-close-button'} > {$selector-class-prefix + '-icon'}:hover
+  {$selector-class-prefix + '-tag-close'} > {$selector-class-prefix + '-icon'},
+  {$selector-class-prefix + '-tag-close'} > {$selector-class-prefix + '-icon'}:hover
     color inherit
