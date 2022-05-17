@@ -7,10 +7,7 @@ import template from './template/TimePanel.hbs'
 import {
   TRUE,
   RAW_ARRAY,
-  RAW_STRING,
   RAW_NUMBER,
-  RAW_STYLE_TYPE,
-  RAW_BOOLEAN,
 } from '../constant'
 
 import {
@@ -143,7 +140,7 @@ export default Yox.define({
         )
       }
     },
-    handleHourClick(hourIndex: number) {
+    onHourClick(hourIndex: number) {
 
       let minuteIndex = this.get('validMinuteIndex')
       if (minuteIndex < 0) {
@@ -158,7 +155,7 @@ export default Yox.define({
       this.fireChange(hourIndex, minuteIndex, secondIndex)
 
     },
-    handleMinuteClick(minuteIndex: number) {
+    onMinuteClick(minuteIndex: number) {
 
       let hourIndex = this.get('validHourIndex')
       if (hourIndex < 0) {
@@ -173,7 +170,7 @@ export default Yox.define({
       this.fireChange(hourIndex, minuteIndex, secondIndex)
 
     },
-    handleSecondClick(secondIndex: number) {
+    onSecondClick(secondIndex: number) {
 
       let hourIndex = this.get('validHourIndex')
       if (hourIndex < 0) {
@@ -188,7 +185,7 @@ export default Yox.define({
       this.fireChange(hourIndex, minuteIndex, secondIndex)
 
     },
-    handleNowClick() {
+    onNowClick() {
 
       const date = new Date(getNowTime())
 
@@ -231,7 +228,7 @@ export default Yox.define({
       )
 
     },
-    handleSubmitClick() {
+    onSubmitClick() {
 
       let hour = -1
       let minute = -1

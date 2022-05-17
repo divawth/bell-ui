@@ -61,7 +61,7 @@ export default Yox.define({
 
   data() {
     return {
-      visible: FALSE,
+      isVisible: FALSE,
     }
   },
 
@@ -107,7 +107,7 @@ export default Yox.define({
 
         setTimeout(
           function () {
-            if (!me.get('visible')) {
+            if (!me.get('isVisible')) {
               return
             }
             Yox.dom.addClass(node, CLASS_FADE)
@@ -125,7 +125,7 @@ export default Yox.define({
         onTransitionEnd(
           node,
           function () {
-            if (me.get('visible')) {
+            if (me.get('isVisible')) {
               return
             }
             Yox.dom.removeClass(node, CLASS_VISIBLE)
@@ -161,7 +161,7 @@ export default Yox.define({
     const height = toNumber(me.get('height'))
     const onRefresh = function () {
       me.set({
-        visible: containerElement.scrollTop >= height
+        isVisible: containerElement.scrollTop >= height
       })
     }
 

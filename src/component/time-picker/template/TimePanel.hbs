@@ -11,7 +11,7 @@ className="${prefix}time-picker-panel"
           key="{{this}}"
           class="${prefix}time-picker-panel-row
           {{#if index === ~/hourIndex}} ${prefix}time-picker-panel-row-active{{/if}}"
-          on-click="handleHourClick(index)"
+          on-click="onHourClick(index)"
         >
           {{padStart(this)}}
         </li>
@@ -26,7 +26,7 @@ className="${prefix}time-picker-panel"
           key="{{this}}"
           class="${prefix}time-picker-panel-row
           {{#if index === ~/minuteIndex}} ${prefix}time-picker-panel-row-active{{/if}}"
-          on-click="handleMinuteClick(index)"
+          on-click="onMinuteClick(index)"
         >
           {{padStart(this)}}
         </li>
@@ -42,7 +42,7 @@ className="${prefix}time-picker-panel"
             key="{{this}}"
             class="${prefix}time-picker-panel-row
             {{#if index === ~/secondIndex}} ${prefix}time-picker-panel-row-active{{/if}}"
-            on-click="handleSecondClick(index)"
+            on-click="onSecondClick(index)"
           >
             {{padStart(this)}}
           </li>
@@ -53,7 +53,7 @@ className="${prefix}time-picker-panel"
   <div class="${prefix}time-picker-panel-footer">
     <Button
       size="small"
-      on-click="handleNowClick()"
+      on-click="onNowClick()"
     >
       此刻
     </Button>
@@ -61,7 +61,7 @@ className="${prefix}time-picker-panel"
       size="small"
       type="primary"
       disabled="{{!hasValue}}"
-      on-click="handleSubmitClick()"
+      on-click="onSubmitClick()"
     >
       确定
     </Button>

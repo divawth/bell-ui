@@ -440,7 +440,7 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bel
 /* 57 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_r(_Q,'visible',_U.visible).value?($0={children:function(){var _T=[];_T.push(function(_S){_r(_Q,'inlineStyle',_U.inlineStyle).value?_S.nativeStyles=_b(_r(_Q,'inlineStyle',_U.inlineStyle).value):$1;return _S}({children:function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,props:{name:'arrow-up-line'},tag:'Icon',type:4});return _T.length?_T:$1}(),context:_G,events:{click:_f('click','click.backTop','click','','click','backTop')},nativeAttrs:{class:'bell-backtop'+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',transition:_c('backTop',_O&&_O.backTop||_P.backTop),type:3}));return _T.length?_T:$1}(),context:_G,isPortal:$3,operator:_E,tag:'portal',type:6},$0.children&&$0.children.length&&_T.push($0)):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2})}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_r(_Q,'isVisible',_U.isVisible).value?($0={children:function(){var _T=[];_T.push(function(_S){_r(_Q,'inlineStyle',_U.inlineStyle).value?_S.nativeStyles=_b(_r(_Q,'inlineStyle',_U.inlineStyle).value):$1;return _S}({children:function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,props:{name:'arrow-up-line'},tag:'Icon',type:4});return _T.length?_T:$1}(),context:_G,events:{click:_f('click','click.backTop','click','','click','backTop')},nativeAttrs:{class:'bell-backtop'+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',transition:_c('backTop',_O&&_O.backTop||_P.backTop),type:3}));return _T.length?_T:$1}(),context:_G,isPortal:$3,operator:_E,tag:'portal',type:6},$0.children&&$0.children.length&&_T.push($0)):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2})}})();
 
 /***/ }),
 /* 58 */
@@ -494,13 +494,13 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bel
 /* 66 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-time-picker-panel-column'},$6={class:'bell-time-picker-panel-columns'},$7={class:'bell-time-picker-panel-footer'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-time-picker-panel'},slots:{$slot_children:function(_R){var _T=[];_T.push({children:function(){var _T=[];_T.push({children:function(){var _T=[];_j(_r(_Q,'hourList',_U.hourList),function(_Q,_U,_V,_W,index){_T.push({context:_G,events:{click:_e('click','handleHourClick(index)','click','','handleHourClick',{execute:function(_X,_Y){return [index]}})},key:_s(_Q,_Q.length-1).value,nativeAttrs:{class:'bell-time-picker-panel-row'+(index===_u(_Q,0,'hourIndex').value?' bell-time-picker-panel-row-active':'')},operator:_B,tag:'li',text:_y(_x(_w(_r(_Q,'padStart',_U.padStart,_H&&_H.padStart||_I.padStart).value,_G,[_s(_Q,_Q.length-1).value])).value),type:3})});return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,ref:'hourList',tag:'ul',type:3});_T.push({children:function(){var _T=[];_j(_r(_Q,'minuteList',_U.minuteList),function(_Q,_U,_V,_W,index){_T.push({context:_G,events:{click:_e('click','handleMinuteClick(index)','click','','handleMinuteClick',{execute:function(_X,_Y){return [index]}})},key:_s(_Q,_Q.length-1).value,nativeAttrs:{class:'bell-time-picker-panel-row'+(index===_u(_Q,0,'minuteIndex').value?' bell-time-picker-panel-row-active':'')},operator:_B,tag:'li',text:_y(_x(_w(_r(_Q,'padStart',_U.padStart,_H&&_H.padStart||_I.padStart).value,_G,[_s(_Q,_Q.length-1).value])).value),type:3})});return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,ref:'minuteList',tag:'ul',type:3});_q(_Q,_Q.length-1,'secondList.length',$3).value>0?_T.push({children:function(){var _T=[];_j(_r(_Q,'secondList',_U.secondList),function(_Q,_U,_V,_W,index){_T.push({context:_G,events:{click:_e('click','handleSecondClick(index)','click','','handleSecondClick',{execute:function(_X,_Y){return [index]}})},key:_s(_Q,_Q.length-1).value,nativeAttrs:{class:'bell-time-picker-panel-row'+(index===_u(_Q,0,'secondIndex').value?' bell-time-picker-panel-row-active':'')},operator:_B,tag:'li',text:_y(_x(_w(_r(_Q,'padStart',_U.padStart,_H&&_H.padStart||_I.padStart).value,_G,[_s(_Q,_Q.length-1).value])).value),type:3})});return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,ref:'secondList',tag:'ul',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:$6,operator:_B,tag:'div',type:3});_T.push({children:function(){var _T=[];_T.push({context:_G,events:{click:_e('click','handleNowClick()','click','','handleNowClick',$1,$3)},isComponent:$3,operator:_C,parent:_R,props:{size:'small'},slots:{$slot_children:function(_R){var _T=[];_T.push({isPure:$3,operator:_z,text:'此刻',type:1});return _T.length?_T:$1}},tag:'Button',type:4});_T.push({context:_G,events:{click:_e('click','handleSubmitClick()','click','','handleSubmitClick',$1,$3)},isComponent:$3,operator:_C,parent:_R,props:{disabled:!_r(_Q,'hasValue',_U.hasValue).value,size:'small',type:'primary'},slots:{$slot_children:function(_R){var _T=[];_T.push({isPure:$3,operator:_z,text:'确定',type:1});return _T.length?_T:$1}},tag:'Button',type:4});return _T.length?_T:$1}(),context:_G,nativeAttrs:$7,operator:_B,tag:'div',type:3});return _T.length?_T:$1}},tag:'ResizeObserver',type:4})}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-time-picker-panel-column'},$6={class:'bell-time-picker-panel-columns'},$7={class:'bell-time-picker-panel-footer'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-time-picker-panel'},slots:{$slot_children:function(_R){var _T=[];_T.push({children:function(){var _T=[];_T.push({children:function(){var _T=[];_j(_r(_Q,'hourList',_U.hourList),function(_Q,_U,_V,_W,index){_T.push({context:_G,events:{click:_e('click','onHourClick(index)','click','','onHourClick',{execute:function(_X,_Y){return [index]}})},key:_s(_Q,_Q.length-1).value,nativeAttrs:{class:'bell-time-picker-panel-row'+(index===_u(_Q,0,'hourIndex').value?' bell-time-picker-panel-row-active':'')},operator:_B,tag:'li',text:_y(_x(_w(_r(_Q,'padStart',_U.padStart,_H&&_H.padStart||_I.padStart).value,_G,[_s(_Q,_Q.length-1).value])).value),type:3})});return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,ref:'hourList',tag:'ul',type:3});_T.push({children:function(){var _T=[];_j(_r(_Q,'minuteList',_U.minuteList),function(_Q,_U,_V,_W,index){_T.push({context:_G,events:{click:_e('click','onMinuteClick(index)','click','','onMinuteClick',{execute:function(_X,_Y){return [index]}})},key:_s(_Q,_Q.length-1).value,nativeAttrs:{class:'bell-time-picker-panel-row'+(index===_u(_Q,0,'minuteIndex').value?' bell-time-picker-panel-row-active':'')},operator:_B,tag:'li',text:_y(_x(_w(_r(_Q,'padStart',_U.padStart,_H&&_H.padStart||_I.padStart).value,_G,[_s(_Q,_Q.length-1).value])).value),type:3})});return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,ref:'minuteList',tag:'ul',type:3});_q(_Q,_Q.length-1,'secondList.length',$3).value>0?_T.push({children:function(){var _T=[];_j(_r(_Q,'secondList',_U.secondList),function(_Q,_U,_V,_W,index){_T.push({context:_G,events:{click:_e('click','onSecondClick(index)','click','','onSecondClick',{execute:function(_X,_Y){return [index]}})},key:_s(_Q,_Q.length-1).value,nativeAttrs:{class:'bell-time-picker-panel-row'+(index===_u(_Q,0,'secondIndex').value?' bell-time-picker-panel-row-active':'')},operator:_B,tag:'li',text:_y(_x(_w(_r(_Q,'padStart',_U.padStart,_H&&_H.padStart||_I.padStart).value,_G,[_s(_Q,_Q.length-1).value])).value),type:3})});return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,ref:'secondList',tag:'ul',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:$6,operator:_B,tag:'div',type:3});_T.push({children:function(){var _T=[];_T.push({context:_G,events:{click:_e('click','onNowClick()','click','','onNowClick',$1,$3)},isComponent:$3,operator:_C,parent:_R,props:{size:'small'},slots:{$slot_children:function(_R){var _T=[];_T.push({isPure:$3,operator:_z,text:'此刻',type:1});return _T.length?_T:$1}},tag:'Button',type:4});_T.push({context:_G,events:{click:_e('click','onSubmitClick()','click','','onSubmitClick',$1,$3)},isComponent:$3,operator:_C,parent:_R,props:{disabled:!_r(_Q,'hasValue',_U.hasValue).value,size:'small',type:'primary'},slots:{$slot_children:function(_R){var _T=[];_T.push({isPure:$3,operator:_z,text:'确定',type:1});return _T.length?_T:$1}},tag:'Button',type:4});return _T.length?_T:$1}(),context:_G,nativeAttrs:$7,operator:_B,tag:'div',type:3});return _T.length?_T:$1}},tag:'ResizeObserver',type:4})}})();
 
 /***/ }),
 /* 67 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-time-picker-value'},$6={class:'bell-time-picker-placeholder'},$7={class:'bell-time-picker-overlay'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({context:_G,isComponent:$3,operator:_C,props:{gap:'5',placement:_r(_Q,'placement',_U.placement).value,trigger:_r(_Q,'RAW_CUSTOM',_U.RAW_CUSTOM).value,visible:_r(_Q,'isVisible',_U.isVisible).value},slots:{$slot_children:function(_R){var _T=[];_T.push(function(_S){!_r(_Q,'disabled',_U.disabled).value?(_n(_S,'nativeAttrs','tabindex','0'),_n(_S,'events','click',_e('click','onClick()','click','','onClick')),_n(_S,'events','focus',_e('focus',"set('isFocus', true)",'focus','','set',{execute:function(_X,_Y){return ['isFocus',$3]}})),_n(_S,'events','blur',_e('blur',"set('isFocus', false)",'blur','','set',{execute:function(_X,_Y){return ['isFocus',$4]}}))):$1;_r(_Q,'inlineStyle',_U.inlineStyle).value?_S.nativeStyles=_b(_r(_Q,'inlineStyle',_U.inlineStyle).value):$1;return _S}({children:function(){var _T=[];_r(_Q,'text',_U.text).value?_T.push({context:_G,nativeAttrs:$5,operator:_B,tag:'div',text:_y(_r(_Q,'text',_U.text).value),type:3}):_T.push({context:_G,nativeAttrs:$6,operator:_B,tag:'div',text:_y(_r(_Q,'placeholder',_U.placeholder).value),type:3});_r(_Q,'clearable',_U.clearable).value&&_r(_Q,'hasValue',_U.hasValue).value?_T.push({context:_G,events:{'click.native':_e('click.native','onClearClick()','click','native','onClearClick',$1,$1,$3)},isComponent:$3,operator:_C,parent:_R,props:{className:'bell-time-picker-clear-icon',name:'close-circle-fill'},tag:'Icon',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_T.push({context:_G,isComponent:$3,operator:_C,parent:_R,props:{className:'bell-time-picker-time-icon',name:'time-line'},tag:'Icon',type:4});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-time-picker'+(_r(_Q,'status',_U.status).value?' bell-time-picker-'+_y(_r(_Q,'status',_U.status).value):'')+(_r(_Q,'size',_U.size).value?' bell-time-picker-'+_y(_r(_Q,'size',_U.size).value):'')+(_r(_Q,'block',_U.block).value?' bell-time-picker-block':'')+(_r(_Q,'isVisible',_U.isVisible).value?' bell-time-picker-opened':'')+(_r(_Q,'clearable',_U.clearable).value?' bell-time-picker-clearable':'')+(_r(_Q,'disabled',_U.disabled).value?' bell-time-picker-disabled':' bell-time-picker-enabled')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',type:3}));return _T.length?_T:$1},$slot_overlay:function(_R){var _T=[];_T.push({children:function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,parent:_R,props:{hourIndex:_r(_Q,'visible',_U.visible).value?_r(_Q,'hourIndex',_U.hourIndex).value:-1,hourList:_r(_Q,'hourList',_U.hourList).value,minuteIndex:_r(_Q,'visible',_U.visible).value?_r(_Q,'minuteIndex',_U.minuteIndex).value:-1,minuteList:_r(_Q,'minuteList',_U.minuteList).value,secondIndex:_r(_Q,'visible',_U.visible).value?_r(_Q,'secondIndex',_U.secondIndex).value:-1,secondList:_r(_Q,'secondList',_U.secondList).value},tag:'TimePanel',type:4});return _T.length?_T:$1}(),context:_G,nativeAttrs:$7,operator:_B,tag:'div',type:3});return _T.length?_T:$1}},tag:'Popover',type:4})}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-time-picker-value'},$6={class:'bell-time-picker-placeholder'},$7={class:'bell-time-picker-overlay'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({context:_G,isComponent:$3,operator:_C,props:{gap:'5',placement:_r(_Q,'placement',_U.placement).value,trigger:_r(_Q,'RAW_CUSTOM',_U.RAW_CUSTOM).value,visible:_r(_Q,'isVisible',_U.isVisible).value},slots:{$slot_children:function(_R){var _T=[];_T.push(function(_S){!_r(_Q,'disabled',_U.disabled).value?(_n(_S,'nativeAttrs','tabindex','0'),_n(_S,'events','click',_e('click','onClick()','click','','onClick')),_n(_S,'events','focus',_e('focus',"set('isFocus', true)",'focus','','set',{execute:function(_X,_Y){return ['isFocus',$3]}})),_n(_S,'events','blur',_e('blur',"set('isFocus', false)",'blur','','set',{execute:function(_X,_Y){return ['isFocus',$4]}}))):$1;_r(_Q,'inlineStyle',_U.inlineStyle).value?_S.nativeStyles=_b(_r(_Q,'inlineStyle',_U.inlineStyle).value):$1;return _S}({children:function(){var _T=[];_r(_Q,'text',_U.text).value?_T.push({context:_G,nativeAttrs:$5,operator:_B,tag:'div',text:_y(_r(_Q,'text',_U.text).value),type:3}):_T.push({context:_G,nativeAttrs:$6,operator:_B,tag:'div',text:_y(_r(_Q,'placeholder',_U.placeholder).value),type:3});_r(_Q,'clearable',_U.clearable).value&&_r(_Q,'hasValue',_U.hasValue).value?_T.push({context:_G,events:{'click.native':_e('click.native','onClearClick()','click','native','onClearClick',$1,$1,$3)},isComponent:$3,operator:_C,parent:_R,props:{className:'bell-time-picker-clear-icon',name:'close-circle-fill'},tag:'Icon',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_T.push({context:_G,isComponent:$3,operator:_C,parent:_R,props:{className:'bell-time-picker-time-icon',name:'time-line'},tag:'Icon',type:4});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-time-picker'+(_r(_Q,'status',_U.status).value?' bell-time-picker-'+_y(_r(_Q,'status',_U.status).value):'')+(_r(_Q,'size',_U.size).value?' bell-time-picker-'+_y(_r(_Q,'size',_U.size).value):'')+(_r(_Q,'block',_U.block).value?' bell-time-picker-block':'')+(_r(_Q,'isVisible',_U.isVisible).value?' bell-time-picker-opened':'')+(_r(_Q,'clearable',_U.clearable).value?' bell-time-picker-clearable':'')+(_r(_Q,'disabled',_U.disabled).value?' bell-time-picker-disabled':' bell-time-picker-enabled')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',type:3}));return _T.length?_T:$1},$slot_overlay:function(_R){var _T=[];_T.push({children:function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,parent:_R,props:{hourIndex:_r(_Q,'isVisible',_U.isVisible).value?_r(_Q,'hourIndex',_U.hourIndex).value:-1,hourList:_r(_Q,'hourList',_U.hourList).value,minuteIndex:_r(_Q,'isVisible',_U.isVisible).value?_r(_Q,'minuteIndex',_U.minuteIndex).value:-1,minuteList:_r(_Q,'minuteList',_U.minuteList).value,secondIndex:_r(_Q,'isVisible',_U.isVisible).value?_r(_Q,'secondIndex',_U.secondIndex).value:-1,secondList:_r(_Q,'secondList',_U.secondList).value},tag:'TimePanel',type:4});return _T.length?_T:$1}(),context:_G,nativeAttrs:$7,operator:_B,tag:'div',type:3});return _T.length?_T:$1}},tag:'Popover',type:4})}})();
 
 /***/ }),
 /* 68 */
@@ -7270,7 +7270,7 @@ var BackTop_CLASS_FADE = 'bell-backtop-fade';
     },
     data: function () {
         return {
-            visible: FALSE,
+            isVisible: FALSE,
         };
     },
     computed: {
@@ -7304,7 +7304,7 @@ var BackTop_CLASS_FADE = 'bell-backtop-fade';
                 // 设置为 display block
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(node, BackTop_CLASS_VISIBLE);
                 setTimeout(function () {
-                    if (!me.get('visible')) {
+                    if (!me.get('isVisible')) {
                         return;
                     }
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(node, BackTop_CLASS_FADE);
@@ -7314,7 +7314,7 @@ var BackTop_CLASS_FADE = 'bell-backtop-fade';
                 var me = this;
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(node, BackTop_CLASS_FADE);
                 onTransitionEnd(node, function () {
-                    if (me.get('visible')) {
+                    if (me.get('isVisible')) {
                         return;
                     }
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(node, BackTop_CLASS_VISIBLE);
@@ -7342,7 +7342,7 @@ var BackTop_CLASS_FADE = 'bell-backtop-fade';
         var height = toNumber(me.get('height'));
         var onRefresh = function () {
             me.set({
-                visible: containerElement.scrollTop >= height
+                isVisible: containerElement.scrollTop >= height
             });
         };
         var duration = toNumber(this.get('duration'));
@@ -8830,7 +8830,7 @@ function scrollTimeItemInToView(listElement, index, animated) {
                 scrollTimeItemInToView(this.$refs.secondList, secondIndex, animated);
             }
         },
-        handleHourClick: function (hourIndex) {
+        onHourClick: function (hourIndex) {
             var minuteIndex = this.get('validMinuteIndex');
             if (minuteIndex < 0) {
                 minuteIndex = 0;
@@ -8841,7 +8841,7 @@ function scrollTimeItemInToView(listElement, index, animated) {
             }
             this.fireChange(hourIndex, minuteIndex, secondIndex);
         },
-        handleMinuteClick: function (minuteIndex) {
+        onMinuteClick: function (minuteIndex) {
             var hourIndex = this.get('validHourIndex');
             if (hourIndex < 0) {
                 hourIndex = 0;
@@ -8852,7 +8852,7 @@ function scrollTimeItemInToView(listElement, index, animated) {
             }
             this.fireChange(hourIndex, minuteIndex, secondIndex);
         },
-        handleSecondClick: function (secondIndex) {
+        onSecondClick: function (secondIndex) {
             var hourIndex = this.get('validHourIndex');
             if (hourIndex < 0) {
                 hourIndex = 0;
@@ -8863,7 +8863,7 @@ function scrollTimeItemInToView(listElement, index, animated) {
             }
             this.fireChange(hourIndex, minuteIndex, secondIndex);
         },
-        handleNowClick: function () {
+        onNowClick: function () {
             var date = new Date(getNowTime());
             var hour = date.getHours();
             var hourIndex = -1;
@@ -8893,7 +8893,7 @@ function scrollTimeItemInToView(listElement, index, animated) {
                 second: second,
             });
         },
-        handleSubmitClick: function () {
+        onSubmitClick: function () {
             var hour = -1;
             var minute = -1;
             var second = -1;
@@ -9516,7 +9516,8 @@ var CLASS_CARD_DRAG_ENTER = 'bell-image-picker-card-drag-enter';
                     }
                     return;
                 }
-                fileList.map(readLocalFile).then(function (newList) {
+                Promise.all(fileList.map(readLocalFile))
+                    .then(function (newList) {
                     me.validateImageList(newList);
                     var upload = me.$refs.upload;
                     upload.reset();
@@ -13755,7 +13756,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.28.1";
+var version = "0.28.2";
 /**
  * 安装插件
  */
