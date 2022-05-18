@@ -53,9 +53,15 @@ $image-icon-size = 20px
     height 100%
 
 {$selector-class-prefix + '-image-placeholder-default'}
-  background $brand-bg-placeholder url('~@component/image/image/placeholder-default.png') no-repeat 50% 50%
+  background $brand-bg-placeholder url('~@component/image/image/image-placeholder-default.png') no-repeat 50% 50%
   background-image -webkit-image-set(
-    url('~@component/image/image/placeholder-default@2x.png') 2x
+    url('~@component/image/image/image-placeholder-default@2x.png') 2x
+  )
+
+{$selector-class-prefix + '-video-placeholder-default'}
+  background $brand-bg-placeholder url('~@component/image/image/video-placeholder-default.png') no-repeat 50% 50%
+  background-image -webkit-image-set(
+    url('~@component/image/image/video-placeholder-default@2x.png') 2x
   )
 
 {$selector-class-prefix + '-image-small'},
@@ -66,24 +72,36 @@ $image-icon-size = 20px
 
 {$selector-class-prefix + '-image-small'}
   {$selector-class-prefix + '-image-placeholder-default'}
-    background-image url('~@component/image/image/placeholder-small.png')
+    background-image url('~@component/image/image/image-placeholder-small.png')
     background-image -webkit-image-set(
-      url('~@component/image/image/placeholder-small@2x.png') 2x
+      url('~@component/image/image/image-placeholder-small@2x.png') 2x
+    )
+  {$selector-class-prefix + '-video-placeholder-default'}
+    background-image url('~@component/image/image/video-placeholder-small.png')
+    background-image -webkit-image-set(
+      url('~@component/image/image/video-placeholder-small@2x.png') 2x
     )
 
 {$selector-class-prefix + '-image-mini'}
   {$selector-class-prefix + '-image-placeholder-default'}
-    background-image url('~@component/image/image/placeholder-mini.png')
+    background-image url('~@component/image/image/image-placeholder-mini.png')
     background-image -webkit-image-set(
-      url('~@component/image/image/placeholder-mini@2x.png') 2x
+      url('~@component/image/image/image-placeholder-mini@2x.png') 2x
+    )
+  {$selector-class-prefix + '-video-placeholder-default'}
+    background-image url('~@component/image/image/video-placeholder-mini.png')
+    background-image -webkit-image-set(
+      url('~@component/image/image/video-placeholder-mini@2x.png') 2x
     )
 
 {$selector-class-prefix + '-image-with-upload'}
-  {$selector-class-prefix + '-image-placeholder-default'}
-    background-position 50% 35%
+  {$selector-class-prefix + '-image-placeholder-default'},
+  {$selector-class-prefix + '-video-placeholder-default'}
+    background-position 50% 32%
   &{$selector-class-prefix + '-image-mini'}
-    {$selector-class-prefix + '-image-placeholder-default'}
-      background-position 50% 25%
+    {$selector-class-prefix + '-image-placeholder-default'},
+    {$selector-class-prefix + '-video-placeholder-default'}
+      background-position 50% 20%
 
 {$selector-class-prefix + '-image-footer'}
   position absolute

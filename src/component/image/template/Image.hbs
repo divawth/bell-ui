@@ -4,8 +4,8 @@ class="${prefix}image
 {{else}} ${prefix}image-bordered
 {{/if}}
 {{#if mode}} ${prefix}image-{{mode}}{{/if}}
-{{#if customHeight <= 100}} ${prefix}image-small{{/if}}
-{{#if customHeight <= 70}} ${prefix}image-mini{{/if}}
+{{#if heightNumber <= 100}} ${prefix}image-small{{/if}}
+{{#if heightNumber <= 70}} ${prefix}image-mini{{/if}}
 {{#if uploadTitle}} ${prefix}image-with-upload{{/if}}
 {{#if image.message}} ${prefix}image-with-message{{/if}}
 {{#if className}} {{className}}{{/if}}"
@@ -24,8 +24,8 @@ class="${prefix}image
           formatImageUrl
           ? formatImageUrl({
               url: image.url,
-              width: customWidth,
-              height: customHeight,
+              width: widthNumber,
+              height: heightNumber,
               responsive: true
             })
           : image.url
@@ -40,7 +40,11 @@ class="${prefix}image
   {{else}}
     <div
       class="${prefix}image-placeholder
-      {{#if !@placeholder}} ${prefix}image-placeholder-default{{/if}}"
+      {{#if !@placeholder}}
+        {{#if isVideoUploader}} ${prefix}video-placeholder-default
+        {{else}} ${prefix}image-placeholder-default
+        {{/if}}
+      {{/if}}"
     >
       <slot name="placeholder" />
     </div>
@@ -62,7 +66,6 @@ class="${prefix}image
       {{/if}}
     </div>
   {{/if}}
-
 
   {{#if uploadTitle}}
     {{#if uploadImage}}

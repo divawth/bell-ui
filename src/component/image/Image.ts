@@ -8,6 +8,7 @@ import Upload from '../upload/Upload'
 import LoadingBar from '../loading-bar/LoadingBar'
 
 import {
+  FALSE,
   UNDEFINED,
   RAW_STRING,
   RAW_NUMERIC,
@@ -161,21 +162,25 @@ export default Yox.define({
     isUploading(): boolean {
       return this.get('image.status') === STATUS_UPLOADING
     },
-    customWidth(): number {
+    isVideoUploader(): boolean {
+      const accept = this.get('accept')
+      return accept ? accept.indexOf('video') >= 0 : FALSE
+    },
+    widthNumber(): number {
       return toNumber(this.get('width'))
     },
-    customHeight(): number {
+    heightNumber(): number {
       return toNumber(this.get('height'))
     },
     inlineStyle(): object[] | void {
       const result: object[] = []
 
-      const customWidth = this.get('customWidth')
-      const customHeight = this.get('customHeight')
+      const widthNumber = this.get('widthNumber')
+      const heightNumber = this.get('heightNumber')
 
       result.push({
-        width: toPixel(customWidth),
-        height: toPixel(customHeight),
+        width: toPixel(widthNumber),
+        height: toPixel(heightNumber),
       })
 
       const style = this.get('style')
