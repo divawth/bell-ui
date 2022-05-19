@@ -1966,7 +1966,7 @@ var ResizeObserver_default = /*#__PURE__*/__webpack_require__.n(template_ResizeO
         };
         handleResize(element.clientWidth, element.clientHeight);
         // @ts-ignore
-        if (ResizeObserver) {
+        if (typeof ResizeObserver !== UNDEFINED) {
             // @ts-ignore
             var resizeObserver_1 = new ResizeObserver(function (entries) {
                 var _a = entries[0].contentRect, width = _a.width, height = _a.height;
@@ -6213,7 +6213,7 @@ function isOptionSelected(values, value) {
                     me.set('isVisible', FALSE);
                 }
             },
-            ns: 'selectOption',
+            ns: 'option',
         },
         outside: {
             listener: function (event) {
@@ -6407,7 +6407,7 @@ var Option_default = /*#__PURE__*/__webpack_require__.n(Option);
         onClick: function () {
             this.fire({
                 type: 'update',
-                ns: 'selectOption',
+                ns: 'option',
             }, {
                 isSelected: TRUE,
                 value: this.get('value'),
@@ -13815,7 +13815,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.28.2";
+var version = "0.28.3";
 /**
  * 安装插件
  */

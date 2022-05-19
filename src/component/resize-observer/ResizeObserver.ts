@@ -4,6 +4,7 @@ import template from './template/ResizeObserver.hbs'
 // import './style/ResizeObserver.styl'
 
 import {
+  UNDEFINED,
   RAW_NUMERIC,
   RAW_EVENT_BEFORE_DESTROY,
 } from '../constant'
@@ -87,7 +88,7 @@ export default Yox.define({
     handleResize(element.clientWidth, element.clientHeight)
 
     // @ts-ignore
-    if (ResizeObserver) {
+    if (typeof ResizeObserver !== UNDEFINED) {
       // @ts-ignore
       const resizeObserver = new ResizeObserver(
         function (entries) {
