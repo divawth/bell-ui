@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.28.3
+ * bell-ui.js v0.28.4
  * (c) 2018-2022 
  * Released under the MIT License.
  */
@@ -1079,7 +1079,7 @@
           };
           handleResize(element.clientWidth, element.clientHeight);
           // @ts-ignore
-          if (typeof ResizeObserver !== UNDEFINED) {
+          if (typeof ResizeObserver !== 'undefined') {
               // @ts-ignore
               var resizeObserver_1 = new ResizeObserver(function (entries) {
                   var _a = entries[0].contentRect, width = _a.width, height = _a.height;
@@ -11857,7 +11857,7 @@
   /**
    * 版本
    */
-  var version = "0.28.3";
+  var version = "0.28.4";
   /**
    * 安装插件
    */

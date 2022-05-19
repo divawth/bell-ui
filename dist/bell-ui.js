@@ -1966,7 +1966,7 @@ var ResizeObserver_default = /*#__PURE__*/__webpack_require__.n(template_ResizeO
         };
         handleResize(element.clientWidth, element.clientHeight);
         // @ts-ignore
-        if (typeof ResizeObserver !== UNDEFINED) {
+        if (typeof ResizeObserver !== 'undefined') {
             // @ts-ignore
             var resizeObserver_1 = new ResizeObserver(function (entries) {
                 var _a = entries[0].contentRect, width = _a.width, height = _a.height;
@@ -13815,7 +13815,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.28.3";
+var version = "0.28.4";
 /**
  * 安装插件
  */
