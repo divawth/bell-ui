@@ -217,13 +217,14 @@ ui-form-button(
   $selector-disabled,
   $selector-opened,
   $selector-clearable,
+  $selector-reversed,
   $selector-values,
   $selector-value,
   $selector-placeholder,
   $selector-right-icon,
   $selector-clear-icon,
-  $right-icon-size,
-  $clear-icon-size)
+  $selector-arrow-icon,
+  $right-icon-size)
 
   {$selector-base}
 
@@ -264,16 +265,24 @@ ui-form-button(
     color $brand-placeholder
     user-select none
 
-  {$selector-right-icon}
+  {$selector-right-icon},
+  {$selector-clear-icon}
     font-size $right-icon-size
+    position absolute
+    right 0
+    top 50%
+    transform translateY(-50%)
+
+  {$selector-right-icon}
     color $brand-muted
-    transition transform $form-control-transition-duration
+    opacity 1
+    transition opacity $form-control-transition-duration, transform $form-control-transition-duration
     transform-origin center center
 
   {$selector-clear-icon}
-    font-size $clear-icon-size
     color $brand-clear-icon-color
-    display none
+    opacity 0
+    transition opacity $form-control-transition-duration
 
   {$selector-enabled}
     ui-enabled(true)
@@ -291,9 +300,24 @@ ui-form-button(
 
   {$selector-clearable}:hover
     {$selector-clear-icon}
-      display block
+      opacity 1
+      z-index $zindex-normal
+
       + {$selector-right-icon}
-        display none
+        opacity 0
+
+  if $selector-arrow-icon
+    {$selector-opened}
+      {$selector-arrow-icon}
+        transform translateY(-50%) rotate(-180deg)
+
+    {$selector-reversed}
+      {$selector-arrow-icon}
+        transform translateY(-50%) rotate(-180deg)
+
+      &{$selector-opened}
+        {$selector-arrow-icon}
+          transform translateY(-50%) rotate(0)
 
 ui-form-button-brand(style, $selector-enabled, $selector-opened)
   &{$selector-enabled}

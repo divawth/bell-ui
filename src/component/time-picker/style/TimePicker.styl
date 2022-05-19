@@ -12,15 +12,15 @@ $time-picker-footer-padding = 9px 12px
 time-picker-size-style(size)
   ui-set('font-size', size['font-size'])
   ui-set('min-height', size['height'])
+  ui-set('padding-right', $ui-horizontal-gap + $select-close-icon-size + size['icon-right'])
 
   {$selector-class-prefix + '-time-picker-value'},
   {$selector-class-prefix + '-time-picker-placeholder'}
     ui-set('padding-left', size['padding-horizontal'])
-    ui-set('padding-right', size['padding-horizontal'])
 
   {$selector-class-prefix + '-time-picker-time-icon'},
   {$selector-class-prefix + '-time-picker-clear-icon'}
-    ui-set('margin-right', size['icon-right'])
+    ui-set('right', size['icon-right'])
 
 time-picker-brand-style(style)
   ui-form-button-brand(
@@ -112,10 +112,11 @@ ui-form-button(
   $selector-class-prefix + '-time-picker-opened',
   $selector-class-prefix + '-time-picker-clearable',
   '',
+  '',
   $selector-class-prefix + '-time-picker-value',
   $selector-class-prefix + '-time-picker-placeholder',
   $selector-class-prefix + '-time-picker-time-icon',
   $selector-class-prefix + '-time-picker-clear-icon',
-  $select-close-icon-size,
+  '',
   $select-close-icon-size
 )

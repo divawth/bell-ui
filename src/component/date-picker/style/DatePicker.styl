@@ -41,17 +41,15 @@ $date-picker-shortcut-item-padding = 8px 10px
 date-picker-size-style(size)
   ui-set('font-size', size['font-size'])
   ui-set('min-height', size['height'])
+  ui-set('padding-right', $ui-horizontal-gap + $select-close-icon-size + size['icon-right'])
 
   {$selector-class-prefix + '-date-picker-value'},
   {$selector-class-prefix + '-date-picker-placeholder'}
     ui-set('padding-left', size['padding-horizontal'])
-    ui-set('padding-right', size['padding-horizontal'])
 
   {$selector-class-prefix + '-date-picker-values'}
-    ui-set(
-      'padding',
-      size['padding-vertical'] size['padding-horizontal'] size['padding-vertical'] - size['tag-gap-vertical'] size['padding-vertical']
-    )
+    ui-set('padding', size['padding-vertical'] 0 size['padding-vertical'] size['padding-vertical'])
+    ui-set('margin-bottom', -1 * size['tag-gap-vertical'])
 
     > {$selector-class-prefix + '-tag'}
       ui-set('height', size['tag-height'])
@@ -60,7 +58,7 @@ date-picker-size-style(size)
 
   {$selector-class-prefix + '-date-picker-calendar-icon'},
   {$selector-class-prefix + '-date-picker-clear-icon'}
-    ui-set('margin-right', size['icon-right'])
+    ui-set('right', size['icon-right'])
 
 date-picker-brand-style(style)
   ui-form-button-brand(
@@ -292,11 +290,12 @@ ui-form-button(
   $selector-class-prefix + '-date-picker-disabled',
   $selector-class-prefix + '-date-picker-opened',
   $selector-class-prefix + '-date-picker-clearable',
+  '',
   $selector-class-prefix + '-date-picker-values',
   $selector-class-prefix + '-date-picker-value',
   $selector-class-prefix + '-date-picker-placeholder',
   $selector-class-prefix + '-date-picker-calendar-icon',
   $selector-class-prefix + '-date-picker-clear-icon',
-  $select-close-icon-size,
+  '',
   $select-close-icon-size
 )

@@ -147,7 +147,7 @@ export default Yox.define({
         }
 
       },
-      ns: 'selectOption',
+      ns: 'option',
     },
     outside: {
       listener(event) {
@@ -175,7 +175,6 @@ export default Yox.define({
       fireClickEvent(event)
 
       this.set('value', UNDEFINED)
-
       this.fireChange(UNDEFINED)
 
     },
@@ -314,6 +313,17 @@ export default Yox.define({
         }
       )
 
+      this.fire(
+        {
+          type: 'change',
+          ns: 'select',
+        },
+        {
+          value,
+        },
+        TRUE
+      )
+
     }
 
   },
@@ -330,7 +340,6 @@ export default Yox.define({
       },
       TRUE
     )
-
     onClickEventByEnterPress(this)
   },
 

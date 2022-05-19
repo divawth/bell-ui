@@ -58,27 +58,26 @@ export default Yox.define({
     }
   },
 
-  watchers: {
-    isSelected(isSelected) {
-      this.fireEvent(isSelected)
+  events: {
+    change: {
+      listener(_, data) {
+        this.set({
+          isSelected: isOptionSelected(data.value, this.get('value'))
+        })
+      },
+      ns: 'select'
     }
   },
 
   methods: {
-    onClick(): void {
-      this.fireEvent(TRUE)
-    },
-    getText(): string {
-      return this.get('text') || Yox.dom.getText(this.$el)
-    },
-    fireEvent(isSelected: boolean) {
+    onClick() {
       this.fire(
         {
           type: 'update',
-          ns: 'selectOption',
+          ns: 'option',
         },
         {
-          isSelected,
+          isSelected: TRUE,
           value: this.get('value'),
         }
       )

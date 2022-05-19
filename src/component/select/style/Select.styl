@@ -7,17 +7,15 @@ select-size-style(size)
 
   ui-set('font-size', size['font-size'])
   ui-set('min-height', size['height'])
+  ui-set('padding-right', $ui-horizontal-gap + $select-close-icon-size + size['icon-right'])
 
   {$selector-class-prefix + '-select-value'},
   {$selector-class-prefix + '-select-placeholder'}
     ui-set('padding-left', size['padding-horizontal'])
-    ui-set('padding-right', size['padding-horizontal'])
 
   {$selector-class-prefix + '-select-values'}
-    ui-set(
-      'padding',
-      size['padding-vertical'] size['padding-horizontal'] size['padding-vertical'] - size['tag-gap-vertical'] size['padding-vertical']
-    )
+    ui-set('padding', size['padding-vertical'] 0 size['padding-vertical'] size['padding-vertical'])
+    ui-set('margin-bottom', -1 * size['tag-gap-vertical'])
 
     > {$selector-class-prefix + '-tag'}
       ui-set('height', size['tag-height'])
@@ -29,7 +27,7 @@ select-size-style(size)
 
   {$selector-class-prefix + '-select-arrow-icon'},
   {$selector-class-prefix + '-select-clear-icon'}
-    ui-set('margin-right', size['icon-right'])
+    ui-set('right', size['icon-right'])
 
 select-brand-style(style)
   ui-form-button-brand(
@@ -87,30 +85,19 @@ select-brand-style(style)
   color $select-prefix-icon-color
   font-size $select-prefix-icon-size
 
-{$selector-class-prefix + '-select-opened'}
-  > {$selector-class-prefix + '-select-arrow-icon'}
-    transform rotate(-180deg)
-
-{$selector-class-prefix + '-select-reversed'}
-  > {$selector-class-prefix + '-select-arrow-icon'}
-    transform rotate(-180deg)
-
-  &{$selector-class-prefix + '-select-opened'}
-    > {$selector-class-prefix + '-select-arrow-icon'}
-      transform rotate(0)
-
 ui-form-button(
   $selector-class-prefix + '-select',
   $selector-class-prefix + '-select-enabled',
   $selector-class-prefix + '-select-disabled',
   $selector-class-prefix + '-select-opened',
   $selector-class-prefix + '-select-clearable',
+  $selector-class-prefix + '-select-reversed',
   $selector-class-prefix + '-select-values',
   $selector-class-prefix + '-select-value',
   $selector-class-prefix + '-select-placeholder',
   $selector-class-prefix + '-select-arrow-icon',
   $selector-class-prefix + '-select-clear-icon',
-  $select-close-icon-size,
+  $selector-class-prefix + '-select-arrow-icon',
   $select-close-icon-size
 )
 
