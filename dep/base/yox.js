@@ -1,5 +1,5 @@
 /**
- * yox.js v1.0.0-alpha.254
+ * yox.js v1.0.0-alpha.255
  * (c) 2017-2022 musicode
  * Released under the MIT License.
  */
@@ -53,6 +53,8 @@
   var MODEL_PROP_DEFAULT = 'value';
   var HOOK_BEFORE_CREATE = 'beforeCreate';
   var HOOK_AFTER_CREATE = 'afterCreate';
+  var HOOK_BEFORE_RENDER = 'beforeRender';
+  var HOOK_AFTER_RENDER = 'afterRender';
   var HOOK_BEFORE_MOUNT = 'beforeMount';
   var HOOK_AFTER_MOUNT = 'afterMount';
   var HOOK_BEFORE_UPDATE = 'beforeUpdate';
@@ -541,6 +543,36 @@
           }
       };
   };
+  // IE9+ 都已实现 Object.create
+  {
+      if (!isNative(Object.create)) {
+          createPureObject = function () {
+              var obj = {};
+              return {
+                  get: function(key) {
+                      return obj.hasOwnProperty(key)
+                          ? obj[key]
+                          : UNDEFINED$1;
+                  },
+                  set: function(key, value) {
+                      obj[key] = value;
+                  },
+                  has: function(key) {
+                      return obj.hasOwnProperty(key);
+                  },
+                  keys: function() {
+                      return Object.keys(obj);
+                  }
+              };
+          };
+      }
+  }
+  /**
+   * 创建纯净对象
+   *
+   * @return 纯净对象
+   */
+  var createPureObject$1 = createPureObject;
 
   /**
    * 缓存一个参数的函数调用结果
@@ -549,7 +581,7 @@
    * @return 带缓存功能的函数
    */
   function createOneKeyCache(fn) {
-      var cache = createPureObject();
+      var cache = createPureObject$1();
       return function (key) {
           var hit = cache.get(key);
           if (hit !== UNDEFINED$1) {
@@ -567,7 +599,7 @@
    * @return 带缓存功能的函数
    */
   function createTwoKeyCache(fn) {
-      var cache = createPureObject();
+      var cache = createPureObject$1();
       return function (key1, key2) {
           var hit1 = cache.get(key1);
           if (hit1) {
@@ -577,7 +609,7 @@
               }
           }
           else {
-              hit1 = createPureObject();
+              hit1 = createPureObject$1();
               cache.set(key1, hit1);
           }
           var value = fn(key1, key2);
@@ -3924,14 +3956,19 @@
               operator = instance.scanOperator(instance.index);
               // 必须是二元运算符，一元不行
               if (operator && (operatorPrecedence = binary[operator])) {
-                  // 比较前一个运算符
-                  index = output.length - 4;
-                  // 如果前一个运算符的优先级 >= 现在这个，则新建 Binary
-                  // 如 a + b * c / d，当从左到右读取到 / 时，发现和前一个 * 优先级相同，则把 b * c 取出用于创建 Binary
-                  if ((lastOperator = output[index])
-                      && (lastOperatorPrecedence = binary[lastOperator])
-                      && lastOperatorPrecedence >= operatorPrecedence) {
-                      output.splice(index - 2, 5, createBinary(output[index - 2], lastOperator, output[index + 2], instance.pick(output[index - 3], output[index + 3])));
+                  while (TRUE$1) {
+                      // 比较前一个运算符
+                      index = output.length - 4;
+                      // 如果前一个运算符的优先级 >= 现在这个，则新建 Binary
+                      // 如 a + b * c / d，当从左到右读取到 / 时，发现和前一个 * 优先级相同，则把 b * c 取出用于创建 Binary
+                      if ((lastOperator = output[index])
+                          && (lastOperatorPrecedence = binary[lastOperator])
+                          && lastOperatorPrecedence >= operatorPrecedence) {
+                          output.splice(index - 2, 5, createBinary(output[index - 2], lastOperator, output[index + 2], instance.pick(output[index - 3], output[index + 3])));
+                      }
+                      else {
+                          break;
+                      }
                   }
                   push(output, operator);
                   continue;
@@ -7461,6 +7498,78 @@
                   }
               };
           }
+          // 为 IE9 以下浏览器打补丁
+          {
+              if (!testElement.addEventListener) {
+                  var PROPERTY_CHANGE = 'propertychange', isBoxElement = function (node) {
+                      return node.tagName === 'INPUT'
+                          && (node.type === 'radio' || node.type === 'checkbox');
+                  };
+                  var IEEvent = function(event, element) {
+                      extend(this, event);
+                      this.currentTarget = element;
+                      this.target = event.srcElement || element;
+                      this.originalEvent = event;
+                  };
+                  IEEvent.prototype.preventDefault = function () {
+                      this.originalEvent.returnValue = FALSE$1;
+                  };
+                  IEEvent.prototype.stopPropagation = function () {
+                      this.originalEvent.cancelBubble = TRUE$1;
+                  };
+                  // textContent 不兼容 IE678
+                  // 改用 innerText 属性
+                  textContent = 'innerText';
+                  createEvent = function (event, element) {
+                      return new IEEvent(event, element);
+                  };
+                  findElement = function (selector) {
+                      // 去掉 #
+                      if (codeAt(selector, 0) === 35) {
+                          selector = slice(selector, 1);
+                      }
+                      else {
+                          fatal("The id selector, such as \"#id\", is the only supported selector for the legacy version.");
+                      }
+                      var node = DOCUMENT.getElementById(selector);
+                      if (node) {
+                          return node;
+                      }
+                  };
+                  addEventListener = function (node, type, listener) {
+                      if (type === EVENT_INPUT) {
+                          addEventListener(node, PROPERTY_CHANGE, 
+                          // 借用 EMITTER，反正只是内部临时用一下...
+                          listener[EVENT] = function (event) {
+                              if (event.propertyName === 'value') {
+                                  listener(new CustomEvent(EVENT_INPUT, createEvent(event, node)));
+                              }
+                          });
+                      }
+                      else if (type === EVENT_CHANGE && isBoxElement(node)) {
+                          addEventListener(node, EVENT_CLICK, listener[EVENT] = function (event) {
+                              listener(new CustomEvent(EVENT_CHANGE, createEvent(event, node)));
+                          });
+                      }
+                      else {
+                          node.attachEvent(("on" + type), listener);
+                      }
+                  };
+                  removeEventListener = function (node, type, listener) {
+                      if (type === EVENT_INPUT) {
+                          removeEventListener(node, PROPERTY_CHANGE, listener[EVENT]);
+                          delete listener[EVENT];
+                      }
+                      else if (type === EVENT_CHANGE && isBoxElement(node)) {
+                          removeEventListener(node, EVENT_CLICK, listener[EVENT]);
+                          delete listener[EVENT];
+                      }
+                      else {
+                          node.detachEvent(("on" + type), listener);
+                      }
+                  };
+              }
+          }
           testElement = UNDEFINED$1;
       }
   }
@@ -7469,6 +7578,10 @@
    * 绑定在 HTML 元素上的事件发射器
    */
   EVENT = '$event', 
+  /**
+   * 低版本 IE 上 style 标签的专有属性
+   */
+  STYLE_SHEET = 'styleSheet', 
   /**
    * 跟输入事件配套使用的事件
    */
@@ -7584,7 +7697,15 @@
   }
   function setText(node, text, isStyle, isOption) {
       {
-          node[textContent] = text;
+          if (isStyle && has(node, STYLE_SHEET)) {
+              node[STYLE_SHEET].cssText = text;
+          }
+          else {
+              if (isOption) {
+                  node.value = text;
+              }
+              node[textContent] = text;
+          }
       }
   }
   function getHtml(node) {
@@ -7592,7 +7713,15 @@
   }
   function setHtml(node, html, isStyle, isOption) {
       {
-          node[innerHTML] = html;
+          if (isStyle && has(node, STYLE_SHEET)) {
+              node[STYLE_SHEET].cssText = html;
+          }
+          else {
+              if (isOption) {
+                  node.value = html;
+              }
+              node[innerHTML] = html;
+          }
       }
   }
   var addClass = addElementClass;
@@ -7613,7 +7742,7 @@
                   }
               }
               else {
-                  customEvent = new CustomEvent(type, createEvent(event));
+                  customEvent = new CustomEvent(type, createEvent(event, node));
               }
               // 避免遍历过程中，数组发生变化，比如增删了
               var listenerList = customListenerList.slice();
@@ -7777,7 +7906,7 @@
                   }
               }
               // 惰性初始化
-              instance.unique = createPureObject();
+              instance.unique = createPureObject$1();
               // 开始收集新的依赖
               var lastComputed = Computed.current;
               Computed.current = instance;
@@ -7868,7 +7997,7 @@
   function diffObject (newValue, oldValue, callback) {
       var newIsObject = object$1(newValue), oldIsObject = object$1(oldValue);
       if (newIsObject || oldIsObject) {
-          var diffed = createPureObject(), newObject = newIsObject ? newValue : EMPTY_OBJECT, oldObject = oldIsObject ? oldValue : EMPTY_OBJECT;
+          var diffed = createPureObject$1(), newObject = newIsObject ? newValue : EMPTY_OBJECT, oldObject = oldIsObject ? oldValue : EMPTY_OBJECT;
           if (newIsObject) {
               for (var key in newObject) {
                   var value = newObject[key];
@@ -8550,7 +8679,7 @@
       if (methods) {
           each(methods, function (method, name) {
               {
-                  if (instance[name]) {
+                  if (builtinMethods[name]) {
                       fatal(("The method \"" + name + "\" is conflicted with built-in methods."));
                   }
               }
@@ -8796,10 +8925,10 @@
    */
   Yox.method = function (name, method$1) {
       if (string$1(name) && !method$1) {
-          return Yox.prototype[name];
+          return YoxPrototype[name];
       }
       {
-          setResourceSmartly(Yox.prototype, name, method$1, {
+          setResourceSmartly(YoxPrototype, name, method$1, {
               conflict: function(name) {
                   warn(("The global method \"" + name + "\" already exists."));
               }
@@ -9123,22 +9252,34 @@
   Yox.prototype.render = function () {
       {
           var instance = this;
+              var $options = instance.$options;
               var $observer = instance.$observer;
               var $dependencies = instance.$dependencies;
               var dependencies = {};
+          var beforeRenderHook = $options[HOOK_BEFORE_RENDER];
+          if (beforeRenderHook) {
+              beforeRenderHook.call(instance);
+          }
+          lifeCycle.fire(instance, HOOK_BEFORE_RENDER);
           if ($dependencies) {
               for (var key in $dependencies) {
                   $observer.unwatch(key, markDirty);
               }
           }
           instance.$dependencies = dependencies;
-          return render(instance, instance.$template, $observer.data, $observer.computed, instance.$slots, instance.$filters, globalFilters, instance.$partials, globalPartials, instance.$directives, globalDirectives, instance.$transitions, globalTransitions, function (keypath) {
+          var result = render(instance, instance.$template, $observer.data, $observer.computed, instance.$slots, instance.$filters, globalFilters, instance.$partials, globalPartials, instance.$directives, globalDirectives, instance.$transitions, globalTransitions, function (keypath) {
               if (!dependencies[keypath]
                   && instance.$dependencies === dependencies) {
                   $observer.watch(keypath, markDirty);
                   dependencies[keypath] = TRUE$1;
               }
           });
+          var afterRenderHook = $options[HOOK_AFTER_RENDER];
+          if (afterRenderHook) {
+              afterRenderHook.call(instance);
+          }
+          lifeCycle.fire(instance, HOOK_AFTER_RENDER);
+          return result;
       }
   };
   /**
@@ -9349,7 +9490,7 @@
   /**
    * core 版本
    */
-  Yox.version = "1.0.0-alpha.254";
+  Yox.version = "1.0.0-alpha.255";
   /**
    * 方便外部共用的通用逻辑，特别是写插件，减少重复代码
    */
@@ -9366,6 +9507,9 @@
    * 外部可配置的对象
    */
   Yox.config = PUBLIC_CONFIG;
+  var YoxPrototype = Yox.prototype;
+  // 内置方法，外部不可覆盖
+  var builtinMethods = toObject(keys(YoxPrototype));
   var toString = Object.prototype.toString;
   function matchType(value, type) {
       return type === 'numeric'

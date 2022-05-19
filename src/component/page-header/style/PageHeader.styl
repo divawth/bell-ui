@@ -20,15 +20,6 @@ $page-header-header-body-gap = 16px
   flex-direction row
   align-items center
 
-{$selector-class-prefix + '-page-header-with-back'},
-{$selector-class-prefix + '-page-header-with-extra'}
-  {$selector-class-prefix + '-page-header-title'}
-    flex 1
-
-{$selector-class-prefix + '-page-header-with-tags'}
-  {$selector-class-prefix + '-page-header-title'}
-    flex 0
-
 {$selector-class-prefix + '-page-header-title'}
   color $brand-title
   font-size $page-header-title-font-size
@@ -52,7 +43,6 @@ $page-header-header-body-gap = 16px
     color $brand-primary
 
 {$selector-class-prefix + '-page-header-tags'}
-  flex 1
   margin-left $page-header-title-tags-gap
   white-space nowrap
 
@@ -65,3 +55,6 @@ $page-header-header-body-gap = 16px
 
 {$selector-class-prefix + '-page-header-body'}
   margin-top $page-header-header-body-gap
+
+{$selector-class-prefix + '-page-header-flex'}
+  flex 1

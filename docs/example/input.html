@@ -3,147 +3,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Input</title>
+    <title>
+        Input
+    </title>
     <link rel="stylesheet" type="text/css" href="../../dist/bell-ui.css">
 
     <style>
         .bell-app {
             margin: 20px 0;
         }
+
     </style>
 </head>
 <body>
+    <div id="app"></div>
     <script src="../../dep/base/yox.js"></script>
     <script src="../../dist/bell-ui.js"></script>
 
-    <script id="template-1" type="text/plain">
-        <div>
-            <Input model="value1">
-              <Select slot="prepend" model="value">
-                <Option value="1">
-                    北京
-                </Option>
-                <Option value="2">
-                    上海
-                </Option>
-              </Select>
-              <Button slot="append">搜索</Button>
-            </Input>
-        </div>
-    </script>
-
-    <script id="template-2" type="text/plain">
-        <div>
-            <Input placeholder="large size"
-                model="value"
-                size="large"
-            ></Input>
-            <br>
-            <Input placeholder="default size"
-                model="value"
-            ></Input>
-            <br>
-            <Input placeholder="small size"
-                size="small"
-                model="value"
-            ></Input>
-        </div>
-    </script>
-
-    <script id="template-3" type="text/plain">
-        <div>
-            <Input icon="ios-clock-outline"
-                label="search"
-                placeholder="请输入..."
-                style="width: 200px"
-                model="value"
-                on-click="click()"
-            ></Input>
-        </div>
-    </script>
-
-    <script id="template-4" type="text/plain">
+    <script id="template" type="text/plain">
         <div>
             <Input
-                model="value"
-                type="textarea"
-                rows="4"
-                placeholder="请输入..."
-            >
-            </Input>
-        </div>
-    </script>
-
-    <script id="template-5" type="text/plain">
-        <div>
+            placeholder="Basic usage"
+            model="value"
+          />
+          <br><br>
+          <Input
+            placeholder="Basic usage"
+            model="value"
+            disabled
+          />
+          <Input
+            size="small"
+            placeholder="Basic usage"
+            model="value"
+            maxLength="20"
+            showCount
+            block
+            />
+            <br><br>
             <Input
-                model="value"
-                type="textarea"
-                rows="4"
-                placeholder="请输入..."
-                disabled="true"
-            >
-            </Input>
+            placeholder="Basic usage"
+            model="value"
+            maxLength="20"
+            showCount
+            block
+            />
+            <br><br>
+            <Input
+            size="large"
+            placeholder="Basic usage"
+            model="value"
+            maxLength="20"
+            showCount
+            block
+            />
+
+            <Input
+        model="value1"
+        placeholder="请输入..."
+        width="400"
+      >
+        <template slot="prepend">
+          http://
+        </template>
+        <template slot="append">
+          .com
+        </template>
+      </Input>
+      <br><br>
+      <Input
+        model="value2"
+        placeholder="请输入..."
+        width="400"
+      >
+        <Button slot="prepend">
+          搜索
+        </Button>
+      </Input>
+      <br><br>
+      <Input
+        model="value2"
+        placeholder="请输入..."
+        width="400"
+      >
+        <Button slot="append">
+          搜索
+        </Button>
+      </Input>
+      <br><br>
+      <Input
+        model="value3"
+        placeholder="请输入..."
+        width="400"
+      >
+        <Select slot="prepend" width="120">
+          <Option value="www1" text="www1" />
+          <Option value="www2" text="www2" />
+        </Select>
+      </Input>
+      <br><br>
+      <Input
+        model="value3"
+        placeholder="请输入..."
+        width="400"
+      >
+        <Select slot="append" width="120">
+          <Option value="美元" text="美元" />
+          <Option value="欧元" text="欧元" />
+        </Select>
+      </Input>
+      <br><br>
+      <Input
+        model="value4"
+        placeholder="请输入..."
+        width="400"
+      >
+        <Button slot="append" type="primary">
+          搜索
+        </Button>
+      </Input>
         </div>
     </script>
-
-    <div class="bell-app" id="app-1"></div>
-    <div class="bell-app" id="app-2"></div>
-    <div class="bell-app" id="app-3"></div>
-    <div class="bell-app" id="app-4"></div>
-    <div class="bell-app" id="app-5"></div>
 
     <script>
+        Yox.use(Bell)
         new Yox({
-            el: '#app-1',
-            template: '#template-1',
-            data: function () {
-                return {
-                    value: ''
-                }
-            },
-            watchers: {
-                value: function (value) {
-                    console.log(value);
-                }
-            }
+            el: '#app',
+            template: '#template'
         });
-        // new Yox({
-        //     el: '#app-2',
-        //     template: '#template-2',
-        //     data: function () {
-        //         return {
-        //             value: '2121'
-        //         }
-        //     },
-        //     watchers: {
-        //         value: function (value) {
-        //             console.log(value);
-        //         }
-        //     }
-        // });
-        // new Yox({
-        //     el: '#app-3',
-        //     template: '#template-3',
-        //     data: function () {
-        //         return {
-        //             value: 'template-3'
-        //         }
-        //     },
-        //     methods: {
-        //         click: function () {
-        //             console.log('click')
-        //         }
-        //     }
-        // });
-        // new Yox({
-        //     el: '#app-4',
-        //     template: '#template-4'
-        // });
-        // new Yox({
-        //     el: '#app-5',
-        //     template: '#template-5'
-        // });
     </script>
 
 </body>

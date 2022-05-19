@@ -12,10 +12,11 @@ module.exports = merge(
     mode: 'development',
     devServer: {
       contentBase: path.join(__dirname, '..', ''),
-      host: 'localhost',
+      host: '0.0.0.0', //'localhost',
       port: port,
       hot: true,
       overlay: true,
+      useLocalIp: true,
       proxy: { },
       historyApiFallback: true
     },

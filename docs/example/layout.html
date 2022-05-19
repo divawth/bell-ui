@@ -4,284 +4,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-        layout
+        Layout
     </title>
-    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+    <link rel="stylesheet" type="text/css" href="../../dist/bell-ui.css">
 
     <style>
-        .app {
-            margin: 10px auto;
+        html,
+        body,
+        #app,
+        .layout-demo {
+            height: 100%;
+        }
+        .bell-app {
+            margin: 20px 0;
         }
 
-        .bell-content {
-            color: #000;
-            height: 120px;
-            line-height: 120px;
-        }
     </style>
 </head>
 <body>
+    <div id="app"></div>
     <script src="../../dep/base/yox.js"></script>
-    <script src="../../dist/bell.js"></script>
+    <script src="../../dist/bell-ui.js"></script>
 
-    <div id="app-1" class="bell-app"></div>
-    <div id="app-2" class="bell-app"></div>
-    <div id="app-3" class="bell-app"></div>
-    <div id="app-4" class="bell-app"></div>
-    <div id="app-5" class="bell-app"></div>
-    <div id="app-6" class="bell-app"></div>
-    <div id="app-7" class="bell-app"></div>
-
-
-    <script id="template-1" type="text/plain">
-
-    </script>
-
-    <script id="template-2" type="text/plain">
-        <div class="app">
-            <Layout>
-                <Header>Header</Header>
-                <Layout>
-                    <Sider hide-trigger>Sider</Sider>
-                    <Content>Content</Content>
+    <script id="template" type="text/plain">
+            <Layout className="layout-demo">
+                <LayoutSider
+                  collapsed="{{collapsed}}"
+                  showTrigger
+                >
+                  Sider
+                </LayoutSider>
+                <Layout vertical className="layout-demo">
+                  <LayoutHeader>
+                    Header
+                  </LayoutHeader>
+                  <LayoutContent>Content</LayoutContent>
+                  <LayoutFooter>Footer</LayoutFooter>
                 </Layout>
-                <Footer>Footer</Footer>
-            </Layout>
-        </div>
-    </script>
-
-    <script id="template-3" type="text/plain">
-        <div class="app">
-            <Layout>
-                <Header>Header</Header>
-                <Layout>
-                    <Content>Content</Content>
-                    <Sider hide-trigger>Sider</Sider>
-                </Layout>
-                <Footer>Footer</Footer>
-            </Layout>
-        </div>
-    </script>
-
-    <script id="template-4" type="text/plain">
-        <div class="app">
-            <Layout>
-                <Sider hide-trigger>Sider</Sider>
-                <Layout>
-                    <Header>Header</Header>
-                    <Content>Content</Content>
-                    <Footer>Footer</Footer>
-                </Layout>
-            </Layout>
-        </div>
-    </script>
-
-    <script id="template-5" type="text/plain">
-        <div class="app">
-            <Layout>
-                <Header>Header</Header>
-                <Layout>
-                    <Sider hide-trigger>Sider</Sider>
-                    <Content>Content</Content>
-                </Layout>
-            </Layout>
-        </div>
-    </script>
-
-    <script id="template-6" type="text/plain">
-        <div class="app">
-            <Layout>
-
-                <Header>
-                    <span class="bell-title">
-                        header
-                    </span>
-                </Header>
-
-                <Layout>
-                    <Sider>
-                        <div class="bell-user-info">
-                            <div class="bell-user-title">
-                                Author
-                            </div>
-
-                            <img src="//www.gravatar.com/avatar/91185656257c77b52bf0c57170f833c3/?default=&amp;s=120" height="60" width="60">
-
-                            <a class="bell-user-name" title="See public fiddles" href="/user/musicode/fiddles/">
-                                musicode
-                            </a>
-
-                            <div class="bell-user-company">
-                                Beijing, China
-                            </div>
-                        </div>
-
-                        <Menu activeName="1">
-                            <MenuItem name="1" to="#!question/list">
-                                问题
-                            </MenuItem>
-                            <MenuItem name="2" to="#replay">
-                                回答
-                            </MenuItem>
-                            <MenuItem name="3">
-                                项目
-                            </MenuItem>
-                            <MenuItem name="4">
-                                文章
-                            </MenuItem>
-                            <MenuItem name="4">
-                                反馈
-                            </MenuItem>
-                            <MenuItem name="4">
-                                举报
-                            </MenuItem>
-                        </Menu>
-                    </Sider>
-
-                    <Content>
-                        <!-- <Breadcrumb>
-                            <BreadcrumbItem>Home</BreadcrumbItem>
-                            <BreadcrumbItem>Components</BreadcrumbItem>
-                            <BreadcrumbItem>Layout</BreadcrumbItem>
-                        </Breadcrumb> -->
-
-                        <Card>
-
-                        </Card>
-                    </Content>
-                </Layout>
-
-                <Footer>
-
-                </Footer>
-
-            </Layout>
-        </div>
-    </script>
-
-    <script id="template-7" type="text/plain">
-        <div class="app">
-            <Layout>
-                <Header>
-                    <Menu>
-                        <MenuItem name="1">
-                            Item 1
-                        </MenuItem>
-                        <MenuItem name="2">
-                            Item 2
-                        </MenuItem>
-                        <MenuItem name="3">
-                            Item 3
-                        </MenuItem>
-                        <MenuItem name="4">
-                            Item 4
-                        </MenuItem>
-                    </Menu>
-                </Header>
-
-                <Layout>
-                    <Sider>
-                        <div class="bell-user-info">
-                            <div class="bell-user-title">
-                                Author
-                            </div>
-
-                            <img src="//www.gravatar.com/avatar/91185656257c77b52bf0c57170f833c3/?default=&amp;s=120" height="60" width="60">
-
-                            <a class="bell-user-name" title="See public fiddles" href="/user/musicode/fiddles/">
-                                musicode
-                            </a>
-
-                            <div class="bell-user-company">
-                                Beijing, China
-                            </div>
-                        </div>
-
-                        <Menu>
-                            <MenuItem name="1">
-                                Option 1
-                            </MenuItem>
-                            <MenuItem name="2">
-                                Option 2
-                            </MenuItem>
-                            <MenuItem name="3">
-                                Option 3
-                            </MenuItem>
-                            <MenuItem name="4">
-                                Option 4
-                            </MenuItem>
-                        </Menu>
-                    </Sider>
-
-                    <Content>
-                        <Breadcrumb>
-                            <BreadcrumbItem>Home</BreadcrumbItem>
-                            <BreadcrumbItem>Components</BreadcrumbItem>
-                            <BreadcrumbItem>Layout</BreadcrumbItem>
-                        </Breadcrumb>
-
-                        <Card>
-                            <div style="height: 600px">
-                                <Button label="Default"></Button>
-                                <Button type="primary" label="Primary"></Button>
-                                <Button type="ghost" label="Ghost"></Button>
-                                <Button type="dashed" label="Dashed"></Button>
-                                <Button type="text" label="Text"></Button>
-                                <br><br>
-                                <Button type="info" label="信息按钮"></Button>
-                                <Button type="success" label="成功按钮"></Button>
-                                <Button type="warning" label="警告按钮"></Button>
-                                <Button type="error" label="错误按钮"></Button>
-                            </div>
-                        </Card>
-                    </Content>
-                </Layout>
-                <Footer>Footer</Footer>
-            </Layout>
-        </div>
+              </Layout>
     </script>
 
     <script>
+        Yox.use(Bell)
         new Yox({
-            el: '#app-1',
-            replace: false,
-            template: `<Layout>
-                    <Header>Header</Header>
-                    <Content>Content</Content>
-                    <Footer>Footer</Footer>
-                </Layout>
-            `
+            el: '#app',
+            template: '#template'
         });
-        // new Yox({
-        //     el: '#app-2',
-        //     replace: true,
-        //     template: '#template-2'
-        // });
-        // new Yox({
-        //     el: '#app-3',
-        //     replace: true,
-        //     template: '#template-3'
-        // });
-        // new Yox({
-        //     el: '#app-4',
-        //     replace: true,
-        //     template: '#template-4'
-        // });
-        // new Yox({
-        //     el: '#app-5',
-        //     replace: true,
-        //     template: '#template-5'
-        // });
-        // new Yox({
-        //     el: '#app-6',
-        //     replace: true,
-        //     template: '#template-6'
-        // });
-        // new Yox({
-        //     el: '#app-7',
-        //     replace: true,
-        //     template: '#template-7'
-        // });
     </script>
 
 </body>

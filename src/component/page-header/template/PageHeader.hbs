@@ -22,12 +22,15 @@ class="${prefix}page-header
       />
     {{/if}}
 
-    <div class="${prefix}page-header-title">
+    <div
+      class="${prefix}page-header-title
+      {{#if !@tags}} ${prefix}page-header-flex{{/if}}"
+    >
       {{title}}
     </div>
 
     {{#if @tags}}
-      <div class="${prefix}page-header-tags">
+      <div class="${prefix}page-header-tags ${prefix}page-header-flex">
         <slot name="tags" />
       </div>
     {{/if}}

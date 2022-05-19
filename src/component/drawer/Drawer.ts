@@ -40,11 +40,11 @@ export default Yox.define({
   propTypes: {
     width: {
       type: RAW_STRING,
-      value: 256,
+      value: 378,
     },
     height: {
       type: RAW_STRING,
-      value: 256,
+      value: 378,
     },
     placement: {
       type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP, RAW_BOTTOM]),

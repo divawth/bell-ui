@@ -242,6 +242,14 @@ ui-form-button(
     border-radius $border-radius-default
     transition border-color $form-control-transition-duration, box-shadow $form-control-transition-duration
 
+    // 为了兼容 IE11
+    // https://vinceumo.github.io/devNotes/CSS/bug-ie-flexbox-min-height/
+    &:after
+      content ''
+      display block
+      font-size 0
+      min-height inherit
+
   if $selector-values
     {$selector-values}
       flex 1

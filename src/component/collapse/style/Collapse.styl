@@ -63,8 +63,9 @@ $collapse-content-padding-vertical = 12px
   transition height .1s
 
 {$selector-class-prefix + '-collapse-opened'}
-  {$selector-class-prefix + '-collapse-arrow-icon'}
-    transform rotate(90deg)
+  > {$selector-class-prefix + '-collapse-header'}
+    {$selector-class-prefix + '-collapse-arrow-icon'}
+      transform rotate(90deg)
 
   > {$selector-class-prefix + '-collapse-content'}
     display block

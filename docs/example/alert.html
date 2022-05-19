@@ -132,12 +132,6 @@
         </div>
     </script>
 
-    <div class="bell-app" id="app-1"></div>
-    <div class="bell-app" id="app-2"></div>
-    <div class="bell-app" id="app-3"></div>
-    <div class="bell-app" id="app-4"></div>
-    <div class="bell-app" id="app-5"></div>
-
     <script>
         new Yox({
             el: '#app-1',
@@ -149,25 +143,6 @@
                     <Alert type="error">An error prompt</Alert>
                 </div>
             `
-        });
-        new Yox({
-            el: '#app-2',
-            template: '#template-2'
-        });
-        new Yox({
-            el: '#app-3',
-            template: '#template-3'
-        });
-        new Yox({
-            el: '#app-4',
-            template: '#template-4',
-            data: {
-                options: {
-                    close: function  (argument) {
-                        console.log('isClose')
-                    }
-                }
-            }
         });
 
     </script>
