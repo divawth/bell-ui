@@ -16,17 +16,11 @@ color-picker-size-style(size)
   ui-set('height', size['height'])
 
 color-picker-brand-style(style)
-  &{$selector-class-prefix + '-color-picker-enabled'}
-    ui-set('border-color', style['color'])
-
-    &:hover
-      ui-set('border-color', style['color'])
-
-  &{$selector-class-prefix + '-color-picker-opened'}
-    ui-focus(style['shadow-color'], style['color'])
-
-  &:focus
-    ui-focus(style['shadow-color'])
+  ui-form-button-brand(
+    style,
+    $selector-class-prefix + '-color-picker-enabled',
+    $selector-class-prefix + '-color-picker-opened'
+  )
 
 {$selector-class-prefix + '-color-picker'}
   display inline-block

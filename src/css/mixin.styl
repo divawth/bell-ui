@@ -295,6 +295,19 @@ ui-form-button(
       + {$selector-right-icon}
         display none
 
+ui-form-button-brand(style, $selector-enabled, $selector-opened)
+  &{$selector-enabled}
+    ui-set('border-color', style['color'])
+
+    &:hover
+      ui-set('border-color', style['color'])
+
+  &{$selector-opened}
+    ui-focus(style['shadow-color'], style['color'])
+
+  &:focus
+    ui-focus(style['shadow-color'])
+
 ui-dropdown-overlay(
   $selector-base,
   $selector-item,

@@ -3,8 +3,6 @@
 $select-prefix-icon-size = 16px
 $select-prefix-icon-color = #666
 
-$select-overlay-height = 200px
-
 select-size-style(size)
 
   ui-set('font-size', size['font-size'])
@@ -34,17 +32,11 @@ select-size-style(size)
     ui-set('margin-right', size['icon-right'])
 
 select-brand-style(style)
-  &{$selector-class-prefix + '-select-enabled'}
-    ui-set('border-color', style['color'])
-
-    &:hover
-      ui-set('border-color', style['color'])
-
-  &{$selector-class-prefix + '-select-opened'}
-    ui-focus(style['shadow-color'], style['color'])
-
-  &:focus
-    ui-focus(style['shadow-color'])
+  ui-form-button-brand(
+    style,
+    $selector-class-prefix + '-select-enabled',
+    $selector-class-prefix + '-select-opened'
+  )
 
 {$selector-class-prefix + '-select'}
   width $ui-form-element-width
@@ -65,7 +57,7 @@ select-brand-style(style)
 
 {$selector-class-prefix + '-select-overlay'}
   width $ui-form-element-width
-  max-height $select-overlay-height
+  max-height $overlay-max-height
 
   {$selector-class-prefix + '-empty'}
     margin $empty-content-margin-vertical 0

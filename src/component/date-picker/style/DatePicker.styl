@@ -63,17 +63,11 @@ date-picker-size-style(size)
     ui-set('margin-right', size['icon-right'])
 
 date-picker-brand-style(style)
-  &{$selector-class-prefix + '-date-picker-enabled'}
-    ui-set('border-color', style['color'])
-
-    &:hover
-      ui-set('border-color', style['color'])
-
-  &{$selector-class-prefix + '-date-picker-opened'}
-    ui-focus(style['shadow-color'], style['color'])
-
-  &:focus
-    ui-focus(style['shadow-color'])
+  ui-form-button-brand(
+    style,
+    $selector-class-prefix + '-date-picker-enabled',
+    $selector-class-prefix + '-date-picker-opened'
+  )
 
 {$selector-class-prefix + '-date-picker'}
   width $ui-form-element-width

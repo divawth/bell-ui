@@ -5362,16 +5362,16 @@ function getPercentByValue(min, max, rawValue) {
         },
         inlineStyle: function () {
             var result = [];
-            var customStyle = {};
             var width = this.get('width');
             var height = this.get('height');
-            if (width) {
-                customStyle.width = toPixel(width);
-            }
-            if (height) {
-                customStyle.height = toPixel(height);
-            }
-            if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.keys(customStyle).length > 0) {
+            if (width || height) {
+                var customStyle = {};
+                if (width) {
+                    customStyle.width = toPixel(width);
+                }
+                if (height) {
+                    customStyle.height = toPixel(height);
+                }
                 result.push(customStyle);
             }
             var style = this.get('style');
@@ -5490,7 +5490,7 @@ function getPercentByValue(min, max, rawValue) {
         var step = 0;
         var onTrackMouseDown = function (event) {
             event.stop();
-            element = me.$el;
+            element = event.originalEvent.currentTarget;
             if (!element) {
                 return;
             }
@@ -5538,6 +5538,9 @@ function getPercentByValue(min, max, rawValue) {
             else if (ratio > 1) {
                 ratio = 1;
             }
+            console.log(element, rect);
+            console.log(mouseEvent.clientX);
+            console.log(ratio);
             return me.get('reverse') ? (1 - ratio) : ratio;
         };
         var updatePosition = function (ratio, index) {

@@ -195,19 +195,17 @@ export default Yox.define({
     inlineStyle(): object[] | void {
       const result: object[] = []
 
-      const customStyle: Record<string, string> = {}
-
       const width = this.get('width')
       const height = this.get('height')
 
-      if (width) {
-        customStyle.width = toPixel(width)
-      }
-      if (height) {
-        customStyle.height = toPixel(height)
-      }
-
-      if (Yox.object.keys(customStyle).length > 0) {
+      if (width || height) {
+        const customStyle: Record<string, string> = {}
+        if (width) {
+          customStyle.width = toPixel(width)
+        }
+        if (height) {
+          customStyle.height = toPixel(height)
+        }
         result.push(customStyle)
       }
 
@@ -344,7 +342,7 @@ export default Yox.define({
 
       event.stop()
 
-      element = me.$el
+      element = (event.originalEvent as MouseEvent).currentTarget as HTMLElement
       if (!element) {
         return
       }
@@ -419,6 +417,10 @@ export default Yox.define({
       else if (ratio > 1) {
         ratio = 1
       }
+
+      console.log(element, rect)
+      console.log(mouseEvent.clientX)
+      console.log(ratio)
 
       return me.get('reverse') ? (1 - ratio) : ratio
 
