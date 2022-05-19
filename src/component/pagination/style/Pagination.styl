@@ -2,7 +2,7 @@
 
 $pagination-simple-input-width = 55px
 $pagination-jumper-input-width = 100px
-$pagination-select-width = 100px
+$pagination-select-width = 110px
 $pagination-ellipsis-width = 22px
 
 $pagination-size-hash = {
@@ -24,32 +24,34 @@ pagination-size-style(style)
   {$selector-class-prefix + '-pagination-item'}
     ui-set('min-width', style['height'])
     ui-set('height', style['height'])
-    ui-set('line-height', style['height'])
     ui-set('font-size', style['font-size'])
     ui-set('padding', 0 style['padding-horizontal'])
 
-{$selector-class-prefix + '-pagination-list'}
-  display inline-block
-
-{$selector-class-prefix + '-pagination-hidden'}
-  display none
+{$selector-class-prefix + '-pagination'},
+{$selector-class-prefix + '-pagination-simple'},
+{$selector-class-prefix + '-pagination-list'},
+{$selector-class-prefix + '-pagination-jumper'}
+  display flex
+  align-items center
 
 {$selector-class-prefix + '-pagination-item'},
 {$selector-class-prefix + '-pagination-custom-prev'},
 {$selector-class-prefix + '-pagination-custom-next'}
-  display inline-block
-  text-align center
+  display inline-flex
+  justify-content center
+  align-items center
   color $brand-content
   ui-clickable()
 
 {$selector-class-prefix + '-pagination-item'}
-  outline 0
   padding 0
   border-radius $border-radius-default
   border 1px solid $brand-border
   background-color $brand-bg
   transition color .2s, border-color .2s, box-shadow .2s, background-color .2s
   box-sizing border-box
+
+  ui-focusable()
 
   + {$selector-class-prefix + '-pagination-item'}
     margin-left $ui-horizontal-gap
@@ -110,9 +112,6 @@ pagination-size-style(style)
     > {$selector-class-prefix + '-icon'}
       display inline-block
 
-
-
-
 {$selector-class-prefix + '-pagination'}
   user-select none
   ui-connect(
@@ -123,29 +122,23 @@ pagination-size-style(style)
   {$selector-class-prefix + '-select'}
     width $pagination-select-width
     margin-right $ui-horizontal-gap
-    vertical-align top
 
 {$selector-class-prefix + '-pagination-jumper'}
-  display inline-block
   margin-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-pagination-jumper-input'}
+  display block
   width $pagination-jumper-input-width
-  display inline-block
-  vertical-align top
   margin-right $ui-icon-text-gap
 
 {$selector-class-prefix + '-pagination-simple-input'}
+  display block
   width $pagination-simple-input-width
-  display inline-block
-  vertical-align top
 
 {$selector-class-prefix + '-pagination-total'}
   margin-right $ui-horizontal-gap
 
 {$selector-class-prefix + '-pagination-simple'}
-  display inline-block
-
   > {$selector-class-prefix + '-pagination-prev'}
     margin-right $ui-horizontal-gap
 
@@ -153,8 +146,13 @@ pagination-size-style(style)
     margin-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-pagination-separator'}
+  display block
   color $brand-muted
   margin 0 $ui-icon-text-gap
 
 {$selector-class-prefix + '-pagination-count'}
+  display block
   color $brand-content
+
+{$selector-class-prefix + '-pagination-hidden'}
+  display none

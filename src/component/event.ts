@@ -49,14 +49,17 @@ export function isClickEvent() {
   return TRUE
 }
 
-export function onClickEventByEnterPress(instance: any) {
+export function onClickEventByEnterPress(instance: any, handler?: () => void) {
 
   const onKeydown = function (event: CustomEventInterface) {
     const originalEvent = event.originalEvent as KeyboardEvent
-    if (originalEvent.keyCode === 13
-      && instance.get('isFocus')
-    ) {
-      instance.onClick()
+    if (originalEvent.keyCode === 13) {
+      if (handler) {
+        handler()
+      }
+      else if (instance.get('isFocus')) {
+        instance.onClick()
+      }
     }
   }
   Yox.dom.on(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown)

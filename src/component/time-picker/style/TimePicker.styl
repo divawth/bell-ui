@@ -37,11 +37,7 @@ time-picker-brand-style(style)
 
 {$selector-class-prefix + '-time-picker'}
   width $ui-form-element-width
-  outline 0
-
-  &:focus
-    ui-focus($brand-primary-shadow)
-
+  ui-focusable()
   ui-connect(
     hash: $form-button-size-hash,
     each: time-picker-size-style

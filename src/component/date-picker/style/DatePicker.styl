@@ -55,7 +55,6 @@ date-picker-size-style(size)
 
     > {$selector-class-prefix + '-tag'}
       ui-set('height', size['tag-height'])
-      ui-set('line-height', size['tag-height'])
       ui-set('margin-right', size['tag-gap-horizontal'])
       ui-set('margin-bottom', size['tag-gap-vertical'])
 
@@ -78,10 +77,7 @@ date-picker-brand-style(style)
 
 {$selector-class-prefix + '-date-picker'}
   width $ui-form-element-width
-  outline 0
-
-  &:focus
-    ui-focus($brand-primary-shadow)
+  ui-focusable()
 
   ui-connect(
     hash: $form-button-size-hash,

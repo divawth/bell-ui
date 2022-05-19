@@ -1,1 +1,1 @@
-export declare function isOptionSelected(values: any[] | any, value: any): boolean;
+export declare function isOptionSelected(values: any, value: any): boolean;

@@ -26,9 +26,9 @@ radio-button-size-style(size)
   display inline-flex
   align-items center
   line-height $ui-multiple-line-height
-  outline 0
   user-select none
   box-sizing border-box
+  ui-focusable($selector-class-prefix + '-radio-icon')
 
 {$selector-class-prefix + '-radio-with-label'}
   height $height-default
@@ -86,10 +86,6 @@ radio-button-size-style(size)
   &:hover
     > {$selector-class-prefix + '-radio-icon'}
       border-color $brand-primary
-
-  &:focus
-    > {$selector-class-prefix + '-radio-icon'}
-      ui-focus($brand-primary-shadow)
 
 {$selector-class-prefix + '-radio-disabled'}
   ui-disabled()

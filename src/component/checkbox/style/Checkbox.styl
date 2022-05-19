@@ -9,9 +9,9 @@ $checkbox-gap-horizontal = 16px
   display inline-flex
   align-items center
   line-height $ui-multiple-line-height
-  outline 0
   user-select none
   box-sizing border-box
+  ui-focusable($selector-class-prefix + '-checkbox-icon')
 
 {$selector-class-prefix + '-checkbox-with-label'}
   height $height-default
@@ -78,10 +78,6 @@ $checkbox-gap-horizontal = 16px
   :hover
     > {$selector-class-prefix + '-checkbox-icon'}
       border-color $brand-primary
-
-  &:focus
-    > {$selector-class-prefix + '-checkbox-icon'}
-      ui-focus($brand-primary-shadow)
 
 {$selector-class-prefix + '-checkbox-disabled'}
   ui-disabled()

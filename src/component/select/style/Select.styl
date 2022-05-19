@@ -23,7 +23,6 @@ select-size-style(size)
 
     > {$selector-class-prefix + '-tag'}
       ui-set('height', size['tag-height'])
-      ui-set('line-height', size['tag-height'])
       ui-set('margin-right', size['tag-gap-horizontal'])
       ui-set('margin-bottom', size['tag-gap-vertical'])
 
@@ -52,10 +51,8 @@ select-brand-style(style)
   box-sizing border-box
   user-select none
   text-align left
-  outline 0
 
-  &:focus
-    ui-focus($brand-primary-shadow)
+  ui-focusable()
 
   ui-connect(
     hash: $form-button-size-hash,
@@ -76,7 +73,7 @@ select-brand-style(style)
 {$selector-class-prefix + '-select-block'}
   ui-flex-block()
 
-{$selector-class-prefix + '-select-group-title'}
+{$selector-class-prefix + '-select-option-group-title'}
   color $brand-muted
   font-size 90%
   padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal

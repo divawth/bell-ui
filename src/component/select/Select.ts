@@ -318,13 +318,6 @@ export default Yox.define({
 
   },
 
-  components: {
-    Tag,
-    Icon,
-    Empty,
-    Popover,
-  },
-
   afterMount() {
     this.watch(
       'value',
@@ -353,6 +346,13 @@ export default Yox.define({
       this.get('value'),
       props && props[RAW_SLOT_CHILDREN]
     )
+  },
+
+  components: {
+    Tag,
+    Icon,
+    Empty,
+    Popover,
   },
 
 })

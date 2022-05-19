@@ -37,6 +37,11 @@ class="${prefix}pagination
       <PrevPage
         key="prev"
         disabled="{{current === 1}}"
+        {{#if current !== 1}}
+          on-click.native="onPrevPageClick()"
+          on-focus.native="onPrevPageFocus()"
+          on-blur.native="onPrevPageBlur()"
+        {{/if}}
       >
         <slot name="prev" />
       </PrevPage>
@@ -59,6 +64,11 @@ class="${prefix}pagination
       <NextPage
         key="next"
         disabled="{{current === count}}"
+        {{#if current !== count}}
+          on-click.native="onNextPageClick()"
+          on-focus.native="onNextPageFocus()"
+          on-blur.native="onNextPageBlur()"
+        {{/if}}
       >
         <slot name="next" />
       </NextPage>
@@ -72,6 +82,11 @@ class="${prefix}pagination
       <PrevPage
         key="prev"
         disabled="{{current === 1}}"
+        {{#if current !== 1}}
+          on-click.native="onPrevPageClick()"
+          on-focus.native="onPrevPageFocus()"
+          on-blur.native="onPrevPageBlur()"
+        {{/if}}
       >
         <slot name="prev" />
       </PrevPage>
@@ -111,7 +126,10 @@ class="${prefix}pagination
             class="${prefix}pagination-item
             {{#if this.active}} ${prefix}pagination-item-active{{/if}}"
             {{#if !this.active}}
-              on-click="setCurrent(this.value)"
+              tabindex="0"
+              on-click="onPageClick(this.value)"
+              on-focus="onPageFocus(this.value)"
+              on-blur="onPageBlur(this.value)"
             {{/if}}
           >
             {{this.value}}
@@ -124,6 +142,11 @@ class="${prefix}pagination
       <NextPage
         key="next"
         disabled="{{current === count}}"
+        {{#if current !== count}}
+          on-click.native="onNextPageClick()"
+          on-focus.native="onNextPageFocus()"
+          on-blur.native="onNextPageBlur()"
+        {{/if}}
       >
         <slot name="next" />
       </NextPage>
@@ -144,7 +167,7 @@ class="${prefix}pagination
       <Button
         size="{{size}}"
         type="primary"
-        on-click="jump()"
+        on-click="onJumpClick()"
       >
         跳转
       </Button>

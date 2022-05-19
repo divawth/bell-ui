@@ -14,4 +14,4 @@ export declare function offClickEvent(listener: Listener): void;
 export declare function startDrag(): void;
 export declare function endDrag(): void;
 export declare function isClickEvent(): boolean;
-export declare function onClickEventByEnterPress(instance: any): void;
+export declare function onClickEventByEnterPress(instance: any, handler?: () => void): void;

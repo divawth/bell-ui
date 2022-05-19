@@ -36,10 +36,7 @@ color-picker-brand-style(style)
   box-sizing border-box
   border-radius $border-radius-default
   transition border-color $form-control-transition-duration, box-shadow $form-control-transition-duration
-  outline 0
-
-  &:focus
-    ui-focus($brand-primary-shadow)
+  ui-focusable()
 
   ui-connect(
     hash: $form-button-size-hash,

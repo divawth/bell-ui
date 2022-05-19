@@ -143,6 +143,16 @@ ui-focus($shadow-color, $border-color = '')
   if $ui-shadow-radius > 0
     box-shadow 0 0 0 $ui-shadow-radius $shadow-color
 
+ui-focusable($selector-child = '')
+  outline 0
+  if $ui-shadow-radius > 0
+    if $child-selector
+      &:focus {$selector-child}
+        box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+    else
+      &:focus
+        box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
 ui-table()
   box-sizing border-box
   border-collapse collapse
@@ -233,17 +243,12 @@ ui-form-button(
 
   if $selector-values
     {$selector-values}
-
       flex 1
       line-height 0
       box-sizing border-box
 
       > {$selector-class-prefix + '-tag'}
-        border 0
         cursor text
-        font-size $font-size-small
-        background-color $brand-tag-bg-color
-        padding 0 $ui-icon-text-gap
 
   {$selector-value},
   {$selector-placeholder}

@@ -28,6 +28,10 @@ import {
   toNumber,
 } from '../util'
 
+import {
+  onClickEventByEnterPress,
+} from '../event'
+
 export default Yox.define({
 
   template,
@@ -83,6 +87,7 @@ export default Yox.define({
   data() {
     return {
       page: '',
+      focused: '',
     }
   },
 
@@ -200,38 +205,6 @@ export default Yox.define({
       }
     },
     {
-      type: 'click',
-      ns: 'prevPage',
-      listener(event) {
-
-        if (event.phase !== Yox.Event.PHASE_UPWARD) {
-          return
-        }
-
-        event.stop()
-
-        // @ts-ignore
-        this.decreaseCurrent(1)
-
-      }
-    },
-    {
-      type: 'click',
-      ns: 'nextPage',
-      listener(event) {
-
-        if (event.phase !== Yox.Event.PHASE_UPWARD) {
-          return
-        }
-
-        event.stop()
-
-        // @ts-ignore
-        this.increaseCurrent(1)
-
-      }
-    },
-    {
       type: 'change',
       ns: 'input',
       listener(event) {
@@ -271,19 +244,55 @@ export default Yox.define({
 
   methods: {
 
-    showError(error: string) {
-      this.fire(
-        {
-          type: 'error',
-          ns: 'pagination',
-        },
-        {
-          error,
-        }
-      )
+    onPageClick(page: number) {
+      this.setCurrent(page)
+    },
+    onPageFocus(page: number) {
+      this.set({
+        focused: `${page}_page`,
+      })
+    },
+    onPageBlur(page: number) {
+      if (this.get('focused') === `${page}_page`) {
+        this.set({
+          focused: '',
+        })
+      }
     },
 
-    jump() {
+    onPrevPageClick() {
+      this.decreaseCurrent(1)
+    },
+    onPrevPageFocus() {
+      this.set({
+        focused: 'prev_page',
+      })
+    },
+    onPrevPageBlur() {
+      if (this.get('focused') === 'prev_page') {
+        this.set({
+          focused: '',
+        })
+      }
+    },
+
+    onNextPageClick() {
+      this.increaseCurrent(1)
+    },
+    onNextPageFocus() {
+      this.set({
+        focused: 'next_page',
+      })
+    },
+    onNextPageBlur() {
+      if (this.get('focused') === 'next_page') {
+        this.set({
+          focused: '',
+        })
+      }
+    },
+
+    onJumpClick() {
       let page = this.get('page')
       if (page) {
         if (Yox.is.numeric(page)) {
@@ -305,6 +314,18 @@ export default Yox.define({
       else {
         this.showError('empty')
       }
+    },
+
+    showError(error: string) {
+      this.fire(
+        {
+          type: 'error',
+          ns: 'pagination',
+        },
+        {
+          error,
+        }
+      )
     },
 
     setCurrent(current: number) {
@@ -338,6 +359,29 @@ export default Yox.define({
       )
     }
 
+  },
+
+  afterMount() {
+    const me = this
+    onClickEventByEnterPress(me, function () {
+      const focused = me.get('focused')
+      if (focused) {
+        const parts = focused.split('_')
+        if (parts[1] === 'page') {
+          if (parts[0] === 'prev') {
+            me.onPrevPageClick()
+          }
+          else if (parts[0] === 'next') {
+            me.onNextPageClick()
+          }
+          else {
+            me.onPageClick(
+              toNumber(parts[0])
+            )
+          }
+        }
+      }
+    })
   },
 
   components: {

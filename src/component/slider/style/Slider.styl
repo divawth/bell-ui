@@ -36,12 +36,9 @@ $slider-thumb-size = 12px
   position absolute
   margin-left -0.5 * $slider-thumb-size
   border 2px solid $brand-primary
-  outline 0
   transition transform .3s
 
-  if $ui-shadow-radius > 0
-    &:focus
-      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+  ui-focusable()
 
 {$selector-class-prefix + '-slider-vertical'}
   height $ui-form-element-width
