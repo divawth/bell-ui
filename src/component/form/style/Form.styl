@@ -4,7 +4,7 @@ $form-item-vertical-gap = 24px
 $form-item-label-tooltip-gap = 3px
 $form-item-label-wrapper-gap = 12px
 $form-item-help-margin-top = 4px
-$form-item-help-margin-bottom = 10px
+$form-item-help-margin-bottom = 8px
 
 {$selector-class-prefix + '-form'}
   display flex
@@ -57,7 +57,6 @@ $form-item-help-margin-bottom = 10px
   font-size $font-size-small
   line-height $ui-multiple-line-height
   margin-top $form-item-help-margin-top
-  margin-bottom $form-item-help-margin-bottom
 
 {$selector-class-prefix + '-form-item-extra'}
   color $brand-muted
@@ -68,10 +67,6 @@ $form-item-help-margin-bottom = 10px
 {$selector-class-prefix + '-form-item-with-extra'}
   {$selector-class-prefix + '-form-item-message'}
     margin-top 0
-
-{$selector-class-prefix + '-form-item-with-message'}
-  {$selector-class-prefix + '-form-item-extra'}
-    margin-bottom 0
 
 {$selector-class-prefix + '-form-colon'}
   {$selector-class-prefix + '-form-item-label'}:after
@@ -96,7 +91,7 @@ $form-item-help-margin-bottom = 10px
   {$selector-class-prefix + '-form-item-with-extra'},
   {$selector-class-prefix + '-form-item-with-message'}
     + {$selector-class-prefix + '-form-item'}
-      margin-top 0
+      margin-top $form-item-help-margin-bottom
 
 {$selector-class-prefix + '-form-horizontal'}
   {$selector-class-prefix + '-form-item'}
