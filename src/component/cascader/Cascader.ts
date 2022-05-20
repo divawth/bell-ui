@@ -12,12 +12,13 @@ import CascaderOptions from './CascaderOptions'
 import {
   TRUE,
   FALSE,
+  RAW_ARRAY,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
-  RAW_ARRAY,
-  RAW_SIZE_ARRAY,
+  RAW_FUNCTION,
   RAW_DEFAULT,
+  RAW_SIZE_ARRAY,
   RAW_TYPE_INFO,
   RAW_TYPE_SUCCESS,
   RAW_TYPE_ERROR,
@@ -43,7 +44,6 @@ import {
 } from '../event'
 
 import {
-  isLeafOption,
   getSelectedOptions,
 } from './util'
 
@@ -88,6 +88,9 @@ export default Yox.define({
     changeOnSelect: {
       type: RAW_BOOLEAN,
     },
+    loadData: {
+      type: RAW_FUNCTION,
+    },
     width: {
       type: RAW_NUMERIC,
     },
@@ -101,7 +104,6 @@ export default Yox.define({
 
   data() {
     return {
-      RAW_TOP,
       RAW_CUSTOM,
       isFocus: FALSE,
       isVisible: FALSE,
@@ -140,7 +142,7 @@ export default Yox.define({
     },
     isReversed(): boolean {
       const placement = this.get('placement')
-      return placement.indexOf('top') >= 0
+      return placement.indexOf(RAW_TOP) >= 0
     },
     inlineStyle(): object[] | void {
       const result: object[] = []
@@ -163,25 +165,26 @@ export default Yox.define({
     },
   },
 
-
   events: {
     click: {
       listener(event, data) {
 
         event.stop()
 
-        const tempSelectedValue = this.copy(this.get('tempSelectedValue'))
-        const tempSelectedOptions = this.copy(this.get('tempSelectedOptions'))
+        const me = this
 
-        const selectedIndex = data.index
+        const tempSelectedValue = me.copy(me.get('tempSelectedValue'))
+        const tempSelectedOptions = me.copy(me.get('tempSelectedOptions'))
+
+        const selectedLevel = data.level
         const selectedOption = data.option
-        const needChange = this.get('changeOnSelect') || isLeafOption(selectedOption)
+        const needChange = me.get('changeOnSelect') || data.isLeaf
 
         tempSelectedValue.length =
-        tempSelectedOptions.length = selectedIndex
+        tempSelectedOptions.length = selectedLevel
 
-        tempSelectedValue[selectedIndex] = selectedOption.value
-        tempSelectedOptions[selectedIndex] = selectedOption
+        tempSelectedValue[selectedLevel] = selectedOption.value
+        tempSelectedOptions[selectedLevel] = selectedOption
 
         const changes: Record<string, any> = {
           tempSelectedValue,
@@ -192,11 +195,17 @@ export default Yox.define({
           changes.value = tempSelectedValue
         }
 
-        this.set(changes)
+        me.set(changes)
 
         if (needChange) {
           // @ts-ignore
-          this.fireChange(tempSelectedValue)
+          me.fireChange(tempSelectedValue)
+        }
+
+        if (data.isLeaf) {
+          this.set({
+            isVisible: FALSE,
+          })
         }
 
       },

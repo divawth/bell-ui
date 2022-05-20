@@ -6,10 +6,16 @@ import Icon from '../icon/Icon'
 
 import {
   TRUE,
+  FALSE,
   UNDEFINED,
-  RAW_NUMBER,
   RAW_ARRAY,
+  RAW_NUMBER,
+  RAW_FUNCTION,
 } from '../constant'
+
+import {
+  isLeafOption,
+} from './util'
 
 const CascaderOptions = Yox.define({
 
@@ -18,7 +24,7 @@ const CascaderOptions = Yox.define({
   name: '${prefix}CascaderOptions',
 
   propTypes: {
-    index: {
+    level: {
       type: RAW_NUMBER,
       required: TRUE,
     },
@@ -30,11 +36,14 @@ const CascaderOptions = Yox.define({
       type: RAW_ARRAY,
       required: TRUE,
     },
+    loadData: {
+      type: RAW_FUNCTION,
+    },
   },
 
   computed: {
     currentValue() {
-      return this.get('value')[this.get('index')]
+      return this.get('value')[this.get('level')]
     },
     nextOptions() {
       const options = this.get('options')
@@ -50,17 +59,46 @@ const CascaderOptions = Yox.define({
   },
 
   methods: {
-    onClick(option: any) {
-      this.fire(
+    onClick(option: any, index: number) {
+
+      const me = this
+      const isLeaf = isLeafOption(option)
+
+      me.fire(
         {
           type: 'click',
           ns: 'cascaderOptions',
         },
         {
-          index: this.get('index'),
+          level: me.get('level'),
+          index,
           option,
+          isLeaf,
         }
       )
+
+      const loadData = me.get('loadData')
+
+      if (loadData && !isLeaf && Yox.array.falsy(option.children)) {
+
+        const keypath = `options.${index}`
+
+        me.set(`${keypath}.isLoading`, TRUE)
+
+        loadData(option)
+        .then(function (children: any[]) {
+          if (children && children.length > 0) {
+            me.set(`${keypath}.children`, children)
+          }
+          else {
+            me.set(`${keypath}.isLeaf`, TRUE)
+          }
+        })
+        .finally(function () {
+          me.set(`${keypath}.isLoading`, FALSE)
+        })
+      }
+
     }
   },
 

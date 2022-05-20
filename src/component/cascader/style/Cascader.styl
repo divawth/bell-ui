@@ -65,9 +65,13 @@ select-brand-style(style)
   justify-content space-between
   align-items center
 
-{$selector-class-prefix + '-cascader-option-expand'}
+{$selector-class-prefix + '-cascader-option-expand'},
+{$selector-class-prefix + '-cascader-option-loading'}
   font-size inherit
   margin-left $ui-icon-text-gap
+
+{$selector-class-prefix + '-cascader-option-loading'}
+  color $brand-primary
 
 {$selector-class-prefix + '-cascader-options-empty'}
   width 100%
