@@ -1,0 +1,40 @@
+<fragment>
+  <div
+    class="${prefix}cascader-options
+    {{#if !options.length}} ${prefix}cascader-options-empty{{/if}}"
+  >
+    {{#each options}}
+      <div
+        class="${prefix}cascader-option
+        {{#if currentValue == this.value}} ${prefix}cascader-option-active{{/if}}
+        {{#if this.disabled}} ${prefix}cascader-option-disabled
+        {{else}} ${prefix}cascader-option-enabled
+        {{/if}}"
+
+        {{#if !this.disabled}}
+          on-click="onClick(this)"
+        {{/if}}
+      >
+        {{this.text}}
+
+        {{#if this.children}}
+          <Icon
+            className="${prefix}cascader-option-expand"
+            name="arrow-right-s-line"
+          />
+        {{/if}}
+      </div>
+    {{else}}
+      <Empty simple>
+        暂无数据
+      </Empty>
+    {{/each}}
+  </div>
+  {{#if nextOptions}}
+    <CascaderOptions
+      index="{{index + 1}}"
+      options="{{nextOptions}}"
+      value="{{value}}"
+    />
+  {{/if}}
+</fragment>

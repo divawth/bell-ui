@@ -1,0 +1,76 @@
+
+<Popover
+  ref="popover"
+  placement="{{placement}}"
+  trigger="{{RAW_CUSTOM}}"
+  visible="{{isVisible}}"
+  widthAlign="{{!options || !options.length}}"
+  gap="5"
+>
+
+  <div
+    class="${prefix}cascader
+    {{#if status}} ${prefix}cascader-{{status}}{{/if}}
+    {{#if size}} ${prefix}cascader-{{size}}{{/if}}
+    {{#if block}} ${prefix}cascader-block{{/if}}
+    {{#if isVisible}} ${prefix}cascader-opened{{/if}}
+    {{#if clearable}} ${prefix}cascader-clearable{{/if}}
+    {{#if isReversed}} ${prefix}cascader-reversed{{/if}}
+    {{#if disabled}} ${prefix}cascader-disabled
+    {{else}} ${prefix}cascader-enabled
+    {{/if}}
+    {{#if className}} {{className}}{{/if}}"
+
+    {{#if !disabled}}
+      tabindex="0"
+      on-click="onClick()"
+      on-focus="set('isFocus', true)"
+      on-blur="set('isFocus', false)"
+    {{/if}}
+
+    {{#if inlineStyle}}
+      style="{{inlineStyle}}"
+    {{/if}}
+  >
+
+    {{#if selectedOptions.length === 0}}
+
+      <div class="${prefix}cascader-placeholder">
+        {{placeholder}}
+      </div>
+
+    {{else}}
+
+      <div class="${prefix}cascader-value">
+        {{selectedText}}
+      </div>
+
+    {{/if}}
+
+    {{#if clearable && selectedOptions.length}}
+      <Icon
+        name="close-circle-fill"
+        className="${prefix}cascader-clear-icon"
+        on-click.native="onClearClick()"
+      />
+    {{/if}}
+
+    <Icon
+      name="arrow-down-s-line"
+      className="${prefix}cascader-arrow-icon"
+    />
+
+  </div>
+
+  <div
+    slot="overlay"
+    class="${prefix}cascader-overlay"
+  >
+    <CascaderOptions
+      index="{{0}}"
+      options="{{options}}"
+      value="{{tempSelectedValue}}"
+    />
+  </div>
+
+</Popover>

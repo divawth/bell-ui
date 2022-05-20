@@ -71,6 +71,8 @@ import CardMedia from './component/card/CardMedia'
 import CardBody from './component/card/CardBody'
 import CardFooter from './component/card/CardFooter'
 
+import Cascader from './component/cascader/Cascader'
+
 import PageHeader from './component/page-header/PageHeader'
 
 import Layout from './component/layout/Layout'
@@ -191,6 +193,8 @@ export function install(Yox: any) {
     CardMedia,
     CardBody,
     CardFooter,
+
+    Cascader,
 
     PageHeader,
     Layout,

@@ -342,6 +342,7 @@ ui-form-button-brand(style, $selector-enabled, $selector-opened)
 
 ui-dropdown-overlay(
   $selector-base,
+  $selector-list,
   $selector-item,
   $selector-item-active,
   $selector-item-enabled,
@@ -353,13 +354,14 @@ ui-dropdown-overlay(
   {$selector-base}
     font-size $font-size-default
     line-height $ui-multiple-line-height
+    box-shadow $brand-layer-shadow
+
+  {$selector-list}
     padding $dropdown-overlay-inset 0
 
     overflow-y auto
     overflow-x hidden
     user-select none
-    background-color $brand-bg
-    box-shadow $brand-layer-shadow
     ui-scrollbar()
 
     if $selector-item-active
