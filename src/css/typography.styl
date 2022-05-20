@@ -15,5 +15,11 @@ a
   &:hover
     color $brand-primary-hover
 
+input,
+textarea
+  // 去掉 IE 的清除按钮
+  &::-ms-clear
+    display none
+
 div
   ui-scrollbar()

@@ -95,6 +95,9 @@ export default Yox.define({
     alt: {
       type: RAW_STRING,
     },
+    fallback: {
+      type: RAW_STRING,
+    },
     formatImageUrl: {
       type: RAW_FUNCTION,
     },
@@ -126,6 +129,7 @@ export default Yox.define({
   data() {
     const me = this
     return {
+      useFallback: FALSE,
       image: {
         url: me.get('url'),
         base64: '',
@@ -197,6 +201,12 @@ export default Yox.define({
   watchers: {
     url(url) {
       this.set('image.url', url)
+    },
+    'image.url': function () {
+      this.set('useFallback', FALSE)
+    },
+    'image.base64': function () {
+      this.set('useFallback', FALSE)
     }
   },
 

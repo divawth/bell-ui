@@ -15,9 +15,11 @@ class="${prefix}image
 {{/if}}
 >
 
-  {{#if image.url || image.base64}}
+  {{#if image.url || image.base64 || fallback}}
     <img
-      {{#if image.base64}}
+      {{#if useFallback && fallback}}
+        src="{{fallback}}"
+      {{else if image.base64}}
         src="{{image.base64}}"
       {{else}}
         src="{{
@@ -36,6 +38,7 @@ class="${prefix}image
         alt="{{alt}}"
       {{/if}}
       draggable="false"
+      on-error="set('useFallback', true)"
     >
   {{else}}
     <div

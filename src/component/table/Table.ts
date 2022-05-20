@@ -20,6 +20,7 @@ import {
 
 import {
   toPixel,
+  readElementRectInfo,
 } from '../util'
 
 interface ButtonConfig {
@@ -208,17 +209,7 @@ export default Yox.define({
       )
     },
 
-    updateColumnWidths() {
-
-      let el = this.$el
-      if (!el) {
-        return
-      }
-
-      let totalWidth = el.clientWidth
-      if (!totalWidth) {
-        return
-      }
+    updateColumnWidths(totalWidth: number) {
 
       let columns = this.get('columns')
       if (!columns || !columns.length) {
@@ -273,11 +264,11 @@ export default Yox.define({
   },
 
   afterMount() {
-    this.updateColumnWidths()
-    // 再来一次，确保拿到了最新宽度
-    this.nextTick(
-      function () {
-        this.updateColumnWidths()
+    const me = this
+    readElementRectInfo(
+      me.$el,
+      function (rect: any) {
+        me.updateColumnWidths(rect.width)
       }
     )
   }

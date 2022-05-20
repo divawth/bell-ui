@@ -136,6 +136,21 @@ export default {
 }
 ```
 
+> 容错
+
+当图片地址加载失败时，显示容错地址。
+
+```js
+export default {
+  template: `
+    <Image
+      url="https://avatars0.githubusercontent.com/u/hahaha"
+      fallback="https://avatars0.githubusercontent.com/u/17703135?s=140"
+    />
+  `
+}
+```
+
 
 #### API
 
@@ -155,6 +170,7 @@ minWidth | 允许上传文件的最小宽度 | numeric | - | -
 maxWidth | 允许上传文件的最大宽度 | numeric | - | -
 minHeight | 允许上传文件的最小高度 | numeric | - | -
 maxHeight | 允许上传文件的最大高度 | numeric | - | -
+fallback | 容错地址 | string | - | -
 alt | 原生 `alt` 属性 | string | - | -
 simple | 是否为简洁风格 | boolean | - | -
 showPreview | 是否显示预览图标 | boolean | - | -

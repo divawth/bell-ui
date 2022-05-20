@@ -16,143 +16,143 @@ class="${prefix}table
 
 {{#if colWidths}}
 
-<table>
-  <colgroup>
-    {{#each columns:index}}
-      <col width="{{~/colWidths[index]}}">
-    {{/each}}
-  </colgroup>
-
-  <thead class="${prefix}table-header">
-    <tr>
-      {{#each columns}}
-      <td
-        {{#if this.align}}
-          class="${prefix}table-{{this.align}}"
-        {{/if}}
-      >
-        {{#if this.key === 'selection'}}
-          {{#if list.length > 0}}
-            <Checkbox
-              checked="{{~/allChecked}}"
-              on-change="allCheckedChange()"
-            />
-          {{else}}
-            <Checkbox
-              disabled
-            />
-          {{/if}}
-        {{else}}
-          {{this.title}}
-          {{#if this.sortable}}
-            <div
-              class="${prefix}table-sorter"
-              on-click="sortColumn(this.key, ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_ASC ? ~/SORT_ORDER_DESC : ~/SORT_ORDER_ASC)"
-            >
-              <Icon
-                name="arrow-up-s-fill"
-                className="${prefix}table-sort-asc
-                  {{#if ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_ASC}} ${prefix}table-sort-active{{/if}}"
-              />
-              <Icon
-                name="arrow-down-s-fill"
-                className="${prefix}table-sort-desc
-                  {{#if ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_DESC}} ${prefix}table-sort-active{{/if}}"
-              />
-            </div>
-          {{/if}}
-        {{/if}}
-      </td>
+  <table>
+    <colgroup>
+      {{#each columns:index}}
+        <col width="{{~/colWidths[index]}}">
       {{/each}}
-    </tr>
-  </thead>
+    </colgroup>
 
-  {{#if list.length > 0}}
-    <tbody class="${prefix}table-body">
-      <slot>
-        {{#each list:index}}
-        <tr>
-          {{#each ~/columns}}
-
-            {{#if this.actions && this.actions.length}}
-
-            <td
-              {{#if this.align}}
-                class="${prefix}table-{{this.align}}"
-              {{/if}}
-            >
-              {{#each this.actions}}
-                <Button
-                  on-click="clickButton(this, list[index], index)"
-                  className="{{this.className}}"
-                  disabled="{{this.disabled}}"
-                  block="{{this.block}}"
-                  shape="{{this.shape}}"
-                  size="{{this.size}}"
-                  type="{{this.type}}"
-                >
-                  {{this.text}}
-                </Button>
-              {{/each}}
-            </td>
-
-            {{else if list[ index ][ this.key ] !== undefined}}
-
-              <td
-                {{#if this.align}}
-                  class="${prefix}table-{{this.align}}"
-                {{/if}}
-              >
-                {{#if this.dangerous}}
-                  <div>
-                    {{{list[ index ][ this.key ]}}}
-                  </div>
-                {{else}}
-                  {{list[ index ][ this.key ]}}
-                {{/if}}
-              </td>
-
-            {{else if this.key === 'selection'}}
-
-              <td
-                {{#if this.align}}
-                  class="${prefix}table-{{this.align}}"
-                {{/if}}
-              >
-                <Checkbox
-                  checked="{{inArray(selection, list[ index ].key)}}"
-                  on-change="rowCheckedChange($event, $data, index)"
-                />
-              </td>
-
+    <thead class="${prefix}table-header">
+      <tr>
+        {{#each columns}}
+        <td
+          {{#if this.align}}
+            class="${prefix}table-{{this.align}}"
+          {{/if}}
+        >
+          {{#if this.key === 'selection'}}
+            {{#if list.length > 0}}
+              <Checkbox
+                checked="{{~/allChecked}}"
+                on-change="allCheckedChange()"
+              />
             {{else}}
+              <Checkbox
+                disabled
+              />
+            {{/if}}
+          {{else}}
+            {{this.title}}
+            {{#if this.sortable}}
+              <div
+                class="${prefix}table-sorter"
+                on-click="sortColumn(this.key, ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_ASC ? ~/SORT_ORDER_DESC : ~/SORT_ORDER_ASC)"
+              >
+                <Icon
+                  name="arrow-up-s-fill"
+                  className="${prefix}table-sort-asc
+                    {{#if ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_ASC}} ${prefix}table-sort-active{{/if}}"
+                />
+                <Icon
+                  name="arrow-down-s-fill"
+                  className="${prefix}table-sort-desc
+                    {{#if ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_DESC}} ${prefix}table-sort-active{{/if}}"
+                />
+              </div>
+            {{/if}}
+          {{/if}}
+        </td>
+        {{/each}}
+      </tr>
+    </thead>
+
+    {{#if list.length > 0}}
+      <tbody class="${prefix}table-body">
+        <slot>
+          {{#each list:index}}
+          <tr>
+            {{#each ~/columns}}
+
+              {{#if this.actions && this.actions.length}}
 
               <td
                 {{#if this.align}}
                   class="${prefix}table-{{this.align}}"
                 {{/if}}
               >
-                {{this.key}} is not found.
+                {{#each this.actions}}
+                  <Button
+                    on-click="clickButton(this, list[index], index)"
+                    className="{{this.className}}"
+                    disabled="{{this.disabled}}"
+                    block="{{this.block}}"
+                    shape="{{this.shape}}"
+                    size="{{this.size}}"
+                    type="{{this.type}}"
+                  >
+                    {{this.text}}
+                  </Button>
+                {{/each}}
               </td>
 
-            {{/if}}
-          {{/each}}
-        </tr>
-        {{/each}}
-      </slot>
-    </tbody>
-  {{/if}}
-</table>
+              {{else if list[ index ][ this.key ] !== undefined}}
 
-{{#if list.length === 0}}
-  <div class="${prefix}table-empty">
-    <slot name="empty">
-      <Empty>
-        暂无数据
-      </Empty>
-    </slot>
-  </div>
-{{/if}}
+                <td
+                  {{#if this.align}}
+                    class="${prefix}table-{{this.align}}"
+                  {{/if}}
+                >
+                  {{#if this.dangerous}}
+                    <div>
+                      {{{list[ index ][ this.key ]}}}
+                    </div>
+                  {{else}}
+                    {{list[ index ][ this.key ]}}
+                  {{/if}}
+                </td>
+
+              {{else if this.key === 'selection'}}
+
+                <td
+                  {{#if this.align}}
+                    class="${prefix}table-{{this.align}}"
+                  {{/if}}
+                >
+                  <Checkbox
+                    checked="{{inArray(selection, list[ index ].key)}}"
+                    on-change="rowCheckedChange($event, $data, index)"
+                  />
+                </td>
+
+              {{else}}
+
+                <td
+                  {{#if this.align}}
+                    class="${prefix}table-{{this.align}}"
+                  {{/if}}
+                >
+                  {{this.key}} is not found.
+                </td>
+
+              {{/if}}
+            {{/each}}
+          </tr>
+          {{/each}}
+        </slot>
+      </tbody>
+    {{/if}}
+  </table>
+
+  {{#if list.length === 0}}
+    <div class="${prefix}table-empty">
+      <slot name="empty">
+        <Empty>
+          暂无数据
+        </Empty>
+      </slot>
+    </div>
+  {{/if}}
 
 {{/if}}
 
