@@ -6526,6 +6526,7 @@ var NextPage_default = /*#__PURE__*/__webpack_require__.n(NextPage);
         },
         hideOnSinglePage: {
             type: RAW_BOOLEAN,
+            value: TRUE,
         },
         placement: {
             type: oneOf([RAW_TOP, RAW_BOTTOM]),
@@ -13816,7 +13817,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.28.6";
+var version = "0.28.7";
 /**
  * 安装插件
  */

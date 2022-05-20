@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.28.6
+ * bell-ui.js v0.28.7
  * (c) 2018-2022 
  * Released under the MIT License.
  */
@@ -5271,6 +5271,7 @@
           },
           hideOnSinglePage: {
               type: RAW_BOOLEAN,
+              value: TRUE,
           },
           placement: {
               type: oneOf([RAW_TOP, RAW_BOTTOM]),
@@ -11858,7 +11859,7 @@
   /**
    * 版本
    */
-  var version = "0.28.6";
+  var version = "0.28.7";
   /**
    * 安装插件
    */
