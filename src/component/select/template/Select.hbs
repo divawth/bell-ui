@@ -91,11 +91,25 @@
     slot="overlay"
     class="${prefix}select-overlay"
   >
-    <slot>
-      <Empty simple>
-        暂无数据
-      </Empty>
-    </slot>
+    {{#if options}}
+      {{#each options}}
+        <Option
+          text="{{this.text}}"
+          value="{{this.value}}"
+          disabled="{{this.disabled}}"
+        />
+      {{else}}
+        <Empty simple>
+          暂无数据
+        </Empty>
+      {{/each}}
+    {{else}}
+      <slot>
+        <Empty simple>
+          暂无数据
+        </Empty>
+      </slot>
+    {{/if}}
   </div>
 
 </Popover>

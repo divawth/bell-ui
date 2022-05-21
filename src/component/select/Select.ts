@@ -7,6 +7,7 @@ import Tag from '../tag/Tag'
 import Icon from '../icon/Icon'
 import Empty from '../empty/Empty'
 import Popover from '../popover/Popover'
+import Option from './Option'
 
 import {
   TRUE,
@@ -37,6 +38,7 @@ import {
 
 import {
   isOptionSelected,
+  getOptionsByChildren,
 } from './util'
 
 import {
@@ -51,6 +53,9 @@ export default Yox.define({
   name: '${prefix}Select',
 
   propTypes: {
+    options: {
+      type: RAW_ARRAY,
+    },
     placeholder: {
       type: RAW_STRING,
       value: '请选择...'
@@ -106,6 +111,33 @@ export default Yox.define({
   },
 
   computed: {
+    allOptions(): any[] {
+      const options = this.get('options')
+      if (options) {
+        return options
+      }
+      const children = this.get(RAW_SLOT_CHILDREN)
+      if (children) {
+        return getOptionsByChildren(this, children)
+      }
+      return []
+    },
+    selectedOptions(): any[] {
+      const value = this.get('value')
+      const allOptions = this.get('allOptions')
+      const result: any[] = []
+
+      Yox.array.each(
+        allOptions,
+        function (item: any) {
+          if (isOptionSelected(value, item.value)) {
+            result.push(item)
+          }
+        }
+      )
+
+      return result
+    },
     inlineStyle(): object[] | void {
       const result: object[] = []
 
@@ -128,22 +160,15 @@ export default Yox.define({
   },
 
   events: {
-    update: {
+    click: {
       listener(event, data) {
 
         event.stop()
 
-        const me = this
+        this.selectOption(data.value)
 
-        if (data.isSelected) {
-          me.selectOption(data.value)
-        }
-        else {
-          me.deselectOption(data.value)
-        }
-
-        if (!me.get('multiple')) {
-          me.set('isVisible', FALSE)
+        if (!this.get('multiple')) {
+          this.set('isVisible', FALSE)
         }
 
       },
@@ -216,13 +241,6 @@ export default Yox.define({
           me.set('value', value)
           me.fireChange(value)
         }
-        // 更新 UI，因为 watcher 不会被触发
-        else {
-          this.updateSelectedOptions(
-            value,
-            this.get(RAW_SLOT_CHILDREN)
-          )
-        }
 
       }
 
@@ -262,45 +280,6 @@ export default Yox.define({
 
     },
 
-    updateSelectedOptions(selectedValue: any, children: any) {
-
-      const me = this
-      const selectedOptions = []
-
-      if (!children) {
-        me.set('selectedOptions', selectedOptions)
-        return
-      }
-
-      const findOptions = function (children) {
-        children.forEach(
-          function (vnode) {
-            const { tag, props, slots } = vnode
-            if (tag === 'Option' && props) {
-              const { text, value } = props
-              if (isOptionSelected(selectedValue, value)) {
-                selectedOptions.push({
-                  text,
-                  value,
-                })
-              }
-            }
-            else if (tag === 'OptionGroup' && slots && slots[RAW_SLOT_CHILDREN]) {
-              const children = slots[RAW_SLOT_CHILDREN](me)
-              if (children) {
-                findOptions(children)
-              }
-            }
-          }
-        )
-      }
-
-      findOptions(children)
-
-      me.set('selectedOptions', selectedOptions)
-
-    },
-
     fireChange(value) {
 
       this.fire(
@@ -329,17 +308,6 @@ export default Yox.define({
   },
 
   afterMount() {
-    this.watch(
-      'value',
-      function (value) {
-        // 在这同步 selectedOptions，可兼顾内外的改动
-        this.updateSelectedOptions(
-          value,
-          this.get(RAW_SLOT_CHILDREN)
-        )
-      },
-      TRUE
-    )
     onClickEventByEnterPress(this)
   },
 
@@ -350,18 +318,12 @@ export default Yox.define({
     }
   },
 
-  beforePropsUpdate(props) {
-    this.updateSelectedOptions(
-      this.get('value'),
-      props && props[RAW_SLOT_CHILDREN]
-    )
-  },
-
   components: {
     Tag,
     Icon,
     Empty,
     Popover,
+    Option,
   },
 
 })

@@ -585,6 +585,7 @@ clearable | 是否可以清空选项，只在单选时有效 | boolean | - | -
 block | 是否为块级元素 | boolean | - | -
 size | 大小 | string | `default`, `small`, `large` | `default`
 placement | 弹窗的展开方向 | string | `bottom`, `top` | -
+options | 数据化配置选项内容 | `{ text, value }[]` | - | -
 placeholder | 选择框默认文字 | string | - | -
 prefix | 自定义 Select 内头部图标 | string | - | -
 width | 选择框宽度 | numeric | -

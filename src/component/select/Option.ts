@@ -73,11 +73,10 @@ export default Yox.define({
     onClick() {
       this.fire(
         {
-          type: 'update',
+          type: 'click',
           ns: 'option',
         },
         {
-          isSelected: TRUE,
           value: this.get('value'),
         }
       )
