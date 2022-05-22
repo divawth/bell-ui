@@ -79,7 +79,7 @@ export default Yox.define({
       type: oneOf([RAW_TOP, RAW_TOP_START, RAW_TOP_END, RAW_BOTTOM, RAW_BOTTOM_START, RAW_BOTTOM_END]),
       value: RAW_BOTTOM_START,
     },
-    clearable: {
+    showClear: {
       type: RAW_BOOLEAN,
     },
     block: {
@@ -224,9 +224,9 @@ export default Yox.define({
   },
 
   methods: {
-    onClick() {
+    onClick(event?: CustomEventInterface) {
       this.toggle('isVisible')
-      fireClickEvent()
+      fireClickEvent(event)
     },
     onClearClick(event: CustomEventInterface) {
 

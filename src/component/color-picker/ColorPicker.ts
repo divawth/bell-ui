@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/ColorPicker.hbs'
 // import './style/ColorPicker.styl'
@@ -258,9 +258,9 @@ export default Yox.define({
 
   methods: {
 
-    onClick() {
+    onClick(event?: CustomEventInterface) {
       this.toggle('isVisible')
-      fireClickEvent()
+      fireClickEvent(event)
     },
 
     setColor(value: string) {

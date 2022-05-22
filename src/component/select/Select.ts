@@ -188,9 +188,9 @@ export default Yox.define({
 
   methods: {
 
-    onClick() {
+    onClick(event?: CustomEventInterface) {
       this.toggle('isVisible')
-      fireClickEvent()
+      fireClickEvent(event)
     },
 
     onClearClick(event: CustomEventInterface) {
