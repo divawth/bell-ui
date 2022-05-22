@@ -14,7 +14,7 @@
     {{#if size}} ${prefix}select-{{size}}{{/if}}
     {{#if block}} ${prefix}select-block{{/if}}
     {{#if isVisible}} ${prefix}select-opened{{/if}}
-    {{#if clearable}} ${prefix}select-clearable{{/if}}
+    {{#if showClear}} ${prefix}select-with-clear{{/if}}
     {{#if placement === RAW_TOP}} ${prefix}select-reversed{{/if}}
     {{#if disabled}} ${prefix}select-disabled
     {{else}} ${prefix}select-enabled
@@ -72,7 +72,7 @@
 
     {{/if}}
 
-    {{#if clearable && selectedOptions.length}}
+    {{#if showClear && selectedOptions.length}}
       <Icon
         name="close-circle-fill"
         className="${prefix}select-clear-icon"

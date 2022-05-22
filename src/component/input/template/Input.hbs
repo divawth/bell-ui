@@ -32,7 +32,7 @@ class="${prefix}input
   <div
     class="${prefix}input-content
     {{#if prefix}} ${prefix}input-content-with-prefix{{/if}}
-    {{#if hasCount || suffix || secure || clearable && !disabled}} ${prefix}input-content-with-suffix{{/if}}"
+    {{#if hasCount || suffix || secure || showClear && !disabled}} ${prefix}input-content-with-suffix{{/if}}"
   >
 
     {{#if prefix}}
@@ -100,7 +100,7 @@ class="${prefix}input
           className="${prefix}input-content-icon"
         />
       </div>
-    {{else if clearable && !disabled}}
+    {{else if showClear && !disabled}}
       <div class="${prefix}input-suffix ${prefix}input-suffix-icon-wrapper ${prefix}input-clear" on-click="handleClearClick()">
         <Icon
           name="close-circle-fill"

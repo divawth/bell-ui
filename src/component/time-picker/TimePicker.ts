@@ -78,7 +78,7 @@ export default Yox.define({
       type: RAW_STRING,
       value: '请选择时间...'
     },
-    clearable: {
+    showClear: {
       type: RAW_BOOLEAN,
     },
     format: {

@@ -12,7 +12,7 @@
     {{#if size}} ${prefix}date-picker-{{size}}{{/if}}
     {{#if block}} ${prefix}date-picker-block{{/if}}
     {{#if isVisible}} ${prefix}date-picker-opened{{/if}}
-    {{#if clearable}} ${prefix}date-picker-clearable{{/if}}
+    {{#if showClear}} ${prefix}date-picker-with-clear{{/if}}
     {{#if disabled}} ${prefix}date-picker-disabled
     {{else}} ${prefix}date-picker-enabled
     {{/if}}
@@ -69,7 +69,7 @@
 
     {{/if}}
 
-    {{#if clearable && formatedValues.length}}
+    {{#if showClear && formatedValues.length}}
       <Icon
         name="close-circle-fill"
         className="${prefix}date-picker-clear-icon"

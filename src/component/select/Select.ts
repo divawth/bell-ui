@@ -80,7 +80,7 @@ export default Yox.define({
     multiple: {
       type: RAW_BOOLEAN,
     },
-    clearable: {
+    showClear: {
       type: RAW_BOOLEAN,
     },
     block: {

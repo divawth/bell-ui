@@ -216,7 +216,7 @@ ui-form-button(
   $selector-enabled,
   $selector-disabled,
   $selector-opened,
-  $selector-clearable,
+  $selector-with-clear,
   $selector-reversed,
   $selector-values,
   $selector-value,
@@ -290,7 +290,10 @@ ui-form-button(
   {$selector-clear-icon}
     color $brand-clear-icon-color
     opacity 0
-    transition opacity $form-control-transition-duration
+    transition color $form-control-transition-duration, opacity $form-control-transition-duration
+
+    &:hover
+      color $brand-close-color-hover
 
   {$selector-enabled}
     ui-enabled(true)
@@ -306,7 +309,7 @@ ui-form-button(
   {$selector-opened}
     ui-focus($brand-primary-shadow, $brand-primary)
 
-  {$selector-clearable}:hover
+  {$selector-with-clear}:hover
     {$selector-clear-icon}
       opacity 1
       z-index $zindex-normal

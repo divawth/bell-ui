@@ -14,7 +14,7 @@
     {{#if size}} ${prefix}cascader-{{size}}{{/if}}
     {{#if block}} ${prefix}cascader-block{{/if}}
     {{#if isVisible}} ${prefix}cascader-opened{{/if}}
-    {{#if clearable}} ${prefix}cascader-clearable{{/if}}
+    {{#if showClear}} ${prefix}cascader-with-clear{{/if}}
     {{#if isReversed}} ${prefix}cascader-reversed{{/if}}
     {{#if disabled}} ${prefix}cascader-disabled
     {{else}} ${prefix}cascader-enabled
@@ -47,7 +47,7 @@
 
     {{/if}}
 
-    {{#if clearable && selectedOptions.length}}
+    {{#if showClear && selectedOptions.length}}
       <Icon
         name="close-circle-fill"
         className="${prefix}cascader-clear-icon"

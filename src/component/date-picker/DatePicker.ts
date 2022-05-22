@@ -123,7 +123,7 @@ export default Yox.define({
     disabledDate: {
       type: RAW_FUNCTION,
     },
-    clearable: {
+    showClear: {
       type: RAW_BOOLEAN,
     },
     width: {

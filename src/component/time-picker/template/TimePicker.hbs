@@ -11,7 +11,7 @@
     {{#if size}} ${prefix}time-picker-{{size}}{{/if}}
     {{#if block}} ${prefix}time-picker-block{{/if}}
     {{#if isVisible}} ${prefix}time-picker-opened{{/if}}
-    {{#if clearable}} ${prefix}time-picker-clearable{{/if}}
+    {{#if showClear}} ${prefix}time-picker-with-clear{{/if}}
     {{#if disabled}} ${prefix}time-picker-disabled
     {{else}} ${prefix}time-picker-enabled
     {{/if}}
@@ -39,7 +39,7 @@
       </div>
     {{/if}}
 
-    {{#if clearable && hasValue}}
+    {{#if showClear && hasValue}}
       <Icon
         name="close-circle-fill"
         className="${prefix}time-picker-clear-icon"

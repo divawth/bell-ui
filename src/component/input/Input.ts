@@ -70,7 +70,7 @@ export default Yox.define({
     disabled: {
       type: RAW_BOOLEAN,
     },
-    clearable: {
+    showClear: {
       type: RAW_BOOLEAN,
     },
     secure: {
