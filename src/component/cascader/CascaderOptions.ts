@@ -3,6 +3,7 @@ import Yox from 'yox'
 import template from './template/CascaderOptions.hbs'
 
 import Icon from '../icon/Icon'
+import CascaderOption from './CascaderOption'
 
 import {
   TRUE,
@@ -10,12 +11,9 @@ import {
   UNDEFINED,
   RAW_ARRAY,
   RAW_NUMBER,
+  RAW_BOOLEAN,
   RAW_FUNCTION,
 } from '../constant'
-
-import {
-  isLeafOption,
-} from './util'
 
 const CascaderOptions = Yox.define({
 
@@ -35,6 +33,9 @@ const CascaderOptions = Yox.define({
     value: {
       type: RAW_ARRAY,
       required: TRUE,
+    },
+    multiple: {
+      type: RAW_BOOLEAN,
     },
     loadData: {
       type: RAW_FUNCTION,
@@ -58,52 +59,49 @@ const CascaderOptions = Yox.define({
     }
   },
 
-  methods: {
-    onClick(option: any, index: number) {
+  events: {
+    click: {
+      listener(_, data) {
 
-      const me = this
-      const isLeaf = isLeafOption(option)
+        const me = this
 
-      me.fire(
-        {
-          type: 'click',
-          ns: 'cascaderOptions',
-        },
-        {
-          level: me.get('level'),
-          index,
-          option,
-          isLeaf,
+        const { index, option } = data
+        const loadData = me.get('loadData')
+
+        if (loadData && !data.isLeaf && Yox.array.falsy(option.children)) {
+
+          const setOptionProp = function (key: string, value: any) {
+            const keypath = `options.${index}`
+            const newOption = me.copy(me.get(keypath))
+            newOption[key] = value
+            me.set(keypath, newOption)
+          }
+
+          setOptionProp('isLoading', TRUE)
+
+          loadData(option)
+          .then(function (children: any[]) {
+            if (children && children.length > 0) {
+              setOptionProp('children', children)
+            }
+            else {
+              setOptionProp('isLeaf', TRUE)
+            }
+          })
+          .finally(function () {
+            setOptionProp('isLoading', FALSE)
+          })
+
         }
-      )
 
-      const loadData = me.get('loadData')
-
-      if (loadData && !isLeaf && Yox.array.falsy(option.children)) {
-
-        const keypath = `options.${index}`
-
-        me.set(`${keypath}.isLoading`, TRUE)
-
-        loadData(option)
-        .then(function (children: any[]) {
-          if (children && children.length > 0) {
-            me.set(`${keypath}.children`, children)
-          }
-          else {
-            me.set(`${keypath}.isLeaf`, TRUE)
-          }
-        })
-        .finally(function () {
-          me.set(`${keypath}.isLoading`, FALSE)
-        })
-      }
-
+      },
+      ns: 'cascaderOption'
     }
   },
 
   components: {
     Icon,
+    CascaderOption,
   }
 
 })

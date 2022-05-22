@@ -209,7 +209,7 @@ export default Yox.define({
         }
 
       },
-      ns: 'cascaderOptions',
+      ns: 'cascaderOption',
     },
     outside: {
       listener(event) {

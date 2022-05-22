@@ -4,33 +4,13 @@
     {{#if !options.length}} ${prefix}cascader-options-empty{{/if}}"
   >
     {{#each options:index}}
-      <div
-        class="${prefix}cascader-option
-        {{#if currentValue == this.value}} ${prefix}cascader-option-active{{/if}}
-        {{#if this.disabled}} ${prefix}cascader-option-disabled
-        {{else}} ${prefix}cascader-option-enabled
-        {{/if}}"
-
-        {{#if !this.disabled && !this.isLoading}}
-          on-click="onClick(this, index)"
-        {{/if}}
-      >
-        {{this.text}}
-
-        {{#if this.isLoading}}
-          <Icon
-            className="${prefix}cascader-option-loading"
-            name="loader-5-line"
-            spin
-          />
-        {{else if this.children}}
-          <Icon
-            className="${prefix}cascader-option-expand"
-            name="arrow-right-s-line"
-            spin="{{false}}"
-          />
-        {{/if}}
-      </div>
+      <CascaderOption
+        level="{{~/level}}"
+        index="{{index}}"
+        option="{{this}}"
+        checked="{{this.value == ~/currentValue}}"
+        checkable="{{~/multiple}}"
+      />
     {{else}}
       <Empty simple>
         暂无数据

@@ -1,0 +1,29 @@
+<div
+  class="${prefix}cascader-option
+  {{#if checked}} ${prefix}cascader-option-checked{{/if}}
+  {{#if option.disabled}} ${prefix}cascader-option-disabled
+  {{else}} ${prefix}cascader-option-enabled
+  {{/if}}"
+
+  {{#if !option.disabled && !option.isLoading}}
+    on-click="onClick(option, index)"
+  {{/if}}
+>
+  <div class="${prefix}cascader-option-text">
+    {{option.text}}
+  </div>
+
+  {{#if option.isLoading}}
+    <Icon
+      className="${prefix}cascader-option-loading"
+      name="loader-5-line"
+      spin
+    />
+  {{else if option.children}}
+    <Icon
+      className="${prefix}cascader-option-expand"
+      name="arrow-right-s-line"
+      spin="{{false}}"
+    />
+  {{/if}}
+</div>

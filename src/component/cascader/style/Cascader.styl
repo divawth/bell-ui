@@ -65,6 +65,10 @@ select-brand-style(style)
   justify-content space-between
   align-items center
 
+{$selector-class-prefix + '-cascader-option-text'}
+  display flex
+  align-items center
+
 {$selector-class-prefix + '-cascader-option-expand'},
 {$selector-class-prefix + '-cascader-option-loading'}
   font-size inherit
@@ -99,7 +103,7 @@ ui-dropdown-overlay(
   $selector-class-prefix + '-cascader-overlay',
   $selector-class-prefix + '-cascader-options',
   $selector-class-prefix + '-cascader-option',
-  $selector-class-prefix + '-cascader-option-active',
+  $selector-class-prefix + '-cascader-option-checked',
   $selector-class-prefix + '-cascader-option-enabled',
   $selector-class-prefix + '-cascader-option-disabled',
   '',
