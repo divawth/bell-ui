@@ -119,7 +119,7 @@ export default Yox.define({
   },
 
   methods: {
-    click(event: CustomEventInterface) {
+    onOverlayClick(event: CustomEventInterface) {
       event.stop()
       fireClickEvent(event, TRUE)
     },
