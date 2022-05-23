@@ -192,12 +192,10 @@ ui-transparent-bg()
   background-position 0 0, 0 6px, 6px -6px, -6px 0px
   background-repeat repeat
 
-ui-scrollbar(size = 4px)
+ui-scrollbar(size = 5px)
 
   &::-webkit-scrollbar
     width size
-
-  &::-webkit-scrollbar
     height size
 
   &::-webkit-scrollbar-track
@@ -366,7 +364,6 @@ ui-dropdown-overlay(
     overflow-y auto
     overflow-x hidden
     user-select none
-    ui-scrollbar()
 
     if $selector-item-active
       &:hover {$selector-item-active}

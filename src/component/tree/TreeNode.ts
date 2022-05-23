@@ -229,7 +229,9 @@ const TreeNode = Yox.define({
       )
 
     },
-    handleCheckedChange(data) {
+    handleCheckedChange(event, data) {
+
+      event.stop()
 
       const node = this.get('node')
 
