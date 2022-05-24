@@ -2,7 +2,7 @@ import Yox from 'yox'
 import { TRUE } from '../constant'
 import { setTreeCheckedKey } from '../util'
 
-export function expandAll(data: any[], expandedKeys: string[]) {
+function expandAll(data: any[], expandedKeys: string[]) {
   const handleNode = function (child: any) {
     if (child.children && child.children.length) {
       if (!Yox.array.has(expandedKeys, child.key)) {
@@ -20,18 +20,22 @@ export function expandAll(data: any[], expandedKeys: string[]) {
   )
 }
 
-export function formatExpandedKeys(data: any[], expandedKeys: string[]) {
+export function formatExpandedKeys(data: any[], expandedKeys: string[] | void, defaultExpandAll: boolean) {
+
+  const result = expandedKeys
+    ? expandedKeys.slice()
+    : []
 
   const parents: any[] = []
 
   const handleNode = function (child: any) {
 
-    if (Yox.array.has(expandedKeys, child.key)) {
+    if (Yox.array.has(result, child.key)) {
       Yox.array.each(
         parents,
         function (parent: any) {
-          if (!Yox.array.has(expandedKeys, parent.key)) {
-            expandedKeys.push(parent.key)
+          if (!Yox.array.has(result, parent.key)) {
+            result.push(parent.key)
           }
         }
       )
@@ -52,18 +56,43 @@ export function formatExpandedKeys(data: any[], expandedKeys: string[]) {
     handleNode
   )
 
+  if (defaultExpandAll) {
+    expandAll(data, result)
+  }
+
+  return result
+
 }
 
-export function formatCheckedKeys(data: any[], checkedKeys: string[], checkStrictly: boolean) {
+export function formatSelectedKeys(selectedKeys: string[] | void) {
+  return selectedKeys
+    ? selectedKeys.slice()
+    : []
+}
+
+export function formatCheckedKeys(data: any[], checkedKeys: string[] | void, checkStrictly: boolean) {
+
+  const result = checkedKeys
+    ? checkedKeys.slice()
+    : []
+
+  const indeterminateKeys: string[] = []
+
   Yox.array.each(
-    checkedKeys,
+    result,
     function (key) {
-      setCheckedKey(data, checkedKeys, key, TRUE, checkStrictly)
+      setCheckedKey(data, result, indeterminateKeys, key, TRUE, checkStrictly)
     }
   )
+
+  return {
+    checkedKeys: result,
+    indeterminateKeys,
+  }
+
 }
 
-export function setCheckedKey(data: any[], checkedKeys: string[], key: string, checked: boolean, checkStrictly: boolean) {
+export function setCheckedKey(data: any[], checkedKeys: string[], indeterminateKeys: string[], key: string, checked: boolean, checkStrictly: boolean) {
 
   setTreeCheckedKey(
     data,
@@ -80,7 +109,19 @@ export function setCheckedKey(data: any[], checkedKeys: string[], key: string, c
     function (node) {
       Yox.array.remove(checkedKeys, node.key)
     },
-    !checkStrictly
+    !checkStrictly,
+    function (node) {
+      return indeterminateKeys.indexOf(node.key) >= 0
+    },
+    function (node) {
+      indeterminateKeys.push(node.key)
+    },
+    function (node) {
+      const index = indeterminateKeys.indexOf(node.key)
+      if (index >= 0) {
+        indeterminateKeys.splice(index, 1)
+      }
+    },
   )
 
 }

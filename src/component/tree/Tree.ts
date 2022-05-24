@@ -15,8 +15,8 @@ import {
 } from '../constant'
 
 import {
-  expandAll,
   formatExpandedKeys,
+  formatSelectedKeys,
   formatCheckedKeys,
   setCheckedKey,
 } from './util'
@@ -81,36 +81,26 @@ export default Yox.define({
     }
   },
 
-  computed: {
-    innerExpandedKeys() {
-      const data = this.get('data')
-      const expandedKeys = this.get('expandedKeys')
-      const defaultExpandedKeys = this.get('defaultExpandedKeys')
+  data() {
+    const data = this.get('data')
+    const expandedKeys = this.get('expandedKeys')
+    const defaultExpandedKeys = this.get('defaultExpandedKeys')
+    const innerExpandedKeys = formatExpandedKeys(data, expandedKeys || defaultExpandedKeys, this.get('defaultExpandAll'))
 
-      const innerExpandedKeys = (expandedKeys || defaultExpandedKeys || []).slice()
-      formatExpandedKeys(data, innerExpandedKeys)
-      if (this.get('defaultExpandAll')) {
-        expandAll(data, innerExpandedKeys)
-      }
+    const selectedKeys = this.get('selectedKeys')
+    const defaultSelectedKeys = this.get('defaultSelectedKeys')
+    const innerSelectedKeys = formatSelectedKeys(selectedKeys || defaultSelectedKeys)
 
-      return innerExpandedKeys
-    },
-    innerSelectedKeys() {
-      const selectedKeys = this.get('selectedKeys')
-      const defaultSelectedKeys = this.get('defaultSelectedKeys')
-      return (selectedKeys || defaultSelectedKeys || []).slice()
-    },
-    innerCheckedKeys() {
-      const data = this.get('data')
-      const checkStrictly = this.get('checkStrictly')
-      const checkedKeys = this.get('checkedKeys')
-      const defaultCheckedKeys = this.get('defaultCheckedKeys')
+    const checkedKeys = this.get('checkedKeys')
+    const defaultCheckedKeys = this.get('defaultCheckedKeys')
+    const checkedResult = formatCheckedKeys(data, checkedKeys || defaultCheckedKeys, this.get('checkStrictly'))
 
-      const innerCheckedKeys = (checkedKeys || defaultCheckedKeys || []).slice()
-      formatCheckedKeys(data, innerCheckedKeys, checkStrictly)
-
-      return innerCheckedKeys
-    },
+    return {
+      innerExpandedKeys,
+      innerSelectedKeys,
+      innerCheckedKeys: checkedResult.checkedKeys,
+      innerIndeterminateKeys: checkedResult.indeterminateKeys,
+    }
   },
 
   events: {
@@ -122,17 +112,20 @@ export default Yox.define({
           this.get('innerExpandedKeys')
         )
 
-        const { node } = data
+        const { node, expanded } = data
         const { key } = node
 
-        if (data.expanded) {
+        if (expanded) {
           expandedKeys.push(key)
         }
         else {
           Yox.array.remove(expandedKeys, key)
         }
 
-        this.set('expandedKeys', expandedKeys)
+        this.set({
+          expandedKeys,
+          innerExpandedKeys: expandedKeys,
+        })
 
         this.fire(
           {
@@ -155,10 +148,10 @@ export default Yox.define({
           this.get('innerSelectedKeys')
         )
 
-        const { node } = data
+        const { node, selected } = data
         const { key } = node
 
-        if (data.selected) {
+        if (selected) {
           if (this.get('multiple') && data.multiple) {
             selectedKeys.push(key)
           }
@@ -177,7 +170,10 @@ export default Yox.define({
           }
         }
 
-        this.set('selectedKeys', selectedKeys)
+        this.set({
+          selectedKeys,
+          innerSelectedKeys: selectedKeys,
+        })
 
         this.fire(
           {
@@ -200,17 +196,26 @@ export default Yox.define({
           this.get('innerCheckedKeys')
         )
 
-        const { checked, node } = data
+        const innerIndeterminateKeys = this.copy(
+          this.get('innerIndeterminateKeys')
+        )
+
+        const { node, checked } = data
 
         setCheckedKey(
           this.get('data'),
           checkedKeys,
+          innerIndeterminateKeys,
           node.key,
           checked,
           this.get('checkStrictly')
         )
 
-        this.set('checkedKeys', checkedKeys)
+        this.set({
+          checkedKeys,
+          innerCheckedKeys: checkedKeys,
+          innerIndeterminateKeys,
+        })
 
         this.fire(
           {
@@ -225,6 +230,42 @@ export default Yox.define({
       },
       ns: 'treeNode'
     }
+  },
+
+  beforePropsUpdate(props) {
+
+    const {
+      data,
+      expandedKeys, defaultExpandAll,
+      selectedKeys,
+      checkedKeys, checkStrictly,
+    } = props
+
+    if (data !== this.get('data')
+      || expandedKeys !== this.get('expandedKeys')
+    ) {
+      this.set({
+        innerExpandedKeys: formatExpandedKeys(data, expandedKeys, defaultExpandAll)
+      })
+    }
+
+    if (selectedKeys !== this.get('selectedKeys')) {
+      this.set({
+        selectedKeys: formatSelectedKeys(selectedKeys)
+      })
+    }
+
+    if (data !== this.get('data')
+      || checkedKeys !== this.get('checkedKeys')
+      || checkStrictly !== this.get('checkStrictly')
+    ) {
+      const checkedResult = formatCheckedKeys(data, checkedKeys, checkStrictly)
+      this.set({
+        innerCheckedKeys: checkedResult.checkedKeys,
+        innerIndeterminateKeys: checkedResult.indeterminateKeys,
+      })
+    }
+
   },
 
   components: {

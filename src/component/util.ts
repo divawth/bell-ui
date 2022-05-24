@@ -456,16 +456,23 @@ export function setTreeCheckedKey(
     // 看下兄弟节点是否全部勾选
     const { children } = node
     const { length } = children
+
     let checkedCount = 0
+    let indeterminateCount = 0
 
     for (let i = 0; i < length; i++) {
       if (isChecked(children[i], parents)) {
         checkedCount++
       }
+      if (isIndeterminate(children[i], parents)) {
+        indeterminateCount++
+      }
     }
 
     if (checkedCount === 0) {
-      return FLAG_NONE_SELECTED
+      return indeterminateCount > 0
+        ? FLAG_PART_SELECTED
+        : FLAG_NONE_SELECTED
     }
 
     if (checkedCount === length) {

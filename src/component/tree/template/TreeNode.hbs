@@ -20,7 +20,7 @@
     <div
       class="${prefix}tree-switcher"
       {{#if !isLeaf && !isLoading}}
-        on-click="handleExpandClick()"
+        on-click="onExpandClick()"
       {{/if}}
     >
       {{#if !isLeaf}}
@@ -56,7 +56,7 @@
         checked="{{checked}}"
         disabled="{{node.disabled}}"
         indeterminate="{{indeterminate}}"
-        on-change="handleCheckedChange()"
+        on-change="onCheckboxChange()"
       />
     {{/if}}
 
@@ -65,9 +65,9 @@
       title="{{node.title}}"
       {{#if !node.disabled}}
         {{#if selectable}}
-          on-click="handleSelectClick()"
+          on-click="onSelectClick()"
         {{else if checkable}}
-          on-click="handleCheckClick()"
+          on-click="onCheckClick()"
         {{/if}}
       {{/if}}
     >
@@ -88,6 +88,7 @@
         expandedKeys="{{~/expandedKeys}}"
         selectedKeys="{{~/selectedKeys}}"
         checkedKeys="{{~/checkedKeys}}"
+        indeterminateKeys="{{~/indeterminateKeys}}"
         selectable="{{~/selectable}}"
         checkable="{{~/checkable}}"
         block="{{~/block}}"

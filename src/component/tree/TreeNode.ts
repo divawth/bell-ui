@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface, Data } from 'yox'
 
 import template from './template/TreeNode.hbs'
 // import './style/TreeNode.styl'
@@ -27,12 +27,19 @@ const TreeNode = Yox.define({
   propTypes: {
     expandedKeys: {
       type: RAW_ARRAY,
+      required: TRUE,
     },
     selectedKeys: {
       type: RAW_ARRAY,
+      required: TRUE,
     },
     checkedKeys: {
       type: RAW_ARRAY,
+      required: TRUE,
+    },
+    indeterminateKeys: {
+      type: RAW_ARRAY,
+      required: TRUE,
     },
     selectable: {
       type: RAW_BOOLEAN,
@@ -76,41 +83,28 @@ const TreeNode = Yox.define({
       return Yox.array.has(expandedKeys, key)
     },
     checked() {
-      if (!this.get('checkable')) {
-        return FALSE
+      if (this.get('checkable')) {
+        const checkedKeys = this.get('checkedKeys')
+        const key = this.get('node.key')
+        return Yox.array.has(checkedKeys, key)
       }
-      const checkedKeys = this.get('checkedKeys')
-      const key = this.get('node.key')
-      return Yox.array.has(checkedKeys, key)
+      return FALSE
     },
     indeterminate() {
-      let result = FALSE
       if (this.get('showIndeterminate') && !this.get('checked')) {
-        const checkedKeys = this.get('checkedKeys')
-        const children = this.get('node.children')
-        if (children) {
-          Yox.array.each(
-            children,
-            function (child: any) {
-              if (!child.disabled
-                && Yox.array.has(checkedKeys, child.key)
-              ) {
-                result = TRUE
-                return FALSE
-              }
-            }
-          )
-        }
+        const indeterminateKeys = this.get('indeterminateKeys')
+        const key = this.get('node.key')
+        return Yox.array.has(indeterminateKeys, key)
       }
-      return result
+      return FALSE
     },
     selected() {
-      if (!this.get('selectable') || this.get('node.disabled')) {
-        return FALSE
+      if (this.get('selectable') && !this.get('node.disabled')) {
+        const selectedKeys = this.get('selectedKeys')
+        const key = this.get('node.key')
+        return Yox.array.has(selectedKeys, key)
       }
-      const selectedKeys = this.get('selectedKeys')
-      const key = this.get('node.key')
-      return Yox.array.has(selectedKeys, key)
+      return FALSE
     },
     hasChildren() {
       const children = this.get('node.children')
@@ -129,7 +123,7 @@ const TreeNode = Yox.define({
   },
 
   methods: {
-    handleExpandClick() {
+    onExpandClick() {
 
       const me = this
 
@@ -182,12 +176,12 @@ const TreeNode = Yox.define({
       fireExpandEvent()
 
     },
-    handleSelectClick(event) {
+    onSelectClick(event: CustomEventInterface) {
 
       const node = this.get('node')
       const selected = this.get('selected')
 
-      const originalEvent = event.originalEvent
+      const originalEvent = event.originalEvent as MouseEvent
 
       this.fire(
         {
@@ -204,7 +198,7 @@ const TreeNode = Yox.define({
       )
 
     },
-    handleCheckClick() {
+    onCheckClick() {
 
       const node = this.get('node')
 
@@ -220,7 +214,7 @@ const TreeNode = Yox.define({
       )
 
     },
-    handleCheckedChange(event, data) {
+    onCheckboxChange(event: CustomEventInterface, data: Data) {
 
       event.stop()
 
