@@ -6,7 +6,7 @@
     {{#if last}} ${prefix}tree-node-last{{/if}}
     {{#if expanded}} ${prefix}tree-node-expanded{{/if}}
     {{#if selected}} ${prefix}tree-node-selected{{/if}}
-    {{#if disabled}} ${prefix}tree-node-disabled
+    {{#if node.disabled}} ${prefix}tree-node-disabled
     {{else if selectable}} ${prefix}tree-node-selectable
     {{/if}}"
   >
@@ -54,7 +54,7 @@
     {{#if checkable}}
       <Checkbox
         checked="{{checked}}"
-        disabled="{{disabled}}"
+        disabled="{{node.disabled}}"
         indeterminate="{{indeterminate}}"
         on-change="handleCheckedChange()"
       />
@@ -63,7 +63,7 @@
     <div
       class="${prefix}tree-node-content"
       title="{{node.title}}"
-      {{#if !disabled}}
+      {{#if !node.disabled}}
         {{#if selectable}}
           on-click="handleSelectClick()"
         {{else if checkable}}
@@ -88,7 +88,6 @@
         expandedKeys="{{~/expandedKeys}}"
         selectedKeys="{{~/selectedKeys}}"
         checkedKeys="{{~/checkedKeys}}"
-        disabledKeys="{{~/disabledKeys}}"
         selectable="{{~/selectable}}"
         checkable="{{~/checkable}}"
         block="{{~/block}}"

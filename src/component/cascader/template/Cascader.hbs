@@ -33,21 +33,34 @@
     {{/if}}
   >
 
-    {{#if selectedOptions.length === 0}}
+    {{#if checkedOptions.length === 0}}
 
       <div class="${prefix}cascader-placeholder">
         {{placeholder}}
       </div>
 
+    {{else if multiple}}
+
+      <div class="${prefix}cascader-values">
+        {{#each checkedOptions:index}}
+          <Tag
+            closable
+            on-close="onOptionRemove($event, index)"
+          >
+            {{checkedTexts[index]}}
+          </Tag>
+        {{/each}}
+      </div>
+
     {{else}}
 
       <div class="${prefix}cascader-value">
-        {{selectedText}}
+        {{checkedTexts[0]}}
       </div>
 
     {{/if}}
 
-    {{#if showClear && selectedOptions.length}}
+    {{#if showClear && checkedOptions.length}}
       <Icon
         name="close-circle-fill"
         className="${prefix}cascader-clear-icon"
@@ -69,8 +82,11 @@
     <CascaderOptions
       level="{{0}}"
       options="{{options}}"
-      value="{{tempSelectedValue}}"
+      multiple="{{multiple}}"
       loadData="{{loadData}}"
+      checkedValues="{{checkedValues}}"
+      selectedValues="{{selectedValues}}"
+      indeterminateValues="{{indeterminateValues}}"
     />
   </div>
 

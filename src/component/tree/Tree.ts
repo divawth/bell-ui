@@ -52,9 +52,6 @@ export default Yox.define({
     checkedKeys: {
       type: RAW_ARRAY,
     },
-    disabledKeys: {
-      type: RAW_ARRAY,
-    },
     checkStrictly: {
       type: RAW_BOOLEAN,
     },
@@ -108,17 +105,12 @@ export default Yox.define({
       const checkStrictly = this.get('checkStrictly')
       const checkedKeys = this.get('checkedKeys')
       const defaultCheckedKeys = this.get('defaultCheckedKeys')
-      const innerDisabledKeys = this.get('innerDisabledKeys')
 
       const innerCheckedKeys = (checkedKeys || defaultCheckedKeys || []).slice()
-      formatCheckedKeys(data, innerCheckedKeys, innerDisabledKeys, checkStrictly)
+      formatCheckedKeys(data, innerCheckedKeys, checkStrictly)
 
       return innerCheckedKeys
     },
-    innerDisabledKeys() {
-      const disabledKeys = this.get('disabledKeys')
-      return (disabledKeys || []).slice()
-    }
   },
 
   events: {
@@ -211,12 +203,11 @@ export default Yox.define({
         const { checked, node } = data
 
         setCheckedKey(
+          this.get('data'),
           checkedKeys,
-          this.get('innerDisabledKeys'),
           node.key,
           checked,
-          this.get('checkStrictly'),
-          this.get('data')
+          this.get('checkStrictly')
         )
 
         this.set('checkedKeys', checkedKeys)

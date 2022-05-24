@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Checkbox.hbs'
 // import './style/Checkbox.styl'
@@ -74,7 +74,8 @@ export default Yox.define({
   },
 
   methods: {
-    onClick() {
+    onClick(event: CustomEventInterface) {
+      event.stop()
       this.setChecked(!this.get('checked'))
     },
     setChecked(checked: boolean) {

@@ -44,7 +44,10 @@ import {
 } from '../event'
 
 import {
-  getSelectedOptions,
+  renderValue,
+  getOptionsProps,
+  setCheckedOptions,
+  formatOptions,
 } from './util'
 
 export default Yox.define({
@@ -79,6 +82,9 @@ export default Yox.define({
       type: oneOf([RAW_TOP, RAW_TOP_START, RAW_TOP_END, RAW_BOTTOM, RAW_BOTTOM_START, RAW_BOTTOM_END]),
       value: RAW_BOTTOM_START,
     },
+    multiple: {
+      type: RAW_BOOLEAN,
+    },
     showClear: {
       type: RAW_BOOLEAN,
     },
@@ -103,42 +109,34 @@ export default Yox.define({
   },
 
   data() {
+    const data = formatOptions(
+      this.get('options'),
+      this.get('value'),
+      this.get('multiple')
+    )
+
     return {
       RAW_CUSTOM,
       isFocus: FALSE,
       isVisible: FALSE,
-      tempSelectedOptions: [],
-      tempSelectedValue: this.get('value'),
-    }
-  },
-
-  watchers: {
-    value(value) {
-      this.set({
-        tempSelectedOptions: this.get('selectedOptions'),
-        tempSelectedValue: value,
-      })
+      checkedOptions: data.checkedOptions,
+      selectedOptions: data.selectedOptions,
+      indeterminateOptions: data.indeterminateOptions,
     }
   },
 
   computed: {
-    selectedOptions(): any[] {
-      return getSelectedOptions(
-        this.get('options'),
-        this.get('value')
-      )
+    checkedValues(): any[] {
+      return getOptionsProps(this.get('checkedOptions'), 'value')
     },
-    selectedText(): string {
-      const result: string[] = []
-      Yox.array.each(
-        this.get('selectedOptions'),
-        function (option: any) {
-          result.push(
-            option.text
-          )
-        }
-      )
-      return result.join(' / ')
+    checkedTexts(): string[] {
+      return getOptionsProps(this.get('checkedOptions'), 'text').map(renderValue)
+    },
+    selectedValues(): any[] {
+      return getOptionsProps(this.get('selectedOptions'), 'value')
+    },
+    indeterminateValues(): any[] {
+      return getOptionsProps(this.get('indeterminateOptions'), 'value')
     },
     isReversed(): boolean {
       const placement = this.get('placement')
@@ -166,47 +164,60 @@ export default Yox.define({
   },
 
   events: {
-    click: {
+    select: {
       listener(event, data) {
 
         event.stop()
 
         const me = this
 
-        const tempSelectedValue = me.copy(me.get('tempSelectedValue'))
-        const tempSelectedOptions = me.copy(me.get('tempSelectedOptions'))
+        const multiple = me.get('multiple')
 
-        const selectedLevel = data.level
-        const selectedOption = data.option
-        const needChange = me.get('changeOnSelect') || data.isLeaf
+        const isLeafOption = data.isLeaf
 
-        tempSelectedValue.length =
-        tempSelectedOptions.length = selectedLevel
+        // 多选模式下，change 只能通过 checked 触发
+        const needChange = multiple
+          ? FALSE
+          : (me.get('changeOnSelect') || isLeafOption)
 
-        tempSelectedValue[selectedLevel] = selectedOption.value
-        tempSelectedOptions[selectedLevel] = selectedOption
-
-        const changes: Record<string, any> = {
-          tempSelectedValue,
-          tempSelectedOptions,
-        }
+        me.set({
+          selectedOptions: data.options,
+        })
 
         if (needChange) {
-          changes.value = tempSelectedValue
+          this.set({
+            checkedOptions: [data.options],
+          })
+          const value = this.get('checkedValues')
+          this.set({
+            value,
+          })
+          this.fireChange(value)
         }
 
-        me.set(changes)
-
-        if (needChange) {
-          // @ts-ignore
-          me.fireChange(tempSelectedValue)
+        if (multiple) {
+          if (isLeafOption) {
+            me.setOptionChecked(
+              data.values,
+              !data.checked
+            )
+          }
         }
-
-        if (data.isLeaf) {
+        else if (isLeafOption) {
           this.set({
             isVisible: FALSE,
           })
         }
+
+      },
+      ns: 'cascaderOption',
+    },
+    check: {
+      listener(event, data) {
+
+        event.stop()
+
+        this.setOptionChecked(data.values, data.checked)
 
       },
       ns: 'cascaderOption',
@@ -234,17 +245,54 @@ export default Yox.define({
       event.stop()
       fireClickEvent(event)
 
-      const value = []
+      this.set({
+        checkedOptions: [],
+      })
 
+      const value = this.get('checkedValues')
       this.set({
         value,
       })
-
-      // @ts-ignore
       this.fireChange(value)
 
     },
-    fireChange(value) {
+    onOptionRemove(event: CustomEventInterface, index: number) {
+
+      event.stop()
+
+      const value = this.get(`checkedValues.${index}`)
+
+      this.setOptionChecked(value, FALSE)
+
+    },
+    setOptionChecked(value: any[], checked: boolean) {
+
+      const me = this
+
+      const checkedOptions = me.copy(me.get('checkedOptions'))
+      const indeterminateOptions = me.copy(me.get('indeterminateOptions'))
+
+      setCheckedOptions(
+        me.get('options'),
+        checkedOptions,
+        indeterminateOptions,
+        [value],
+        [checked]
+      )
+
+      me.set({
+        checkedOptions,
+        indeterminateOptions,
+      })
+
+      const checkedValues = me.get('checkedValues')
+      me.set({
+        value: checkedValues,
+      })
+      me.fireChange(checkedValues)
+
+    },
+    fireChange(value: any[]) {
       this.fire(
         {
           type: 'change',
@@ -254,11 +302,32 @@ export default Yox.define({
           value,
         }
       )
-    }
+    },
   },
 
   afterMount() {
     onClickEventByEnterPress(this)
+  },
+
+  afterUpdate() {
+    if (this.get('isVisible') && this.get('multiple')) {
+      const popover = this.$refs.popover as any
+      popover.refreshOverlayRect()
+    }
+  },
+
+  beforePropsUpdate(props) {
+
+    const { options, value, multiple } = props
+
+    if (options !== this.get('options')
+      || value !== this.get('value')
+    ) {
+      this.set(
+        formatOptions(options, value, multiple)
+      )
+    }
+
   },
 
   components: {

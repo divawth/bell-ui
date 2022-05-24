@@ -8,8 +8,10 @@
         level="{{~/level}}"
         index="{{index}}"
         option="{{this}}"
-        checked="{{this.value == ~/currentValue}}"
         checkable="{{~/multiple}}"
+        selectedValue="{{~/currentSelectedValue}}"
+        checkedValues="{{~/currentCheckedValues}}"
+        indeterminateValues="{{~/currentIndeterminateValues}}"
       />
     {{else}}
       <Empty simple>
@@ -17,12 +19,15 @@
       </Empty>
     {{/each}}
   </div>
-  {{#if nextOptions}}
+  {{#if currentSelectedOption && currentSelectedOption.children}}
     <CascaderOptions
       level="{{level + 1}}"
-      options="{{nextOptions}}"
-      value="{{value}}"
+      options="{{currentSelectedOption.children}}"
+      multiple="{{multiple}}"
       loadData="{{loadData}}"
+      checkedValues="{{checkedValues}}"
+      selectedValues="{{selectedValues}}"
+      indeterminateValues="{{indeterminateValues}}"
     />
   {{/if}}
 </fragment>

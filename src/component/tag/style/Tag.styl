@@ -137,6 +137,7 @@ tag-brand-style(style)
     border-color $form-control-transition-duration,
     color $form-control-transition-duration
 
+
 {$selector-class-prefix + '-tag-checked'}
   background-color $brand-border
 
@@ -150,6 +151,9 @@ tag-brand-style(style)
 {$selector-class-prefix + '-tag-icon'}
   line-height 0
   margin-right $tag-text-icon-gap
+
+{$selector-class-prefix + '-tag-content'}
+  ui-ellipsis()
 
 {$selector-class-prefix + '-tag-close'}
   line-height 0

@@ -30,29 +30,80 @@ const CascaderOptions = Yox.define({
       type: RAW_ARRAY,
       required: TRUE,
     },
-    value: {
-      type: RAW_ARRAY,
-      required: TRUE,
-    },
     multiple: {
       type: RAW_BOOLEAN,
     },
     loadData: {
       type: RAW_FUNCTION,
     },
+    checkedValues: {
+      type: RAW_ARRAY,
+      required: TRUE,
+    },
+    selectedValues: {
+      type: RAW_ARRAY,
+      required: TRUE,
+    },
+    indeterminateValues: {
+      type: RAW_ARRAY,
+      required: TRUE,
+    },
   },
 
   computed: {
-    currentValue() {
-      return this.get('value')[this.get('level')]
+    currentCheckedValues() {
+
+      const result: any[] = []
+
+      const checkedValues = this.get('checkedValues')
+      const level = this.get('level')
+
+      Yox.array.each(
+        checkedValues,
+        function (values: any[]) {
+          if (values.length === level + 1) {
+            result.push(values[level])
+          }
+        }
+      )
+
+      return result
+
     },
-    nextOptions() {
-      const options = this.get('options')
-      const currentValue = this.get('currentValue')
-      if (currentValue !== UNDEFINED) {
-        for (let i = 0, len = options.length; i < len; i++) {
-          if (options[i].value == currentValue) {
-            return options[i].children
+    currentIndeterminateValues() {
+
+      const result: any[] = []
+
+      const indeterminateValues = this.get('indeterminateValues')
+      const level = this.get('level')
+
+      Yox.array.each(
+        indeterminateValues,
+        function (values: any[]) {
+          const value = values[level]
+          if (!Yox.array.has(indeterminateValues, value)) {
+            result.push(value)
+          }
+        }
+      )
+
+      return result
+
+    },
+    currentSelectedValue() {
+      const level = this.get('level')
+      return this.get(`selectedValues.${level}`)
+    },
+    currentSelectedOption: {
+      deps: ['options.length', 'options.*.value', 'options.*.children', 'currentSelectedValue'],
+      get() {
+        const currentSelectedValue = this.get('currentSelectedValue')
+        if (currentSelectedValue !== UNDEFINED) {
+          const options = this.get('options')
+          for (let i = 0, len = options.length; i < len; i++) {
+            if (options[i].value == currentSelectedValue) {
+              return options[i]
+            }
           }
         }
       }
@@ -60,18 +111,23 @@ const CascaderOptions = Yox.define({
   },
 
   events: {
-    click: {
+    select: {
       listener(_, data) {
+
+        // @ts-ignore
+        if (this.addLevelInfoIfNeeded(data)) {
+          return
+        }
 
         const me = this
 
-        const { index, option } = data
         const loadData = me.get('loadData')
+        const option = data.options[data.level]
 
-        if (loadData && !data.isLeaf && Yox.array.falsy(option.children)) {
+        if (loadData && !option.isLeaf && !option.children) {
 
           const setOptionProp = function (key: string, value: any) {
-            const keypath = `options.${index}`
+            const keypath = `options.${data.index}`
             const newOption = me.copy(me.get(keypath))
             newOption[key] = value
             me.set(keypath, newOption)
@@ -96,6 +152,29 @@ const CascaderOptions = Yox.define({
 
       },
       ns: 'cascaderOption'
+    },
+    check: {
+      listener(_, data) {
+        // @ts-ignore
+        if (this.addLevelInfoIfNeeded(data)) {
+          return
+        }
+      },
+      ns: 'cascaderOption'
+    }
+  },
+
+  methods: {
+    addLevelInfoIfNeeded(data: Record<string, any>) {
+      const level = this.get('level')
+      if (data.level !== level) {
+        const currentSelectedOption = this.get('currentSelectedOption')
+        if (currentSelectedOption) {
+          data.options[level] = currentSelectedOption
+          data.values[level] = currentSelectedOption.value
+        }
+        return TRUE
+      }
     }
   },
 

@@ -363,3 +363,190 @@ export function spaceItemStyle(gaps: number[] | void, vertical: boolean, autoWra
   }
 }
 
+export function setTreeCheckedKey(
+  treeData: any[], checked: boolean,
+  isTarget: (node: any, parents: any[]) => boolean,
+  isChecked: (node: any, parents: any[]) => boolean,
+  addChecked: (node: any, parents: any[]) => void,
+  removeChecked: (node: any, parents: any[]) => void,
+  interact?: boolean,
+  isIndeterminate?: (node: any, parents: any[]) => boolean,
+  addIndeterminate?: (node: any, parents: any[]) => void,
+  removeIndeterminate?: (node: any, parents: any[]) => void) {
+
+  let node: any
+
+  const parents: any[] = []
+
+  const handleNode = function (child: any) {
+
+    if (isTarget(child, parents)) {
+      node = child
+      return FALSE
+    }
+
+    parents.unshift(child)
+    if (child.children) {
+      let result = UNDEFINED
+      Yox.array.each(
+        child.children,
+        function (child) {
+          return result = handleNode(child)
+        }
+      )
+      if (result === FALSE) {
+        return FALSE
+      }
+    }
+    parents.shift()
+
+  }
+
+  Yox.array.each(
+    treeData,
+    handleNode
+  )
+
+  if (!node) {
+    return
+  }
+
+  const addNode = function (node: any, addChildren?: boolean) {
+    if (node.disabled) {
+      return
+    }
+    if (!isChecked(node, parents)) {
+      addChecked(node, parents)
+    }
+    if (addChildren === TRUE && node.children) {
+      parents.unshift(node)
+      Yox.array.each(
+        node.children,
+        function (node) {
+          addNode(node, TRUE)
+        }
+      )
+      parents.shift()
+    }
+  }
+
+  const removeNode = function (node: any, removeChildren?: boolean) {
+    if (node.disabled) {
+      return
+    }
+    removeChecked(node, parents)
+    if (removeChildren === TRUE && node.children) {
+      parents.unshift(node)
+      Yox.array.each(
+        node.children,
+        function (node) {
+          removeNode(node, TRUE)
+        }
+      )
+      parents.shift()
+    }
+  }
+
+  const FLAG_ALL_SELECTED = 1
+  const FLAG_NONE_SELECTED = -1
+  const FLAG_PART_SELECTED = 0
+
+  const getNodeIndeterminate = function (node: any) {
+
+    // 看下兄弟节点是否全部勾选
+    const { children } = node
+    const { length } = children
+    let checkedCount = 0
+
+    for (let i = 0; i < length; i++) {
+      if (isChecked(children[i], parents)) {
+        checkedCount++
+      }
+    }
+
+    if (checkedCount === 0) {
+      return FLAG_NONE_SELECTED
+    }
+
+    if (checkedCount === length) {
+      return FLAG_ALL_SELECTED
+    }
+
+    return FLAG_PART_SELECTED
+
+  }
+
+  const setNodeIndeterminate = function (node: any, indeterminate: number) {
+
+    if (!interact) {
+      return
+    }
+
+    if (indeterminate === FLAG_PART_SELECTED) {
+      if (addIndeterminate && isIndeterminate && !isIndeterminate(node, parents)) {
+        addIndeterminate(node, parents)
+      }
+    }
+    else {
+      if (removeIndeterminate) {
+        removeIndeterminate(node, parents)
+      }
+    }
+
+  }
+
+  if (checked) {
+    addNode(node, interact)
+    setNodeIndeterminate(node, FLAG_ALL_SELECTED)
+    if (interact) {
+      Yox.array.each(
+        parents.slice(),
+        function (parent: any) {
+
+          if (parent.disabled) {
+            return FALSE
+          }
+
+          const indeterminate = getNodeIndeterminate(parent)
+
+          parents.shift()
+
+          if (indeterminate === FLAG_ALL_SELECTED) {
+            addNode(parent)
+          }
+          else {
+            removeNode(parent)
+          }
+
+          setNodeIndeterminate(parent, indeterminate)
+
+        }
+      )
+    }
+  }
+  else {
+    removeNode(node, interact)
+    setNodeIndeterminate(node, FLAG_NONE_SELECTED)
+    if (interact) {
+      Yox.array.each(
+        parents.slice(),
+        function (parent) {
+
+          if (parent.disabled) {
+            return FALSE
+          }
+
+          const indeterminate = getNodeIndeterminate(parent)
+
+          parents.shift()
+
+          removeNode(parent)
+
+          setNodeIndeterminate(parent, indeterminate)
+
+        }
+      )
+    }
+  }
+
+}

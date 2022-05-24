@@ -251,11 +251,13 @@ ui-form-button(
   if $selector-values
     {$selector-values}
       flex 1
+      width 100%
       line-height 0
       box-sizing border-box
 
       > {$selector-class-prefix + '-tag'}
         cursor text
+        max-width 100%
 
   {$selector-value},
   {$selector-placeholder}

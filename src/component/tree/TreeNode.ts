@@ -34,9 +34,6 @@ const TreeNode = Yox.define({
     checkedKeys: {
       type: RAW_ARRAY,
     },
-    disabledKeys: {
-      type: RAW_ARRAY,
-    },
     selectable: {
       type: RAW_BOOLEAN,
     },
@@ -90,13 +87,12 @@ const TreeNode = Yox.define({
       let result = FALSE
       if (this.get('showIndeterminate') && !this.get('checked')) {
         const checkedKeys = this.get('checkedKeys')
-        const disabledKeys = this.get('disabledKeys')
         const children = this.get('node.children')
         if (children) {
           Yox.array.each(
             children,
             function (child: any) {
-              if (!Yox.array.has(disabledKeys, child.key)
+              if (!child.disabled
                 && Yox.array.has(checkedKeys, child.key)
               ) {
                 result = TRUE
@@ -109,17 +105,12 @@ const TreeNode = Yox.define({
       return result
     },
     selected() {
-      if (!this.get('selectable') || this.get('disabled')) {
+      if (!this.get('selectable') || this.get('node.disabled')) {
         return FALSE
       }
       const selectedKeys = this.get('selectedKeys')
       const key = this.get('node.key')
       return Yox.array.has(selectedKeys, key)
-    },
-    disabled() {
-      const disabledKeys = this.get('disabledKeys')
-      const key = this.get('node.key')
-      return Yox.array.has(disabledKeys, key)
     },
     hasChildren() {
       const children = this.get('node.children')

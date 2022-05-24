@@ -38,7 +38,9 @@ class="${prefix}tag
     </div>
   {{/if}}
 
-  <slot />
+  <div class="${prefix}tag-content">
+    <slot />
+  </div>
 
   {{#if closable}}
     <div

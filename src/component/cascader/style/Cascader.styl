@@ -13,6 +13,15 @@ select-size-style(size)
   {$selector-class-prefix + '-cascader-placeholder'}
     ui-set('padding-left', size['padding-horizontal'])
 
+  {$selector-class-prefix + '-cascader-values'}
+    ui-set('padding', size['padding-vertical'] 0 size['padding-vertical'] size['padding-vertical'])
+    ui-set('margin-bottom', -1 * size['tag-gap-vertical'])
+
+    > {$selector-class-prefix + '-tag'}
+      ui-set('height', size['tag-height'])
+      ui-set('margin-right', size['tag-gap-horizontal'])
+      ui-set('margin-bottom', size['tag-gap-vertical'])
+
   {$selector-class-prefix + '-cascader-arrow-icon'},
   {$selector-class-prefix + '-cascader-clear-icon'}
     ui-set('right', size['icon-right'])
@@ -69,6 +78,9 @@ select-brand-style(style)
   display flex
   align-items center
 
+  {$selector-class-prefix + '-checkbox'}
+    margin-right $ui-icon-text-gap
+
 {$selector-class-prefix + '-cascader-option-expand'},
 {$selector-class-prefix + '-cascader-option-loading'}
   font-size inherit
@@ -90,7 +102,7 @@ ui-form-button(
   $selector-class-prefix + '-cascader-opened',
   $selector-class-prefix + '-cascader-with-clear',
   $selector-class-prefix + '-cascader-reversed',
-  '',
+  $selector-class-prefix + '-cascader-values',
   $selector-class-prefix + '-cascader-value',
   $selector-class-prefix + '-cascader-placeholder',
   $selector-class-prefix + '-cascader-arrow-icon',
@@ -103,7 +115,7 @@ ui-dropdown-overlay(
   $selector-class-prefix + '-cascader-overlay',
   $selector-class-prefix + '-cascader-options',
   $selector-class-prefix + '-cascader-option',
-  $selector-class-prefix + '-cascader-option-checked',
+  $selector-class-prefix + '-cascader-option-selected',
   $selector-class-prefix + '-cascader-option-enabled',
   $selector-class-prefix + '-cascader-option-disabled',
   '',

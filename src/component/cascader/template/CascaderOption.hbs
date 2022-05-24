@@ -1,15 +1,24 @@
 <div
   class="${prefix}cascader-option
+  {{#if selected}} ${prefix}cascader-option-selected{{/if}}
   {{#if checked}} ${prefix}cascader-option-checked{{/if}}
   {{#if option.disabled}} ${prefix}cascader-option-disabled
   {{else}} ${prefix}cascader-option-enabled
   {{/if}}"
 
-  {{#if !option.disabled && !option.isLoading}}
-    on-click="onClick(option, index)"
+  {{#if interactive}}
+    on-click="onClick()"
   {{/if}}
 >
   <div class="${prefix}cascader-option-text">
+    {{#if checkable}}
+      <Checkbox
+        checked="{{checked}}"
+        indeterminate="{{indeterminate}}"
+        disabled="{{!interactive}}"
+        on-change="onCheckboxChange()"
+      />
+    {{/if}}
     {{option.text}}
   </div>
 
