@@ -11,7 +11,7 @@ export default {
       <DatePicker
         model="value"
         type="date"
-        clearable
+        showClear
         placeholder="Select date"
       />
       <br><br>
@@ -41,7 +41,7 @@ export default {
     <DatePicker
       model="value"
       type="date"
-      clearable
+      showClear
       block
       placeholder="Select date"
     />
@@ -393,7 +393,7 @@ block | 是否为块级元素 | boolean | - | -
 shortcuts | 快捷方式 | Array | - | -
 defaultDate | 默认显示视图的日期 | Date | - | -
 disabledDate | 不可选择的日期 | Function | - | -
-clearable | 是否显示清除按钮 | boolean | - | -
+showClear | 是否显示清除按钮 | boolean | - | -
 width | 宽度 | numeric | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

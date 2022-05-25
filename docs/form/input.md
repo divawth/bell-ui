@@ -207,7 +207,7 @@ export default {
     placeholder="请输入..."
     width="300"
     model="value"
-    clearable
+    showClear
   />
   `
 }
@@ -298,7 +298,7 @@ size | 大小 | string | `default`, `small`, `large` | `default`
 align | 文本对齐方式 | string | `left`, `center`, `right` | -
 placeholder | 输入框内容为空时的提示文本 | string | - | -
 disabled | 禁用输入框 | boolean | - | -
-clearable | 是否显示清空按钮 | boolean | - | -
+showClear | 是否显示清空按钮 | boolean | - | -
 block | 是否为块级元素 | boolean | - | -
 prefix | 输入框头部图标 | string | - | -
 suffix | 输入框尾部图标 | string | - | -

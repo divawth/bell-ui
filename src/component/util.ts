@@ -464,7 +464,7 @@ export function setTreeCheckedKey(
       if (isChecked(children[i], parents)) {
         checkedCount++
       }
-      if (isIndeterminate(children[i], parents)) {
+      if (isIndeterminate && isIndeterminate(children[i], parents)) {
         indeterminateCount++
       }
     }

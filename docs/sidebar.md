@@ -31,6 +31,7 @@
   - [Table 表格](form/table)
   - [Select 选择器](form/select)
   - [Slider 滑块](form/slider)
+  - [Cascader 层级选择器](form/cascader)
   - [DatePicker 日期选择器](form/datepicker)
   - [TimePicker 时间选择器](form/timepicker)
   - [ColorPicker 颜色选择器](form/colorpicker)

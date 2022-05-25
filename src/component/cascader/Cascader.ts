@@ -373,7 +373,7 @@ export default Yox.define({
     const { options, value, multiple } = props
 
     if (options !== this.get('options')
-      || value !== this.get('value')
+      || (value && value !== this.get('value'))
     ) {
       this.set(
         formatOptions(options, value, multiple)

@@ -302,7 +302,7 @@ export default {
   export default {
     template: `
       <div>
-        <Select size="large" multiple clearable model="value" on-change="change()" width="240">
+        <Select size="large" multiple showClear model="value" on-change="change()" width="240">
           {{#each list}}
             <Option value="{{this.value}}" text="{{this.text}}" />
           {{/each}}
@@ -455,7 +455,7 @@ export default {
 export default {
   template: `
     <div>
-      <Select clearable model="value" on-change="change()">
+      <Select showClear model="value" on-change="change()">
         {{#each list}}
           <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
@@ -581,7 +581,7 @@ export default {
 value | 选中值 | string | - | -
 multiple | 是否支持多选 | boolean | - | -
 disabled | 是否禁用 | boolean | - | -
-clearable | 是否可以清空选项，只在单选时有效 | boolean | - | -
+showClear | 是否可以清空选项，只在单选时有效 | boolean | - | -
 block | 是否为块级元素 | boolean | - | -
 size | 大小 | string | `default`, `small`, `large` | `default`
 placement | 弹窗的展开方向 | string | `bottom`, `top` | -
