@@ -7,14 +7,14 @@ select-size-style(size)
 
   ui-set('font-size', size['font-size'])
   ui-set('min-height', size['height'])
-  ui-set('padding-right', $ui-horizontal-gap + $select-close-icon-size + size['icon-right'])
+  ui-set('padding-right', $ui-horizontal-gap + size['icon-size'] + size['icon-right'])
 
   {$selector-class-prefix + '-cascader-value'},
   {$selector-class-prefix + '-cascader-placeholder'}
     ui-set('padding-left', size['padding-horizontal'])
 
   {$selector-class-prefix + '-cascader-values'}
-    ui-set('padding', size['padding-vertical'] 0 size['padding-vertical'] size['padding-vertical'])
+    ui-set('padding', size['padding-vertical'] 0 size['padding-vertical'] $ui-horizontal-gap)
     ui-set('margin-bottom', -1 * size['tag-gap-vertical'])
 
     > {$selector-class-prefix + '-tag'}
@@ -24,6 +24,7 @@ select-size-style(size)
 
   {$selector-class-prefix + '-cascader-arrow-icon'},
   {$selector-class-prefix + '-cascader-clear-icon'}
+    ui-set('font-size', size['icon-size'])
     ui-set('right', size['icon-right'])
 
 select-brand-style(style)
@@ -107,8 +108,7 @@ ui-form-button(
   $selector-class-prefix + '-cascader-placeholder',
   $selector-class-prefix + '-cascader-arrow-icon',
   $selector-class-prefix + '-cascader-clear-icon',
-  $selector-class-prefix + '-cascader-arrow-icon',
-  $select-close-icon-size
+  $selector-class-prefix + '-cascader-arrow-icon'
 )
 
 ui-dropdown-overlay(
