@@ -33,7 +33,7 @@
     {{/if}}
   >
 
-    {{#if checkedOptions.length === 0}}
+    {{#if actualOptions.length === 0}}
 
       <div class="${prefix}cascader-placeholder">
         {{placeholder}}
@@ -42,12 +42,12 @@
     {{else if multiple}}
 
       <div class="${prefix}cascader-values">
-        {{#each checkedOptions:index}}
+        {{#each actualOptions:index}}
           <Tag
             closable
             on-close="onOptionRemove($event, index)"
           >
-            {{checkedTexts[index]}}
+            {{actualTexts[index]}}
           </Tag>
         {{/each}}
       </div>
@@ -55,12 +55,12 @@
     {{else}}
 
       <div class="${prefix}cascader-value">
-        {{checkedTexts[0]}}
+        {{actualTexts[0]}}
       </div>
 
     {{/if}}
 
-    {{#if showClear && checkedOptions.length}}
+    {{#if showClear && actualOptions.length}}
       <Icon
         name="close-circle-fill"
         className="${prefix}cascader-clear-icon"

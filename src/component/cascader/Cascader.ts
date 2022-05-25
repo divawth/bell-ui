@@ -30,6 +30,8 @@ import {
   RAW_BOTTOM_START,
   RAW_BOTTOM_END,
   RAW_CUSTOM,
+  RAW_PARENT,
+  RAW_CHILD,
   RAW_STYLE_TYPE,
 } from '../constant'
 
@@ -94,6 +96,10 @@ export default Yox.define({
     changeOnSelect: {
       type: RAW_BOOLEAN,
     },
+    showCheckedStrategy: {
+      type: oneOf([RAW_PARENT, RAW_CHILD]),
+      value: RAW_PARENT,
+    },
     loadData: {
       type: RAW_FUNCTION,
     },
@@ -114,7 +120,6 @@ export default Yox.define({
       this.get('value'),
       this.get('multiple')
     )
-
     return {
       RAW_CUSTOM,
       isFocus: FALSE,
@@ -126,11 +131,63 @@ export default Yox.define({
   },
 
   computed: {
+    actualOptions(): any[] {
+
+      const actualOptions: any[] = []
+
+      const showChild = this.get('showCheckedStrategy') === RAW_CHILD
+
+      const checkedOptions = this.get('checkedOptions')
+      const checkedValues = this.get('checkedValues')
+      const checkedKeys = checkedValues.map(renderValue)
+
+      Yox.array.each(
+        checkedOptions,
+        function (options: any[], index) {
+
+          let isParentChecked = FALSE
+
+          const values = checkedValues[index]
+          if (values.length > 1) {
+            const copyed = values.slice()
+            copyed.pop()
+            const parentKey = renderValue(copyed)
+            isParentChecked = checkedKeys.indexOf(parentKey) >= 0
+          }
+
+          if (Yox.array.last(options).children) {
+            // branch 节点，父级没选中时有效
+            // 如果父级选中了，则有效的是父级
+            if (!showChild && !isParentChecked) {
+              actualOptions.push(options)
+            }
+          }
+          else {
+            // leaf 节点
+            if (showChild || !isParentChecked) {
+              actualOptions.push(options)
+            }
+          }
+        }
+      )
+
+      return actualOptions
+
+    },
+    actualValues(): any[] {
+      return getOptionsProps(this.get('actualOptions'), 'value')
+    },
+    actualTexts(): string[] {
+      const texts = getOptionsProps(this.get('actualOptions'), 'text')
+      if (this.get('multiple')) {
+        return texts.map(function (item: string[]) {
+          return Yox.array.last(item) as string
+        })
+      }
+      return texts.map(renderValue)
+    },
     checkedValues(): any[] {
       return getOptionsProps(this.get('checkedOptions'), 'value')
-    },
-    checkedTexts(): string[] {
-      return getOptionsProps(this.get('checkedOptions'), 'text').map(renderValue)
     },
     selectedValues(): any[] {
       return getOptionsProps(this.get('selectedOptions'), 'value')
@@ -170,32 +227,13 @@ export default Yox.define({
         event.stop()
 
         const me = this
-
-        const multiple = me.get('multiple')
-
         const isLeafOption = data.isLeaf
-
-        // 多选模式下，change 只能通过 checked 触发
-        const needChange = multiple
-          ? FALSE
-          : (me.get('changeOnSelect') || isLeafOption)
 
         me.set({
           selectedOptions: data.options,
         })
 
-        if (needChange) {
-          this.set({
-            checkedOptions: [data.options],
-          })
-          const value = this.get('checkedValues')
-          this.set({
-            value,
-          })
-          this.fireChange(value)
-        }
-
-        if (multiple) {
+        if (me.get('multiple')) {
           if (isLeafOption) {
             me.setOptionChecked(
               data.values,
@@ -203,10 +241,15 @@ export default Yox.define({
             )
           }
         }
-        else if (isLeafOption) {
-          this.set({
-            isVisible: FALSE,
-          })
+        else {
+          if (isLeafOption || me.get('changeOnSelect')) {
+            me.setCheckedOptions([data.options])
+          }
+          if (isLeafOption) {
+            this.set({
+              isVisible: FALSE,
+            })
+          }
         }
 
       },
@@ -246,21 +289,17 @@ export default Yox.define({
       fireClickEvent(event)
 
       this.set({
-        checkedOptions: [],
+        indeterminateOptions: [],
       })
 
-      const value = this.get('checkedValues')
-      this.set({
-        value,
-      })
-      this.fireChange(value)
+      this.setCheckedOptions([])
 
     },
     onOptionRemove(event: CustomEventInterface, index: number) {
 
       event.stop()
 
-      const value = this.get(`checkedValues.${index}`)
+      const value = this.get(`actualValues.${index}`)
 
       this.setOptionChecked(value, FALSE)
 
@@ -281,19 +320,31 @@ export default Yox.define({
       )
 
       me.set({
-        checkedOptions,
         indeterminateOptions,
       })
 
-      const checkedValues = me.get('checkedValues')
-      me.set({
-        value: checkedValues,
-      })
-      me.fireChange(checkedValues)
+      me.setCheckedOptions(checkedOptions)
 
     },
-    fireChange(value: any[]) {
-      this.fire(
+    setCheckedOptions(checkedOptions: any[][]) {
+
+      const me = this
+
+      if (checkedOptions === me.get('checkedOptions')) {
+        return
+      }
+
+      me.set({
+        checkedOptions
+      })
+
+      const value = me.get('actualValues')
+
+      me.set({
+        value,
+      })
+
+      me.fire(
         {
           type: 'change',
           ns: 'cascader',
@@ -302,6 +353,7 @@ export default Yox.define({
           value,
         }
       )
+
     },
   },
 

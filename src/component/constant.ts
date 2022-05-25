@@ -68,6 +68,9 @@ export const RAW_TYPE_PURE = 'pure'
 export const RAW_SHAPE_CIRCLE = 'circle'
 export const RAW_SHAPE_ROUND = 'round'
 
+export const RAW_PARENT = 'parent'
+export const RAW_CHILD = 'child'
+
 export const RAW_EVENT_KEYPRESS = 'keypress'
 export const RAW_EVENT_KEYDOWN = 'keydown'
 export const RAW_EVENT_KEYUP = 'keyup'

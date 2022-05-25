@@ -1,5 +1,5 @@
 import Yox from 'yox'
-import { FALSE, TRUE } from '../constant'
+import { FALSE, TRUE, UNDEFINED } from '../constant'
 import { setTreeCheckedKey } from '../util'
 
 export function isLeafOption(option: any) {
@@ -8,7 +8,7 @@ export function isLeafOption(option: any) {
 
 export function getOptionsProps(options: any[], propName: string) {
 
-  const result: string[] = []
+  const result: any[] = []
 
   Yox.array.each(
     options,
@@ -73,7 +73,7 @@ export function formatOptions(
 
   let selectedOptions: any[]
   const checkedOptions = []
-  const indeterminateOptions = []
+  const indeterminateOptions = multiple ? [] : UNDEFINED
 
   setCheckedOptions(
     options,
@@ -91,9 +91,9 @@ export function formatOptions(
   }
 
   return {
-    selectedOptions: selectedOptions || [],
     checkedOptions,
-    indeterminateOptions,
+    selectedOptions: selectedOptions || [],
+    indeterminateOptions: indeterminateOptions || [],
   }
 
 }
@@ -101,13 +101,55 @@ export function formatOptions(
 export function setCheckedOptions(
   options: any[],
   checkedOptions: any[],
-  indeterminateOptions: any[],
+  indeterminateOptions: any[] | void,
   values: any[],
   checked: any[]
 ) {
 
   const checkedIdentities = getOptionsProps(checkedOptions, 'value').map(renderValue)
-  const indeterminateIdentities = getOptionsProps(indeterminateOptions, 'value').map(renderValue)
+
+  const isChecked = function (option, parents) {
+    const { identity } = combine(option, parents)
+    return checkedIdentities.indexOf(identity) >= 0
+  }
+  const addChecked = function (option, parents) {
+    const { options, identity } = combine(option, parents)
+    checkedOptions.push(options)
+    checkedIdentities.push(identity)
+  }
+  const removeChecked = function (option, parents) {
+    const { identity } = combine(option, parents)
+    const index = checkedIdentities.indexOf(identity)
+    if (index >= 0) {
+      checkedOptions.splice(index, 1)
+      checkedIdentities.splice(index, 1)
+    }
+  }
+
+  let isIndeterminate: (option, parent) => boolean
+  let addIndeterminate: (option, parent) => void
+  let removeIndeterminate: (option, parent) => void
+
+  if (indeterminateOptions) {
+    const indeterminateIdentities = getOptionsProps(indeterminateOptions, 'value').map(renderValue)
+    isIndeterminate = function (option, parents) {
+      const { identity } = combine(option, parents)
+      return indeterminateIdentities.indexOf(identity) >= 0
+    }
+    addIndeterminate = function (option, parents) {
+      const { options, identity } = combine(option, parents)
+      indeterminateOptions.push(options)
+      indeterminateIdentities.push(identity)
+    }
+    removeIndeterminate = function (option, parents) {
+      const { identity } = combine(option, parents)
+      const index = indeterminateIdentities.indexOf(identity)
+      if (index >= 0) {
+        indeterminateOptions.splice(index, 1)
+        indeterminateIdentities.splice(index, 1)
+      }
+    }
+  }
 
   for (let i = 0, len = values.length; i < len; i++) {
     const value = renderValue(values[i])
@@ -118,41 +160,13 @@ export function setCheckedOptions(
         const { identity } = combine(option, parents)
         return identity === value
       },
-      function (option, parents) {
-        const { identity } = combine(option, parents)
-        return checkedIdentities.indexOf(identity) >= 0
-      },
-      function (option, parents) {
-        const { options, identity } = combine(option, parents)
-        checkedOptions.push(options)
-        checkedIdentities.push(identity)
-      },
-      function (option, parents) {
-        const { identity } = combine(option, parents)
-        const index = checkedIdentities.indexOf(identity)
-        if (index >= 0) {
-          checkedOptions.splice(index, 1)
-          checkedIdentities.splice(index, 1)
-        }
-      },
+      isChecked,
+      addChecked,
+      removeChecked,
       TRUE,
-      function (option, parents) {
-        const { identity } = combine(option, parents)
-        return indeterminateIdentities.indexOf(identity) >= 0
-      },
-      function (option, parents) {
-        const { options, identity } = combine(option, parents)
-        indeterminateOptions.push(options)
-        indeterminateIdentities.push(identity)
-      },
-      function (option, parents) {
-        const { identity } = combine(option, parents)
-        const index = indeterminateIdentities.indexOf(identity)
-        if (index >= 0) {
-          indeterminateOptions.splice(index, 1)
-          indeterminateIdentities.splice(index, 1)
-        }
-      },
+      isIndeterminate,
+      addIndeterminate,
+      removeIndeterminate
     )
   }
 
