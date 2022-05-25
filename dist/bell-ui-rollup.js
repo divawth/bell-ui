@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.28.9
+ * bell-ui.js v0.29.0
  * (c) 2018-2022 
  * Released under the MIT License.
  */
@@ -9796,7 +9796,7 @@
       beforePropsUpdate: function (props) {
           var options = props.options, value = props.value, multiple = props.multiple;
           if (options !== this.get('options')
-              || (value && value !== this.get('value'))) {
+              || (value !== UNDEFINED && value !== this.get('value'))) {
               this.set(formatOptions(options, value, multiple));
           }
       },
@@ -10882,19 +10882,19 @@
       beforePropsUpdate: function (props) {
           var data = props.data, expandedKeys = props.expandedKeys, defaultExpandAll = props.defaultExpandAll, selectedKeys = props.selectedKeys, checkedKeys = props.checkedKeys, checkStrictly = props.checkStrictly;
           if (data !== this.get('data')
-              || expandedKeys !== this.get('expandedKeys')) {
+              || (expandedKeys !== UNDEFINED && expandedKeys !== this.get('expandedKeys'))) {
               this.set({
                   innerExpandedKeys: formatExpandedKeys(data, expandedKeys, defaultExpandAll)
               });
           }
-          if (selectedKeys !== this.get('selectedKeys')) {
+          if (selectedKeys !== UNDEFINED && selectedKeys !== this.get('selectedKeys')) {
               this.set({
                   selectedKeys: formatSelectedKeys(selectedKeys)
               });
           }
           if (data !== this.get('data')
-              || checkedKeys !== this.get('checkedKeys')
-              || checkStrictly !== this.get('checkStrictly')) {
+              || (checkedKeys !== UNDEFINED && checkedKeys !== this.get('checkedKeys'))
+              || (checkStrictly !== UNDEFINED && checkStrictly !== this.get('checkStrictly'))) {
               var checkedResult = formatCheckedKeys(data, checkedKeys, checkStrictly);
               this.set({
                   innerCheckedKeys: checkedResult.checkedKeys,
@@ -12569,7 +12569,7 @@
   /**
    * 版本
    */
-  var version = "0.28.9";
+  var version = "0.29.0";
   /**
    * 安装插件
    */

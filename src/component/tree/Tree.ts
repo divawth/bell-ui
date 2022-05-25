@@ -7,6 +7,7 @@ import Icon from '../icon/Icon'
 import TreeNode from './TreeNode'
 
 import {
+  UNDEFINED,
   RAW_STRING,
   RAW_ARRAY,
   RAW_BOOLEAN,
@@ -242,22 +243,22 @@ export default Yox.define({
     } = props
 
     if (data !== this.get('data')
-      || expandedKeys !== this.get('expandedKeys')
+      || (expandedKeys !== UNDEFINED && expandedKeys !== this.get('expandedKeys'))
     ) {
       this.set({
         innerExpandedKeys: formatExpandedKeys(data, expandedKeys, defaultExpandAll)
       })
     }
 
-    if (selectedKeys !== this.get('selectedKeys')) {
+    if (selectedKeys !== UNDEFINED && selectedKeys !== this.get('selectedKeys')) {
       this.set({
         selectedKeys: formatSelectedKeys(selectedKeys)
       })
     }
 
     if (data !== this.get('data')
-      || checkedKeys !== this.get('checkedKeys')
-      || checkStrictly !== this.get('checkStrictly')
+      || (checkedKeys !== UNDEFINED && checkedKeys !== this.get('checkedKeys'))
+      || (checkStrictly !== UNDEFINED && checkStrictly !== this.get('checkStrictly'))
     ) {
       const checkedResult = formatCheckedKeys(data, checkedKeys, checkStrictly)
       this.set({

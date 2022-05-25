@@ -12,6 +12,7 @@ import CascaderOptions from './CascaderOptions'
 import {
   TRUE,
   FALSE,
+  UNDEFINED,
   RAW_ARRAY,
   RAW_STRING,
   RAW_BOOLEAN,
@@ -373,7 +374,7 @@ export default Yox.define({
     const { options, value, multiple } = props
 
     if (options !== this.get('options')
-      || (value && value !== this.get('value'))
+      || (value !== UNDEFINED && value !== this.get('value'))
     ) {
       this.set(
         formatOptions(options, value, multiple)
