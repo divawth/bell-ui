@@ -550,7 +550,7 @@ export default {
 ---|---|---|---|---
 value | 选中值 | string | - | -
 multiple | 是否支持多选 | boolean | - | -
-showCheckedStrategy | 多选策略 | string | `parent`, `child` | `parent`
+showCheckedStrategy | 多选策略 | string | `all`, `parent`, `child` | `parent`
 disabled | 是否禁用 | boolean | - | -
 showClear | 是否可以清空选项，只在单选时有效 | boolean | - | -
 changeOnSelect | 是否选择即改变 | boolean | - | -

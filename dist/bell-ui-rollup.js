@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.29.0
+ * bell-ui.js v0.29.1
  * (c) 2018-2022 
  * Released under the MIT License.
  */
@@ -72,6 +72,7 @@
   var RAW_TYPE_PURE = 'pure';
   var RAW_SHAPE_CIRCLE = 'circle';
   var RAW_SHAPE_ROUND = 'round';
+  var RAW_ALL = 'all';
   var RAW_PARENT = 'parent';
   var RAW_CHILD = 'child';
   var RAW_EVENT_KEYPRESS = 'keypress';
@@ -9248,61 +9249,56 @@
               values
           ];
       }
-      var selectedOptions;
       var checkedOptions = [];
       var indeterminateOptions = multiple ? [] : UNDEFINED;
       setCheckedOptions(options, checkedOptions, indeterminateOptions, values, values.map(function () {
           return TRUE;
       }));
-      // 如果是单选模式，selected 等价于 checked
-      if (!multiple) {
-          selectedOptions = checkedOptions[0];
-      }
       return {
           checkedOptions: checkedOptions,
-          selectedOptions: selectedOptions || [],
+          selectedOptions: checkedOptions[0] || [],
           indeterminateOptions: indeterminateOptions || [],
       };
   }
   function setCheckedOptions(options, checkedOptions, indeterminateOptions, values, checked) {
-      var checkedIdentities = getOptionsProps(checkedOptions, 'value').map(renderValue);
+      var checkedKeys = getOptionsProps(checkedOptions, 'value').map(renderValue);
       var isChecked = function (option, parents) {
           var identity = combine(option, parents).identity;
-          return checkedIdentities.indexOf(identity) >= 0;
+          return checkedKeys.indexOf(identity) >= 0;
       };
       var addChecked = function (option, parents) {
           var _a = combine(option, parents), options = _a.options, identity = _a.identity;
           checkedOptions.push(options);
-          checkedIdentities.push(identity);
+          checkedKeys.push(identity);
       };
       var removeChecked = function (option, parents) {
           var identity = combine(option, parents).identity;
-          var index = checkedIdentities.indexOf(identity);
+          var index = checkedKeys.indexOf(identity);
           if (index >= 0) {
               checkedOptions.splice(index, 1);
-              checkedIdentities.splice(index, 1);
+              checkedKeys.splice(index, 1);
           }
       };
       var isIndeterminate;
       var addIndeterminate;
       var removeIndeterminate;
       if (indeterminateOptions) {
-          var indeterminateIdentities_1 = getOptionsProps(indeterminateOptions, 'value').map(renderValue);
+          var indeterminateKeys_1 = getOptionsProps(indeterminateOptions, 'value').map(renderValue);
           isIndeterminate = function (option, parents) {
               var identity = combine(option, parents).identity;
-              return indeterminateIdentities_1.indexOf(identity) >= 0;
+              return indeterminateKeys_1.indexOf(identity) >= 0;
           };
           addIndeterminate = function (option, parents) {
               var _a = combine(option, parents), options = _a.options, identity = _a.identity;
               indeterminateOptions.push(options);
-              indeterminateIdentities_1.push(identity);
+              indeterminateKeys_1.push(identity);
           };
           removeIndeterminate = function (option, parents) {
               var identity = combine(option, parents).identity;
-              var index = indeterminateIdentities_1.indexOf(identity);
+              var index = indeterminateKeys_1.indexOf(identity);
               if (index >= 0) {
                   indeterminateOptions.splice(index, 1);
-                  indeterminateIdentities_1.splice(index, 1);
+                  indeterminateKeys_1.splice(index, 1);
               }
           };
       }
@@ -9592,7 +9588,7 @@
               type: RAW_BOOLEAN,
           },
           showCheckedStrategy: {
-              type: oneOf([RAW_PARENT, RAW_CHILD]),
+              type: oneOf([RAW_ALL, RAW_PARENT, RAW_CHILD]),
               value: RAW_PARENT,
           },
           loadData: {
@@ -9621,9 +9617,13 @@
       },
       computed: {
           actualOptions: function () {
-              var actualOptions = [];
-              var showChild = this.get('showCheckedStrategy') === RAW_CHILD;
+              var showCheckedStrategy = this.get('showCheckedStrategy');
               var checkedOptions = this.get('checkedOptions');
+              if (showCheckedStrategy === RAW_ALL) {
+                  return checkedOptions;
+              }
+              var showChildStrategy = showCheckedStrategy === RAW_CHILD;
+              var actualOptions = [];
               var checkedValues = this.get('checkedValues');
               var checkedKeys = checkedValues.map(renderValue);
               Yox.array.each(checkedOptions, function (options, index) {
@@ -9638,13 +9638,13 @@
                   if (Yox.array.last(options).children) {
                       // branch 节点，父级没选中时有效
                       // 如果父级选中了，则有效的是父级
-                      if (!showChild && !isParentChecked) {
+                      if (!showChildStrategy && !isParentChecked) {
                           actualOptions.push(options);
                       }
                   }
                   else {
                       // leaf 节点
-                      if (showChild || !isParentChecked) {
+                      if (showChildStrategy || !isParentChecked) {
                           actualOptions.push(options);
                       }
                   }
@@ -12569,7 +12569,7 @@
   /**
    * 版本
    */
-  var version = "0.29.0";
+  var version = "0.29.1";
   /**
    * 安装插件
    */
