@@ -68,6 +68,7 @@ export const RAW_TYPE_PURE = 'pure'
 export const RAW_SHAPE_CIRCLE = 'circle'
 export const RAW_SHAPE_ROUND = 'round'
 
+export const RAW_ALL = 'all'
 export const RAW_PARENT = 'parent'
 export const RAW_CHILD = 'child'
 

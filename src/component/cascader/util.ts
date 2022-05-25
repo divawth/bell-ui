@@ -71,7 +71,6 @@ export function formatOptions(
     ]
   }
 
-  let selectedOptions: any[]
   const checkedOptions = []
   const indeterminateOptions = multiple ? [] : UNDEFINED
 
@@ -85,14 +84,9 @@ export function formatOptions(
     })
   )
 
-  // 如果是单选模式，selected 等价于 checked
-  if (!multiple) {
-    selectedOptions = checkedOptions[0]
-  }
-
   return {
     checkedOptions,
-    selectedOptions: selectedOptions || [],
+    selectedOptions: checkedOptions[0] || [],
     indeterminateOptions: indeterminateOptions || [],
   }
 
@@ -106,23 +100,23 @@ export function setCheckedOptions(
   checked: any[]
 ) {
 
-  const checkedIdentities = getOptionsProps(checkedOptions, 'value').map(renderValue)
+  const checkedKeys = getOptionsProps(checkedOptions, 'value').map(renderValue)
 
   const isChecked = function (option, parents) {
     const { identity } = combine(option, parents)
-    return checkedIdentities.indexOf(identity) >= 0
+    return checkedKeys.indexOf(identity) >= 0
   }
   const addChecked = function (option, parents) {
     const { options, identity } = combine(option, parents)
     checkedOptions.push(options)
-    checkedIdentities.push(identity)
+    checkedKeys.push(identity)
   }
   const removeChecked = function (option, parents) {
     const { identity } = combine(option, parents)
-    const index = checkedIdentities.indexOf(identity)
+    const index = checkedKeys.indexOf(identity)
     if (index >= 0) {
       checkedOptions.splice(index, 1)
-      checkedIdentities.splice(index, 1)
+      checkedKeys.splice(index, 1)
     }
   }
 
@@ -131,22 +125,22 @@ export function setCheckedOptions(
   let removeIndeterminate: (option, parent) => void
 
   if (indeterminateOptions) {
-    const indeterminateIdentities = getOptionsProps(indeterminateOptions, 'value').map(renderValue)
+    const indeterminateKeys = getOptionsProps(indeterminateOptions, 'value').map(renderValue)
     isIndeterminate = function (option, parents) {
       const { identity } = combine(option, parents)
-      return indeterminateIdentities.indexOf(identity) >= 0
+      return indeterminateKeys.indexOf(identity) >= 0
     }
     addIndeterminate = function (option, parents) {
       const { options, identity } = combine(option, parents)
       indeterminateOptions.push(options)
-      indeterminateIdentities.push(identity)
+      indeterminateKeys.push(identity)
     }
     removeIndeterminate = function (option, parents) {
       const { identity } = combine(option, parents)
-      const index = indeterminateIdentities.indexOf(identity)
+      const index = indeterminateKeys.indexOf(identity)
       if (index >= 0) {
         indeterminateOptions.splice(index, 1)
-        indeterminateIdentities.splice(index, 1)
+        indeterminateKeys.splice(index, 1)
       }
     }
   }

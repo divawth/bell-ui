@@ -31,6 +31,7 @@ import {
   RAW_BOTTOM_START,
   RAW_BOTTOM_END,
   RAW_CUSTOM,
+  RAW_ALL,
   RAW_PARENT,
   RAW_CHILD,
   RAW_STYLE_TYPE,
@@ -97,8 +98,8 @@ export default Yox.define({
     changeOnSelect: {
       type: RAW_BOOLEAN,
     },
-    showCheckedStrategy: {
-      type: oneOf([RAW_PARENT, RAW_CHILD]),
+    checkedStrategy: {
+      type: oneOf([RAW_ALL, RAW_PARENT, RAW_CHILD]),
       value: RAW_PARENT,
     },
     loadData: {
@@ -134,11 +135,15 @@ export default Yox.define({
   computed: {
     actualOptions(): any[] {
 
-      const actualOptions: any[] = []
-
-      const showChild = this.get('showCheckedStrategy') === RAW_CHILD
-
+      const checkedStrategy = this.get('checkedStrategy')
       const checkedOptions = this.get('checkedOptions')
+
+      if (checkedStrategy === RAW_ALL) {
+        return checkedOptions
+      }
+
+      const childStrategy = checkedStrategy === RAW_CHILD
+      const actualOptions: any[] = []
       const checkedValues = this.get('checkedValues')
       const checkedKeys = checkedValues.map(renderValue)
 
@@ -159,13 +164,13 @@ export default Yox.define({
           if (Yox.array.last(options).children) {
             // branch 节点，父级没选中时有效
             // 如果父级选中了，则有效的是父级
-            if (!showChild && !isParentChecked) {
+            if (!childStrategy && !isParentChecked) {
               actualOptions.push(options)
             }
           }
           else {
             // leaf 节点
-            if (showChild || !isParentChecked) {
+            if (childStrategy || !isParentChecked) {
               actualOptions.push(options)
             }
           }

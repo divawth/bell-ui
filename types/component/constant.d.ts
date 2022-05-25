@@ -55,6 +55,7 @@ export declare const RAW_TYPE_MUTED = "muted";
 export declare const RAW_TYPE_PURE = "pure";
 export declare const RAW_SHAPE_CIRCLE = "circle";
 export declare const RAW_SHAPE_ROUND = "round";
+export declare const RAW_ALL = "all";
 export declare const RAW_PARENT = "parent";
 export declare const RAW_CHILD = "child";
 export declare const RAW_EVENT_KEYPRESS = "keypress";
