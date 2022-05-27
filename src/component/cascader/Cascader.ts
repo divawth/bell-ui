@@ -40,6 +40,8 @@ import {
 import {
   oneOf,
   toPixel,
+  getNodesProps,
+  renderNodesProps,
 } from '../util'
 
 import {
@@ -48,8 +50,6 @@ import {
 } from '../event'
 
 import {
-  renderValue,
-  getOptionsProps,
   setCheckedOptions,
   formatOptions,
 } from './util'
@@ -145,7 +145,7 @@ export default Yox.define({
       const showChildStrategy = showCheckedStrategy === RAW_CHILD
       const actualOptions: any[] = []
       const checkedValues = this.get('checkedValues')
-      const checkedKeys = checkedValues.map(renderValue)
+      const checkedKeys = checkedValues.map(renderNodesProps)
 
       Yox.array.each(
         checkedOptions,
@@ -157,7 +157,7 @@ export default Yox.define({
           if (values.length > 1) {
             const copyed = values.slice()
             copyed.pop()
-            const parentKey = renderValue(copyed)
+            const parentKey = renderNodesProps(copyed)
             isParentChecked = checkedKeys.indexOf(parentKey) >= 0
           }
 
@@ -181,25 +181,25 @@ export default Yox.define({
 
     },
     actualValues(): any[] {
-      return getOptionsProps(this.get('actualOptions'), 'value')
+      return getNodesProps(this.get('actualOptions'), 'value')
     },
     actualTexts(): string[] {
-      const texts = getOptionsProps(this.get('actualOptions'), 'text')
+      const texts = getNodesProps(this.get('actualOptions'), 'text')
       if (this.get('multiple')) {
         return texts.map(function (item: string[]) {
           return Yox.array.last(item) as string
         })
       }
-      return texts.map(renderValue)
+      return texts.map(renderNodesProps)
     },
     checkedValues(): any[] {
-      return getOptionsProps(this.get('checkedOptions'), 'value')
+      return getNodesProps(this.get('checkedOptions'), 'value')
     },
     selectedValues(): any[] {
-      return getOptionsProps(this.get('selectedOptions'), 'value')
+      return getNodesProps(this.get('selectedOptions'), 'value')
     },
     indeterminateValues(): any[] {
-      return getOptionsProps(this.get('indeterminateOptions'), 'value')
+      return getNodesProps(this.get('indeterminateOptions'), 'value')
     },
     isReversed(): boolean {
       const placement = this.get('placement')

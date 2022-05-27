@@ -363,24 +363,69 @@ export function spaceItemStyle(gaps: number[] | void, vertical: boolean, autoWra
   }
 }
 
+export function getNodesProps(nodes: any[], propName: string) {
+
+  const result: any[] = []
+
+  Yox.array.each(
+    nodes,
+    function (node: any) {
+      result.push(
+        Yox.is.array(node)
+        ? getNodesProps(node, propName)
+        : node[propName]
+      )
+    }
+  )
+
+  return result
+
+}
+
+export function renderNodesProps(value: any) {
+  if (Yox.is.array(value)) {
+    return value.join(' / ')
+  }
+  return value
+}
+
 export function setTreeCheckedKey(
-  treeData: any[], checked: boolean,
-  isTarget: (node: any, parents: any[]) => boolean,
-  isChecked: (node: any, parents: any[]) => boolean,
-  addChecked: (node: any, parents: any[]) => void,
-  removeChecked: (node: any, parents: any[]) => void,
-  interact?: boolean,
-  isIndeterminate?: (node: any, parents: any[]) => boolean,
-  addIndeterminate?: (node: any, parents: any[]) => void,
-  removeIndeterminate?: (node: any, parents: any[]) => void) {
+  treeData: any[],
+  keyName: string,
+  checked: boolean,
+  interact: boolean,
+  isTarget: (key: string, options: any[]) => boolean,
+  isChecked: (key: string, options: any[]) => boolean,
+  addChecked: (key: string, options: any[]) => void,
+  removeChecked: (key: string, options: any[]) => void,
+  isIndeterminate: (key: string, options: any[]) => boolean,
+  addIndeterminate: (key: string, options: any[]) => void,
+  removeIndeterminate: (key: string, options: any[]) => void) {
 
   let node: any
 
   const parents: any[] = []
 
+  const callFunc = function (node: any, func: (key: string, options: any[]) => any) {
+
+    const nodes = [node]
+    const keys = [node[keyName]]
+
+    Yox.array.each(
+      parents,
+      function (parent) {
+        nodes.unshift(parent)
+        keys.unshift(parent[keyName])
+      }
+    )
+
+    return func(renderNodesProps(keys), nodes)
+
+  }
+
   const handleNode = function (child: any) {
 
-    if (isTarget(child, parents)) {
+    if (callFunc(child, isTarget)) {
       node = child
       return FALSE
     }
@@ -415,8 +460,8 @@ export function setTreeCheckedKey(
     if (node.disabled) {
       return
     }
-    if (!isChecked(node, parents)) {
-      addChecked(node, parents)
+    if (!callFunc(node, isChecked)) {
+      callFunc(node, addChecked)
     }
     if (addChildren === TRUE && node.children) {
       parents.unshift(node)
@@ -427,6 +472,7 @@ export function setTreeCheckedKey(
         }
       )
       parents.shift()
+      setNodeIndeterminate(node, FLAG_ALL_SELECTED)
     }
   }
 
@@ -434,7 +480,7 @@ export function setTreeCheckedKey(
     if (node.disabled) {
       return
     }
-    removeChecked(node, parents)
+    callFunc(node, removeChecked)
     if (removeChildren === TRUE && node.children) {
       parents.unshift(node)
       Yox.array.each(
@@ -444,6 +490,7 @@ export function setTreeCheckedKey(
         }
       )
       parents.shift()
+      setNodeIndeterminate(node, FLAG_NONE_SELECTED)
     }
   }
 
@@ -461,10 +508,10 @@ export function setTreeCheckedKey(
     let indeterminateCount = 0
 
     for (let i = 0; i < length; i++) {
-      if (isChecked(children[i], parents)) {
+      if (callFunc(children[i], isChecked)) {
         checkedCount++
       }
-      if (isIndeterminate && isIndeterminate(children[i], parents)) {
+      if (callFunc(children[i], isIndeterminate)) {
         indeterminateCount++
       }
     }
@@ -490,21 +537,18 @@ export function setTreeCheckedKey(
     }
 
     if (indeterminate === FLAG_PART_SELECTED) {
-      if (addIndeterminate && isIndeterminate && !isIndeterminate(node, parents)) {
-        addIndeterminate(node, parents)
+      if (!callFunc(node, isIndeterminate)) {
+        callFunc(node, addIndeterminate)
       }
     }
     else {
-      if (removeIndeterminate) {
-        removeIndeterminate(node, parents)
-      }
+      callFunc(node, removeIndeterminate)
     }
 
   }
 
   if (checked) {
     addNode(node, interact)
-    setNodeIndeterminate(node, FLAG_ALL_SELECTED)
     if (interact) {
       Yox.array.each(
         parents.slice(),
@@ -533,7 +577,6 @@ export function setTreeCheckedKey(
   }
   else {
     removeNode(node, interact)
-    setNodeIndeterminate(node, FLAG_NONE_SELECTED)
     if (interact) {
       Yox.array.each(
         parents.slice(),

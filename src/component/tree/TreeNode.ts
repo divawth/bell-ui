@@ -62,7 +62,7 @@ const TreeNode = Yox.define({
     last: {
       type: RAW_BOOLEAN,
     },
-    indent: {
+    level: {
       type: RAW_NUMERIC,
     },
     node: {
@@ -200,17 +200,9 @@ const TreeNode = Yox.define({
     },
     onCheckClick() {
 
-      const node = this.get('node')
-
-      this.fire(
-        {
-          type: 'check',
-          ns: 'treeNode'
-        },
-        {
-          node,
-          checked: !this.get('checked'),
-        }
+      // @ts-ignore
+      this.fireCheck(
+        !this.get('checked')
       )
 
     },
@@ -218,6 +210,13 @@ const TreeNode = Yox.define({
 
       event.stop()
 
+      // @ts-ignore
+      this.fireCheck(data.checked)
+
+    },
+
+    fireCheck(checked: boolean) {
+
       const node = this.get('node')
 
       this.fire(
@@ -227,7 +226,7 @@ const TreeNode = Yox.define({
         },
         {
           node,
-          checked: data.checked,
+          checked,
         }
       )
 

@@ -1,6 +1,11 @@
 import Yox from 'yox'
 import { TRUE } from '../constant'
-import { setTreeCheckedKey } from '../util'
+import { getNodesProps, renderNodesProps, setTreeCheckedKey } from '../util'
+
+export function getLastNodeKey(nodes: any[]) {
+  const node = Yox.array.last(nodes)
+  return node.key
+}
 
 function expandAll(data: any[], expandedKeys: string[]) {
   const handleNode = function (child: any) {
@@ -76,52 +81,87 @@ export function formatCheckedKeys(data: any[], checkedKeys: string[] | void, che
     ? checkedKeys.slice()
     : []
 
-  const indeterminateKeys: string[] = []
+  const checkedNodes = []
+  const indeterminateNodes = []
 
-  Yox.array.each(
+  setCheckedKey(
+    data,
+    checkedNodes,
+    indeterminateNodes,
     result,
-    function (key) {
-      setCheckedKey(data, result, indeterminateKeys, key, TRUE, checkStrictly)
-    }
+    result.map(function () {
+      return TRUE
+    }),
+    checkStrictly
   )
 
   return {
-    checkedKeys: result,
-    indeterminateKeys,
+    checkedNodes,
+    indeterminateNodes,
   }
 
 }
 
-export function setCheckedKey(data: any[], checkedKeys: string[], indeterminateKeys: string[], key: string, checked: boolean, checkStrictly: boolean) {
+export function setCheckedKey(
+  data: any[],
+  checkedNodes: any[],
+  indeterminateNodes: any[],
+  keys: string[],
+  checked: boolean[],
+  checkStrictly: boolean
+) {
 
-  setTreeCheckedKey(
-    data,
-    checked,
-    function (node) {
-      return node.key === key
-    },
-    function (node) {
-      return Yox.array.has(checkedKeys, node.key)
-    },
-    function (node) {
-      checkedKeys.push(node.key)
-    },
-    function (node) {
-      Yox.array.remove(checkedKeys, node.key)
-    },
-    !checkStrictly,
-    function (node) {
-      return indeterminateKeys.indexOf(node.key) >= 0
-    },
-    function (node) {
-      indeterminateKeys.push(node.key)
-    },
-    function (node) {
-      const index = indeterminateKeys.indexOf(node.key)
-      if (index >= 0) {
-        indeterminateKeys.splice(index, 1)
-      }
-    },
-  )
+  const checkedKeys = getNodesProps(checkedNodes, 'key').map(renderNodesProps)
+  const indeterminateKeys = getNodesProps(indeterminateNodes, 'key').map(renderNodesProps)
+
+  const interact = !checkStrictly
+
+  const isChecked = function (key: string) {
+    return checkedKeys.indexOf(key) >= 0
+  }
+  const addChecked = function (key: string, nodes: any[]) {
+    checkedNodes.push(nodes)
+    checkedKeys.push(key)
+  }
+  const removeChecked = function (key: string) {
+    const index = checkedKeys.indexOf(key)
+    if (index >= 0) {
+      checkedNodes.splice(index, 1)
+      checkedKeys.splice(index, 1)
+    }
+  }
+  const isIndeterminate = function (key: string) {
+    return indeterminateKeys.indexOf(key) >= 0
+  }
+  const addIndeterminate = function (key: string, nodes: any[]) {
+    indeterminateNodes.push(nodes)
+    indeterminateKeys.push(key)
+  }
+  const removeIndeterminate = function (key: string) {
+    const index = indeterminateKeys.indexOf(key)
+    if (index >= 0) {
+      indeterminateNodes.splice(index, 1)
+      indeterminateKeys.splice(index, 1)
+    }
+  }
+
+  for (let i = 0, len = keys.length; i < len; i++) {
+    const key = keys[i]
+    setTreeCheckedKey(
+      data,
+      'key',
+      checked[i],
+      interact,
+      function (k, nodes) {
+        return Yox.array.last(nodes).key === key
+      },
+      isChecked,
+      addChecked,
+      removeChecked,
+      isIndeterminate,
+      addIndeterminate,
+      removeIndeterminate,
+    )
+  }
 
 }

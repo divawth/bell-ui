@@ -7,11 +7,15 @@ import Icon from '../icon/Icon'
 import TreeNode from './TreeNode'
 
 import {
+  FALSE,
   UNDEFINED,
   RAW_STRING,
   RAW_ARRAY,
   RAW_BOOLEAN,
   RAW_FUNCTION,
+  RAW_ALL,
+  RAW_PARENT,
+  RAW_CHILD,
   RAW_STYLE_TYPE,
 } from '../constant'
 
@@ -20,7 +24,12 @@ import {
   formatSelectedKeys,
   formatCheckedKeys,
   setCheckedKey,
+  getLastNodeKey,
 } from './util'
+
+import {
+  oneOf,
+} from '../util'
 
 export default Yox.define({
 
@@ -52,6 +61,10 @@ export default Yox.define({
     },
     checkedKeys: {
       type: RAW_ARRAY,
+    },
+    showCheckedStrategy: {
+      type: oneOf([RAW_ALL, RAW_PARENT, RAW_CHILD]),
+      value: RAW_ALL,
     },
     checkStrictly: {
       type: RAW_BOOLEAN,
@@ -99,8 +112,66 @@ export default Yox.define({
     return {
       innerExpandedKeys,
       innerSelectedKeys,
-      innerCheckedKeys: checkedResult.checkedKeys,
-      innerIndeterminateKeys: checkedResult.indeterminateKeys,
+      innerCheckedNodes: checkedResult.checkedNodes,
+      innerIndeterminateNodes: checkedResult.indeterminateNodes,
+    }
+  },
+
+  computed: {
+    actualNodes(): any[] {
+
+      const showCheckedStrategy = this.get('showCheckedStrategy')
+      const innerCheckedNodes = this.get('innerCheckedNodes')
+
+      if (showCheckedStrategy === RAW_ALL) {
+        return innerCheckedNodes
+      }
+
+      const showChildStrategy = showCheckedStrategy === RAW_CHILD
+      const actualNodes: any[] = []
+      const innerCheckedKeys = this.get('innerCheckedKeys')
+
+      Yox.array.each(
+        innerCheckedNodes,
+        function (nodes: any[]) {
+
+          let isParentChecked = FALSE
+
+          if (nodes.length > 1) {
+            const parentKey = nodes[nodes.length - 2].key
+            isParentChecked = innerCheckedKeys.indexOf(parentKey) >= 0
+          }
+
+          if (Yox.array.last(nodes).children) {
+            // branch 节点，父级没选中时有效
+            // 如果父级选中了，则有效的是父级
+            if (!showChildStrategy && !isParentChecked) {
+              actualNodes.push(nodes)
+            }
+          }
+          else {
+            // leaf 节点
+            if (showChildStrategy || !isParentChecked) {
+              actualNodes.push(nodes)
+            }
+          }
+        }
+      )
+
+      return actualNodes
+
+    },
+    actualKeys() {
+      const actualNodes = this.get('actualNodes')
+      return actualNodes.map(getLastNodeKey)
+    },
+    innerCheckedKeys() {
+      const innerCheckedNodes = this.get('innerCheckedNodes')
+      return innerCheckedNodes.map(getLastNodeKey)
+    },
+    innerIndeterminateKeys() {
+      const innerIndeterminateNodes = this.get('innerIndeterminateNodes')
+      return innerIndeterminateNodes.map(getLastNodeKey)
     }
   },
 
@@ -193,29 +264,33 @@ export default Yox.define({
       listener(event, data) {
         event.stop()
 
-        const checkedKeys = this.copy(
-          this.get('innerCheckedKeys')
+        const innerCheckedNodes = this.copy(
+          this.get('innerCheckedNodes')
         )
 
-        const innerIndeterminateKeys = this.copy(
-          this.get('innerIndeterminateKeys')
+        const innerIndeterminateNodes = this.copy(
+          this.get('innerIndeterminateNodes')
         )
 
         const { node, checked } = data
 
         setCheckedKey(
           this.get('data'),
-          checkedKeys,
-          innerIndeterminateKeys,
-          node.key,
-          checked,
+          innerCheckedNodes,
+          innerIndeterminateNodes,
+          [node.key],
+          [checked],
           this.get('checkStrictly')
         )
 
         this.set({
+          innerCheckedNodes,
+          innerIndeterminateNodes,
+        })
+
+        const checkedKeys = this.get('actualKeys')
+        this.set({
           checkedKeys,
-          innerCheckedKeys: checkedKeys,
-          innerIndeterminateKeys,
         })
 
         this.fire(
@@ -262,8 +337,8 @@ export default Yox.define({
     ) {
       const checkedResult = formatCheckedKeys(data, checkedKeys, checkStrictly)
       this.set({
-        innerCheckedKeys: checkedResult.checkedKeys,
-        innerIndeterminateKeys: checkedResult.indeterminateKeys,
+        innerCheckedNodes: checkedResult.checkedNodes,
+        innerIndeterminateNodes: checkedResult.indeterminateNodes,
       })
     }
 

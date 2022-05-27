@@ -1,56 +1,8 @@
-import Yox from 'yox'
 import { FALSE, TRUE, UNDEFINED } from '../constant'
-import { setTreeCheckedKey } from '../util'
+import { getNodesProps, renderNodesProps, setTreeCheckedKey } from '../util'
 
 export function isLeafOption(option: any) {
   return !option.children && option.isLeaf !== FALSE
-}
-
-export function getOptionsProps(options: any[], propName: string) {
-
-  const result: any[] = []
-
-  Yox.array.each(
-    options,
-    function (option: any) {
-      result.push(
-        Yox.is.array(option)
-        ? getOptionsProps(option, propName)
-        : option[propName]
-      )
-    }
-  )
-
-  return result
-
-}
-
-export function renderValue(value: any) {
-  if (Yox.is.array(value)) {
-    return value.join(' / ')
-  }
-  return value
-}
-
-function combine(option: any, parents: any[]) {
-
-  const options = [option]
-  const values = [option.value]
-
-  Yox.array.each(
-    parents,
-    function (parent) {
-      options.unshift(parent)
-      values.unshift(parent.value)
-    }
-  )
-
-  return {
-    options,
-    values,
-    identity: renderValue(values),
-  }
-
 }
 
 export function formatOptions(
@@ -72,7 +24,7 @@ export function formatOptions(
   }
 
   const checkedOptions = []
-  const indeterminateOptions = multiple ? [] : UNDEFINED
+  const indeterminateOptions = []
 
   setCheckedOptions(
     options,
@@ -87,7 +39,7 @@ export function formatOptions(
   return {
     checkedOptions,
     selectedOptions: checkedOptions[0] || [],
-    indeterminateOptions: indeterminateOptions || [],
+    indeterminateOptions,
   }
 
 }
@@ -95,69 +47,56 @@ export function formatOptions(
 export function setCheckedOptions(
   options: any[],
   checkedOptions: any[],
-  indeterminateOptions: any[] | void,
+  indeterminateOptions: any[],
   values: any[],
   checked: any[]
 ) {
 
-  const checkedKeys = getOptionsProps(checkedOptions, 'value').map(renderValue)
+  const checkedKeys = getNodesProps(checkedOptions, 'value').map(renderNodesProps)
+  const indeterminateKeys = getNodesProps(indeterminateOptions, 'value').map(renderNodesProps)
 
-  const isChecked = function (option, parents) {
-    const { identity } = combine(option, parents)
-    return checkedKeys.indexOf(identity) >= 0
+  const isChecked = function (key: string) {
+    return checkedKeys.indexOf(key) >= 0
   }
-  const addChecked = function (option, parents) {
-    const { options, identity } = combine(option, parents)
+  const addChecked = function (key: string, options: any[]) {
     checkedOptions.push(options)
-    checkedKeys.push(identity)
+    checkedKeys.push(key)
   }
-  const removeChecked = function (option, parents) {
-    const { identity } = combine(option, parents)
-    const index = checkedKeys.indexOf(identity)
+  const removeChecked = function (key: string) {
+    const index = checkedKeys.indexOf(key)
     if (index >= 0) {
       checkedOptions.splice(index, 1)
       checkedKeys.splice(index, 1)
     }
   }
-
-  let isIndeterminate: (option, parent) => boolean
-  let addIndeterminate: (option, parent) => void
-  let removeIndeterminate: (option, parent) => void
-
-  if (indeterminateOptions) {
-    const indeterminateKeys = getOptionsProps(indeterminateOptions, 'value').map(renderValue)
-    isIndeterminate = function (option, parents) {
-      const { identity } = combine(option, parents)
-      return indeterminateKeys.indexOf(identity) >= 0
-    }
-    addIndeterminate = function (option, parents) {
-      const { options, identity } = combine(option, parents)
-      indeterminateOptions.push(options)
-      indeterminateKeys.push(identity)
-    }
-    removeIndeterminate = function (option, parents) {
-      const { identity } = combine(option, parents)
-      const index = indeterminateKeys.indexOf(identity)
-      if (index >= 0) {
-        indeterminateOptions.splice(index, 1)
-        indeterminateKeys.splice(index, 1)
-      }
+  const isIndeterminate = function (key: string) {
+    return indeterminateKeys.indexOf(key) >= 0
+  }
+  const addIndeterminate = function (key: string, options: any[]) {
+    indeterminateOptions.push(options)
+    indeterminateKeys.push(key)
+  }
+  const removeIndeterminate = function (key: string) {
+    const index = indeterminateKeys.indexOf(key)
+    if (index >= 0) {
+      indeterminateOptions.splice(index, 1)
+      indeterminateKeys.splice(index, 1)
     }
   }
 
   for (let i = 0, len = values.length; i < len; i++) {
-    const value = renderValue(values[i])
+    const key = renderNodesProps(values[i])
     setTreeCheckedKey(
       options,
+      'value',
       checked[i],
-      function (option, parents) {
-        const { identity } = combine(option, parents)
-        return identity === value
+      TRUE,
+      function (k) {
+        return k === key
       },
       isChecked,
       addChecked,
       removeChecked,
-      TRUE,
       isIndeterminate,
       addIndeterminate,
       removeIndeterminate
