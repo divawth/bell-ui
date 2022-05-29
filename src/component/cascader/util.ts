@@ -1,9 +1,5 @@
-import { FALSE, TRUE, UNDEFINED } from '../constant'
+import { TRUE } from '../constant'
 import { getNodesProps, renderNodesProps, setTreeCheckedKey } from '../util'
-
-export function isLeafOption(option: any) {
-  return !option.children && option.isLeaf !== FALSE
-}
 
 export function formatOptions(
   options: any[] | void,

@@ -1,4 +1,3 @@
-export declare function isLeafOption(option: any): boolean;
 export declare function formatOptions(options: any[] | void, values: any[] | void, multiple: boolean): {
     checkedOptions: any[];
     selectedOptions: any;

@@ -13,11 +13,8 @@ import {
   RAW_BOOLEAN,
   RAW_OBJECT,
   RAW_ARRAY,
+  RAW_FUNCTION,
 } from '../constant'
-
-import {
-  isLeafOption,
-} from './util'
 
 export default Yox.define({
 
@@ -41,6 +38,13 @@ export default Yox.define({
     checkable: {
       type: RAW_BOOLEAN,
     },
+    loadData: {
+      type: RAW_FUNCTION,
+    },
+    loadingValues: {
+      type: RAW_ARRAY,
+      required: TRUE,
+    },
     selectedValue: {
       type: [RAW_STRING, RAW_NUMBER],
       required: TRUE,
@@ -57,7 +61,13 @@ export default Yox.define({
 
   computed: {
     interactive() {
-      return !this.get('option.disabled') && !this.get('option.isLoading')
+      return !this.get('option.disabled') && !this.get('loading')
+    },
+    loading() {
+      return Yox.array.has(
+        this.get('loadingValues'),
+        this.get('option.value')
+      )
     },
     selected() {
       return this.get('option.value') == this.get('selectedValue')
@@ -82,15 +92,19 @@ export default Yox.define({
   methods: {
     onClick() {
 
-      const option = this.get('option')
-      const level = this.get('level')
+      const me = this
+
+      const option = me.get('option')
+      const level = me.get('level')
 
       const options: any[] = []
       const values: any[] = []
       options[level] = option
       values[level] = option.value
 
-      this.fire(
+      const isLeaf = !option.children && option.isLeaf !== FALSE
+
+      me.fire(
         {
           type: 'select',
           ns: 'cascaderOption'
@@ -99,11 +113,49 @@ export default Yox.define({
           options,
           values,
           level,
-          checked: this.get('checked'),
-          index: this.get('index'),
-          isLeaf: isLeafOption(option),
+          checked: me.get('checked'),
+          index: me.get('index'),
+          isLeaf,
         }
       )
+
+      const loadData = me.get('loadData')
+      if (loadData && option.isLeaf === FALSE) {
+
+        me.fire(
+          {
+            type: 'loadingStart',
+            ns: 'cascaderOption'
+          },
+          {
+            options,
+            values,
+            level,
+          }
+        )
+
+        loadData(option)
+        .then(function (children: any[]) {
+          delete option.isLeaf
+          if (children && children.length > 0) {
+            option.children = children
+          }
+        })
+        .finally(function () {
+          me.fire(
+            {
+              type: 'loadingEnd',
+              ns: 'cascaderOption'
+            },
+            {
+              options,
+              values,
+              level,
+            }
+          )
+        })
+
+      }
 
     },
     onCheckboxChange(event: CustomEventInterface, data: Data) {

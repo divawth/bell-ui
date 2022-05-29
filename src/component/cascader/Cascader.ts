@@ -126,6 +126,7 @@ export default Yox.define({
       RAW_CUSTOM,
       isFocus: FALSE,
       isVisible: FALSE,
+      loadingOptions: [],
       checkedOptions: data.checkedOptions,
       selectedOptions: data.selectedOptions,
       indeterminateOptions: data.indeterminateOptions,
@@ -192,6 +193,9 @@ export default Yox.define({
       }
       return texts.map(renderNodesProps)
     },
+    loadingValues(): any[] {
+      return getNodesProps(this.get('loadingOptions'), 'value')
+    },
     checkedValues(): any[] {
       return getNodesProps(this.get('checkedOptions'), 'value')
     },
@@ -227,6 +231,37 @@ export default Yox.define({
   },
 
   events: {
+    loadingStart: {
+      listener(event, data) {
+
+        event.stop()
+
+        const loadingKeys = this.get('loadingValues').map(renderNodesProps)
+        const loadingKey = renderNodesProps(data.values)
+
+        if (loadingKeys.indexOf(loadingKey) < 0) {
+          this.append('loadingOptions', data.options)
+        }
+
+      },
+      ns: 'cascaderOption',
+    },
+    loadingEnd: {
+      listener(event, data) {
+
+        event.stop()
+
+        const loadingKeys = this.get('loadingValues').map(renderNodesProps)
+        const loadingKey = renderNodesProps(data.values)
+
+        const index = loadingKeys.indexOf(loadingKey)
+        if (index >= 0) {
+          this.removeAt('loadingOptions', index)
+        }
+
+      },
+      ns: 'cascaderOption',
+    },
     select: {
       listener(event, data) {
 

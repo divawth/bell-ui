@@ -7,7 +7,6 @@ import CascaderOption from './CascaderOption'
 
 import {
   TRUE,
-  FALSE,
   UNDEFINED,
   RAW_ARRAY,
   RAW_NUMBER,
@@ -36,6 +35,10 @@ const CascaderOptions = Yox.define({
     loadData: {
       type: RAW_FUNCTION,
     },
+    loadingValues: {
+      type: RAW_ARRAY,
+      required: TRUE,
+    },
     checkedValues: {
       type: RAW_ARRAY,
       required: TRUE,
@@ -51,6 +54,25 @@ const CascaderOptions = Yox.define({
   },
 
   computed: {
+    currentLoadingValues() {
+
+      const result: any[] = []
+
+      const loadingValues = this.get('loadingValues')
+      const level = this.get('level')
+
+      Yox.array.each(
+        loadingValues,
+        function (values: any[]) {
+          if (values.length === level + 1) {
+            result.push(values[level])
+          }
+        }
+      )
+
+      return result
+
+    },
     currentCheckedValues() {
 
       const result: any[] = []
@@ -95,7 +117,7 @@ const CascaderOptions = Yox.define({
       return this.get(`selectedValues.${level}`)
     },
     currentSelectedOption: {
-      deps: ['options.length', 'options.*.value', 'options.*.children', 'currentSelectedValue'],
+      deps: ['options.length', 'options.*.value', 'currentLoadingValues', 'currentSelectedValue'],
       get() {
         const currentSelectedValue = this.get('currentSelectedValue')
         if (currentSelectedValue !== UNDEFINED) {
@@ -111,54 +133,31 @@ const CascaderOptions = Yox.define({
   },
 
   events: {
+    loadingStart: {
+      listener(_, data) {
+        // @ts-ignore
+        this.addLevelInfoIfNeeded(data)
+      },
+      ns: 'cascaderOption'
+    },
+    loadingEnd: {
+      listener(_, data) {
+        // @ts-ignore
+        this.addLevelInfoIfNeeded(data)
+      },
+      ns: 'cascaderOption'
+    },
     select: {
       listener(_, data) {
-
         // @ts-ignore
-        if (this.addLevelInfoIfNeeded(data)) {
-          return
-        }
-
-        const me = this
-
-        const loadData = me.get('loadData')
-        const option = data.options[data.level]
-
-        if (loadData && !option.isLeaf && !option.children) {
-
-          const setOptionProp = function (key: string, value: any) {
-            const keypath = `options.${data.index}`
-            const newOption = me.copy(me.get(keypath))
-            newOption[key] = value
-            me.set(keypath, newOption)
-          }
-
-          setOptionProp('isLoading', TRUE)
-
-          loadData(option)
-          .then(function (children: any[]) {
-            if (children && children.length > 0) {
-              setOptionProp('children', children)
-            }
-            else {
-              setOptionProp('isLeaf', TRUE)
-            }
-          })
-          .finally(function () {
-            setOptionProp('isLoading', FALSE)
-          })
-
-        }
-
+        this.addLevelInfoIfNeeded(data)
       },
       ns: 'cascaderOption'
     },
     check: {
       listener(_, data) {
         // @ts-ignore
-        if (this.addLevelInfoIfNeeded(data)) {
-          return
-        }
+        this.addLevelInfoIfNeeded(data)
       },
       ns: 'cascaderOption'
     }
