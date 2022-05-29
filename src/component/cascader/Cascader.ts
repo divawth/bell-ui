@@ -231,32 +231,22 @@ export default Yox.define({
   },
 
   events: {
-    loadingStart: {
+    loading: {
       listener(event, data) {
 
         event.stop()
 
-        const loadingKeys = this.get('loadingValues').map(renderNodesProps)
-        const loadingKey = renderNodesProps(data.values)
-
-        if (loadingKeys.indexOf(loadingKey) < 0) {
+        if (data.loading) {
           this.append('loadingOptions', data.options)
         }
+        else {
+          const loadingKeys = this.get('loadingValues').map(renderNodesProps)
+          const loadingKey = renderNodesProps(data.values)
 
-      },
-      ns: 'cascaderOption',
-    },
-    loadingEnd: {
-      listener(event, data) {
-
-        event.stop()
-
-        const loadingKeys = this.get('loadingValues').map(renderNodesProps)
-        const loadingKey = renderNodesProps(data.values)
-
-        const index = loadingKeys.indexOf(loadingKey)
-        if (index >= 0) {
-          this.removeAt('loadingOptions', index)
+          const index = loadingKeys.indexOf(loadingKey)
+          if (index >= 0) {
+            this.removeAt('loadingOptions', index)
+          }
         }
 
       },

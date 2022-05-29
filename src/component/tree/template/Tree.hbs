@@ -10,6 +10,7 @@ class="${prefix}tree
 
   {{#each data:index}}
     <TreeNode
+      loadingKeys="{{~/innerLoadingKeys}}"
       expandedKeys="{{~/innerExpandedKeys}}"
       selectedKeys="{{~/innerSelectedKeys}}"
       checkedKeys="{{~/innerCheckedKeys}}"

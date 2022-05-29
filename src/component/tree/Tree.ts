@@ -110,6 +110,7 @@ export default Yox.define({
     const checkedResult = formatCheckedKeys(data, checkedKeys || defaultCheckedKeys, this.get('checkStrictly'))
 
     return {
+      innerLoadingKeys: [],
       innerExpandedKeys,
       innerSelectedKeys,
       innerCheckedNodes: checkedResult.checkedNodes,
@@ -176,6 +177,31 @@ export default Yox.define({
   },
 
   events: {
+    loading: {
+      listener(event, data) {
+        event.stop()
+
+        const loadingKeys = this.copy(
+          this.get('innerLoadingKeys')
+        )
+
+        const { node, loading } = data
+        const { key } = node
+
+        if (loading) {
+          loadingKeys.push(key)
+        }
+        else {
+          Yox.array.remove(loadingKeys, key)
+        }
+
+        this.set({
+          innerLoadingKeys: loadingKeys,
+        })
+
+      },
+      ns: 'treeNode'
+    },
     expand: {
       listener(event, data) {
         event.stop()

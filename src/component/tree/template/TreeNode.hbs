@@ -19,13 +19,13 @@
     {{/if}}
     <div
       class="${prefix}tree-switcher"
-      {{#if !isLeaf && !isLoading}}
+      {{#if !isLeaf && !loading}}
         on-click="onExpandClick()"
       {{/if}}
     >
       {{#if !isLeaf}}
         <slot name="switcherIcon">
-          {{#if isLoading}}
+          {{#if loading}}
             <Icon
               className="${prefix}tree-loading-icon"
               name="loader-5-line"
@@ -85,6 +85,7 @@
   {{#if expanded && hasChildren}}
     {{#each node.children:index}}
       <TreeNode
+        loadingKeys="{{~/loadingKeys}}"
         expandedKeys="{{~/expandedKeys}}"
         selectedKeys="{{~/selectedKeys}}"
         checkedKeys="{{~/checkedKeys}}"

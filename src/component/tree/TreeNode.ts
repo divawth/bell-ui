@@ -25,6 +25,10 @@ const TreeNode = Yox.define({
   name: '${prefix}TreeNode',
 
   propTypes: {
+    loadingKeys: {
+      type: RAW_ARRAY,
+      required: TRUE,
+    },
     expandedKeys: {
       type: RAW_ARRAY,
       required: TRUE,
@@ -70,13 +74,12 @@ const TreeNode = Yox.define({
     },
   },
 
-  data() {
-    return {
-      isLoading: FALSE,
-    }
-  },
-
   computed: {
+    loading() {
+      const loadingKeys = this.get('loadingKeys')
+      const key = this.get('node.key')
+      return Yox.array.has(loadingKeys, key)
+    },
     expanded() {
       const expandedKeys = this.get('expandedKeys')
       const key = this.get('node.key')
@@ -111,11 +114,7 @@ const TreeNode = Yox.define({
       return children && children.length > 0
     },
     isLeaf() {
-      const isLeaf = this.get('node.isLeaf')
-      if (isLeaf) {
-        return TRUE
-      }
-      if (this.get('loadData')) {
+      if (this.get('node.isLeaf') === FALSE) {
         return FALSE
       }
       return !this.get('hasChildren')
@@ -146,27 +145,38 @@ const TreeNode = Yox.define({
       if (expanded) {
         // 如果是展开，需判断是否要加载数据
         const loadData = me.get('loadData')
-        const hasChildren = me.get('hasChildren')
-        if (loadData && !hasChildren) {
+        if (loadData && node.isLeaf === FALSE) {
 
-          me.set({
-            isLoading: TRUE
-          })
+          me.fire(
+            {
+              type: 'loading',
+              ns: 'treeNode'
+            },
+            {
+              node,
+              loading: TRUE,
+            }
+          )
 
           loadData(node)
           .then(function (children: any[]) {
+            delete node.isLeaf
             if (children && children.length > 0) {
-              me.set('node.children', children)
+              node.children = children
               fireExpandEvent()
-            }
-            else {
-              me.set('node.isLeaf', TRUE)
             }
           })
           .finally(function () {
-            me.set({
-              isLoading: FALSE
-            })
+            me.fire(
+              {
+                type: 'loading',
+                ns: 'treeNode'
+              },
+              {
+                node,
+                loading: FALSE,
+              }
+            )
           })
 
           return

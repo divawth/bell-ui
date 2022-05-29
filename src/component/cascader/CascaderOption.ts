@@ -124,13 +124,14 @@ export default Yox.define({
 
         me.fire(
           {
-            type: 'loadingStart',
+            type: 'loading',
             ns: 'cascaderOption'
           },
           {
             options,
             values,
             level,
+            loading: TRUE,
           }
         )
 
@@ -144,13 +145,14 @@ export default Yox.define({
         .finally(function () {
           me.fire(
             {
-              type: 'loadingEnd',
+              type: 'loading',
               ns: 'cascaderOption'
             },
             {
               options,
               values,
               level,
+              loading: FALSE,
             }
           )
         })
