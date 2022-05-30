@@ -8,7 +8,7 @@ radio-button-brand-style(color)
     &:hover
       ui-set('color', color)
 
-    &{$selector-class-prefix + '-radio-active'}
+    &{$selector-class-prefix + '-radio-checked'}
       ui-set('border-color', color)
       ui-set('background-color', color)
 
@@ -70,7 +70,7 @@ radio-button-size-style(size)
     transition transform $form-control-transition-duration,
               opacity $form-control-transition-duration
 
-{$selector-class-prefix + '-radio-active'}
+{$selector-class-prefix + '-radio-checked'}
   > {$selector-class-prefix + '-radio-icon'}
     border-color $brand-primary
     &:after
@@ -125,7 +125,7 @@ radio-button-size-style(size)
     background-color $brand-bg-disabled
     color $brand-disabled
 
-    &{$selector-class-prefix + '-radio-active'}
+    &{$selector-class-prefix + '-radio-checked'}
       background-color $brand-bg-checked-disabled
 
   > {$selector-class-prefix + '-radio-enabled'}
@@ -138,11 +138,11 @@ radio-button-size-style(size)
     &:first-child:before
       content none
 
-    &{$selector-class-prefix + '-radio-active'},
-    &{$selector-class-prefix + '-radio-active'}:hover
+    &{$selector-class-prefix + '-radio-checked'},
+    &{$selector-class-prefix + '-radio-checked'}:hover
       color $brand-white
 
-    &{$selector-class-prefix + '-radio-active'}
+    &{$selector-class-prefix + '-radio-checked'}
       z-index $zindex-normal
 
     &:focus

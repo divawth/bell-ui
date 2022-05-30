@@ -74,8 +74,10 @@ export default Yox.define({
   },
 
   methods: {
-    onClick(event: CustomEventInterface) {
-      event.stop()
+    onClick(event?: CustomEventInterface) {
+      if (event) {
+        event.stop()
+      }
       this.setChecked(!this.get('checked'))
     },
     setChecked(checked: boolean) {

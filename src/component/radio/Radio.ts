@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Radio.hbs'
 // import './style/Radio.styl'
@@ -71,7 +71,10 @@ export default Yox.define({
   },
 
   methods: {
-    onClick() {
+    onClick(event?: CustomEventInterface) {
+      if (event) {
+        event.stop()
+      }
       this.setChecked(TRUE)
     },
     setChecked(checked: boolean) {
