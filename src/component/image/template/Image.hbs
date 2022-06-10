@@ -53,19 +53,33 @@ class="${prefix}image
     </div>
   {{/if}}
 
-  {{#if image.message || showPreview}}
+  {{#if image.message || showPreview || showDelete}}
     <div class="${prefix}image-mask">
       {{#if image.message}}
         <div class="${prefix}image-message">
           {{{image.message}}}
         </div>
-      {{else if showPreview}}
-        <div class="${prefix}image-action">
-          <Icon
-            name="zoom-in-line"
-            on-click.native="previewImage()"
-          />
-        </div>
+      {{else}}
+        {{#if showPreview}}
+          <div
+            class="${prefix}image-action"
+            on-click="previewImage()"
+          >
+            <Icon
+              name="zoom-in-line"
+            />
+          </div>
+        {{/if}}
+        {{#if showDelete}}
+          <div
+            class="${prefix}image-action"
+            on-click="deleteImage()"
+          >
+            <Icon
+              name="delete-bin-line"
+            />
+          </div>
+        {{/if}}
       {{/if}}
     </div>
   {{/if}}

@@ -163,7 +163,11 @@ $image-icon-size = 20px
   width 80%
 
 {$selector-class-prefix + '-image-action'}
+  line-height 0
   ui-clickable()
+
+  + {$selector-class-prefix + '-image-action'}
+    margin-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-image-placeholder'},
 {$selector-class-prefix + '-image-footer'},

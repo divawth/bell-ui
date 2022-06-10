@@ -89,6 +89,9 @@ export default Yox.define({
     showPreview: {
       type: RAW_BOOLEAN,
     },
+    showDelete: {
+      type: RAW_BOOLEAN,
+    },
     url: {
       type: RAW_STRING,
     },
@@ -250,6 +253,15 @@ export default Yox.define({
         },
         {
           url: this.get('image.url'),
+        }
+      )
+    },
+    deleteImage(event: CustomEventInterface) {
+      event.stop()
+      this.fire(
+        {
+          type: 'delete',
+          ns: 'image',
         }
       )
     },

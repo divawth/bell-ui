@@ -30,20 +30,27 @@ export default {
 }
 ```
 
-> 预览操作
+> 操作
 
 ```js
 export default {
   template: `
     <Image
+      width="100"
+      height="100"
       url="https://avatars0.githubusercontent.com/u/17703135?s=140"
       showPreview
+      showDelete
       on-preview="previewImage()"
+      on-delete="deleteImage()"
     />
   `,
   methods: {
     previewImage(event, data) {
       console.log('preview', event, data)
+    },
+    deleteImage(event) {
+      console.log('delete', event)
     },
   }
 }
@@ -174,6 +181,7 @@ fallback | 容错地址 | string | - | -
 alt | 原生 `alt` 属性 | string | - | -
 simple | 是否为简洁风格 | boolean | - | -
 showPreview | 是否显示预览图标 | boolean | - | -
+showDelete | 是否显示删除图标 | boolean | - | -
 accept | 允许什么类型的文件上传，如 `image/*` | string | - | -
 formatImageUrl | 图片裁剪函数 | function | - | -
 uploadTitle | 上传按钮标题 | string | - | -
@@ -194,5 +202,6 @@ placeholder | 自定义占位图
 名称 | 说明
 ---|---
 preview | 点击预览图标时触发
+delete | 点击删除图标时触发
 uploadClick | 点击上传按钮时触发
 uploadSuccess | 上传成功时触发

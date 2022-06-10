@@ -227,7 +227,7 @@ export default Yox.define({
         event.stop()
 
         // @ts-ignore
-        this.jump()
+        this.onJumpClick()
 
       }
     }
