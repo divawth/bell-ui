@@ -87,10 +87,10 @@ export default Yox.define({
   },
 
   methods: {
-    click() {
+    onClick() {
       this.fire(
         {
-          type: 'open',
+          type: 'toggle',
           ns: 'collapseItem',
         },
         {

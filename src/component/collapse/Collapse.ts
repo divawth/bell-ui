@@ -54,7 +54,7 @@ export default Yox.define({
   },
 
   events: {
-    open: {
+    toggle: {
       listener(event, data) {
         if (event.phase === Yox.Event.PHASE_UPWARD) {
           event.stop()

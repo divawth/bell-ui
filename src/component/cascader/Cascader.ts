@@ -369,7 +369,10 @@ export default Yox.define({
         checkedOptions
       })
 
-      const value = me.get('actualValues')
+      let value = me.get('actualValues')
+      if (!me.get('multiple') && value.length === 1) {
+        value = value[0]
+      }
 
       me.set({
         value,
