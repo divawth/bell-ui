@@ -31,11 +31,11 @@ class="${prefix}image-picker
       {{/if}}
     >
 
-      {{#if this.url || this.base64}}
+      {{#if this.thumbnail || this.url || this.base64}}
         <img
           draggable="false"
-          {{#if this.url}}
-            src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
+          {{#if this.thumbnail || this.url}}
+            src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.thumbnail || this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.thumbnail || this.url}}"
           {{else if this.base64}}
             src="{{this.base64}}"
           {{/if}}
