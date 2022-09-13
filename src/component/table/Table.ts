@@ -7,6 +7,7 @@ import Icon from '../icon/Icon'
 import Empty from '../empty/Empty'
 import Button from '../button/Button'
 import Checkbox from '../checkbox/Checkbox'
+import ResizeObserver from '../resize-observer/ResizeObserver'
 
 import {
   TRUE,
@@ -20,7 +21,6 @@ import {
 
 import {
   toPixel,
-  readElementRectInfo,
 } from '../util'
 
 interface ButtonConfig {
@@ -170,7 +170,9 @@ export default Yox.define({
   },
 
   methods: {
-
+    onResize(_, data) {
+      this.updateColumnWidths(data.width)
+    },
     allCheckedChange(event: CustomEventInterface, data: Data) {
       event.stop()
       this.set('allChecked', data.checked)
@@ -261,16 +263,7 @@ export default Yox.define({
     Empty,
     Button,
     Checkbox,
-  },
-
-  afterMount() {
-    const me = this
-    readElementRectInfo(
-      me.$el,
-      function (rect: any) {
-        me.updateColumnWidths(rect.width)
-      }
-    )
+    ResizeObserver,
   }
 
 })

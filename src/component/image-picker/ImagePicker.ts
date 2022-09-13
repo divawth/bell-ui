@@ -69,7 +69,7 @@ export default Yox.define({
     },
     imageMode: {
       type: oneOf([RAW_STRETCH, RAW_CONTAIN]),
-      value: RAW_STRETCH,
+      value: RAW_CONTAIN,
     },
     gap: {
       type: RAW_ARRAY,

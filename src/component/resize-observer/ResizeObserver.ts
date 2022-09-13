@@ -37,7 +37,7 @@ export default Yox.define({
     let actualHeight: number
 
     const handleResize = function (width: number, height: number) {
-      if (width > 0 && height > 0) {
+      if (width > 0 || height > 0) {
         actualWidth = width
         actualHeight = height
 
