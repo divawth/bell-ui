@@ -6,6 +6,10 @@
   {{else}} ${prefix}cascader-option-enabled
   {{/if}}"
 
+  {{#if option.text}}
+    title="{{option.text}}"
+  {{/if}}
+
   {{#if interactive}}
     on-click="onClick()"
   {{/if}}

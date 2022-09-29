@@ -31,6 +31,7 @@ import {
   RAW_BOTTOM_START,
   RAW_BOTTOM_END,
   HOVER_DELAY,
+  RAW_SLOT_CHILDREN,
 } from '../constant'
 
 import {
@@ -69,6 +70,9 @@ export default Yox.define({
     trigger: {
       type: oneOf([RAW_HOVER, RAW_CLICK, RAW_CUSTOM]),
       value: RAW_HOVER,
+    },
+    triggerMutable: {
+      type: RAW_BOOLEAN,
     },
     disabled: {
       type: RAW_BOOLEAN,
@@ -432,6 +436,19 @@ export default Yox.define({
     )
 
     onClickEvent(onGlobalClick)
+
+    me.watch(
+      RAW_SLOT_CHILDREN,
+      function () {
+        if (me.get('visible') && me.get('triggerMutable')) {
+          me.nextTick(
+            function () {
+              me.refreshOverlayRect()
+            }
+          )
+        }
+      }
+    )
 
     const destroy = function (component: YoxInterface) {
       if (component === me) {

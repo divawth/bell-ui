@@ -413,13 +413,6 @@ export default Yox.define({
     }
   },
 
-  afterUpdate() {
-    if (this.get('isVisible') && this.get('multiple')) {
-      const overlay = this.$refs.overlay as any
-      overlay.refreshOverlayRect()
-    }
-  },
-
   afterMount() {
     onClickEventByEnterPress(this)
   }

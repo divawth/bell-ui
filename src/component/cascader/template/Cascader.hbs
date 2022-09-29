@@ -1,9 +1,9 @@
 
 <Popover
-  ref="popover"
   placement="{{placement}}"
   trigger="{{RAW_CUSTOM}}"
   visible="{{isVisible}}"
+  triggerMutable="{{multiple}}"
   widthAlign="{{!options || !options.length}}"
   gap="5"
 >
@@ -54,7 +54,10 @@
 
     {{else}}
 
-      <div class="${prefix}cascader-value">
+      <div
+        class="${prefix}cascader-value"
+        title="{{actualTexts[0]}}"
+      >
         {{actualTexts[0]}}
       </div>
 

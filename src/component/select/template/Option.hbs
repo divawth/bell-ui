@@ -12,6 +12,10 @@ class="${prefix}select-option
   style="{{style}}"
 {{/if}}
 
+{{#if text}}
+  title="{{text}}"
+{{/if}}
+
 {{#if !disabled}}
   on-click="onClick()"
 {{/if}}

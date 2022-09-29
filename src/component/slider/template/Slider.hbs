@@ -47,7 +47,6 @@
 
     {{#each valuePercentArray:index}}
       <Tooltip
-        ref="{{'tooltip' + index}}"
         placement="{{~/vertical ? ~/RAW_RIGHT : ~/RAW_TOP}}"
         content="{{~/formatTooltip ? ~/formatTooltip(this.value) : this.value}}"
         visible="{{~/showTooltipIndex === index}}"

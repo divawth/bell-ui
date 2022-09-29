@@ -51,33 +51,17 @@ export default Yox.define({
     }
   },
 
-  data() {
-    const data = { }
+  beforeRender(props) {
+
     const children = this.get(RAW_SLOT_CHILDREN)
     if (children) {
       addSlots2Props(
         this,
         children,
-        data,
+        props,
         this.get('column') || COLUMN_DEFAULT
       )
     }
-    return data
-  },
-
-  beforePropsUpdate(props) {
-
-    const children = props[RAW_SLOT_CHILDREN]
-    if (!children) {
-      return
-    }
-
-    addSlots2Props(
-      this,
-      children,
-      props,
-      props.column || COLUMN_DEFAULT,
-    )
 
   }
 

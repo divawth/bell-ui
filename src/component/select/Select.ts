@@ -106,7 +106,6 @@ export default Yox.define({
       RAW_CUSTOM,
       isFocus: FALSE,
       isVisible: FALSE,
-      selectedOptions: [],
     }
   },
 
@@ -309,13 +308,6 @@ export default Yox.define({
 
   afterMount() {
     onClickEventByEnterPress(this)
-  },
-
-  afterUpdate() {
-    if (this.get('isVisible') && this.get('multiple')) {
-      const popover = this.$refs.popover as any
-      popover.refreshOverlayRect()
-    }
   },
 
   components: {

@@ -1,5 +1,4 @@
 <Popover
-  ref="popover"
   placement="{{placement}}"
   trigger="{{mode}}"
   visible="{{isVisible}}"
@@ -10,6 +9,7 @@
   on-open="onPopoverOpen()"
   on-close="onPopoverClose()"
   on-outside="onPopoverOutside()"
+  triggerMutable
   showArrow
 >
   <slot />

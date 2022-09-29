@@ -15,7 +15,7 @@ class="${prefix}carousel
       {{#if !this.isComment}}
         <ResizeObserver delay="1000">
           <div class="${prefix}carousel-item">
-            <vnode value="{{this}}" />
+            {{>this}}
           </div>
         </ResizeObserver>
       {{/if}}

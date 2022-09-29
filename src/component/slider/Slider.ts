@@ -273,10 +273,6 @@ export default Yox.define({
   },
 
   watchers: {
-    'valuePercentArray.*.value': function () {
-      // @ts-ignore
-      this.refreshTooltip()
-    },
     value(value) {
       if (this.get('hoverThumbIndex') < 0
         && this.get('dragThumbIndex') < 0
@@ -300,16 +296,6 @@ export default Yox.define({
   },
 
   methods: {
-    refreshTooltip() {
-      const index = this.get('showTooltipIndex')
-      if (index < 0) {
-        return
-      }
-      this.nextTick(function () {
-        const tooltip = this.$refs['tooltip' + index] as any
-        tooltip.refresh()
-      })
-    },
     onThumbMouseEnter(event: CustomEventInterface, index: number) {
       event.stop()
       const dragThumbIndex = this.get('dragThumbIndex')
@@ -417,10 +403,6 @@ export default Yox.define({
       else if (ratio > 1) {
         ratio = 1
       }
-
-      console.log(element, rect)
-      console.log(mouseEvent.clientX)
-      console.log(ratio)
 
       return me.get('reverse') ? (1 - ratio) : ratio
 

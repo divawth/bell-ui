@@ -305,7 +305,7 @@ export default Yox.define({
 
       },
       ns: 'popover',
-    }
+    },
   },
 
   methods: {
@@ -393,13 +393,6 @@ export default Yox.define({
 
   afterMount() {
     onClickEventByEnterPress(this)
-  },
-
-  afterUpdate() {
-    if (this.get('isVisible') && this.get('multiple')) {
-      const popover = this.$refs.popover as any
-      popover.refreshOverlayRect()
-    }
   },
 
   beforePropsUpdate(props) {
