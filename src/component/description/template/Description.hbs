@@ -36,7 +36,9 @@ class="${prefix}description
               {{/if}}
             >
               <div class="${prefix}description-item-wrapper">
-                <div class="${prefix}description-item-label">
+                <div
+                  class="${prefix}description-item-label"
+                >
                   {{this.label}}
                 </div>
                 <div class="${prefix}description-item-content">
@@ -53,7 +55,9 @@ class="${prefix}description
       {{#each cells:rowIndex}}
         <tr class="${prefix}description-row">
           {{#each this:colIndex}}
-            <td class="${prefix}description-cell ${prefix}description-item-label">
+            <td
+              class="${prefix}description-cell ${prefix}description-item-label"
+            >
               {{this.label}}
             </td>
             <td

@@ -1,5 +1,6 @@
 @import '../../../env'
 
+$description-gap = 20px
 $description-header-body-gap = 20px
 $description-item-gap = 16px
 
@@ -31,6 +32,9 @@ description-size-style(size)
     hash: $description-size-hash,
     each: description-size-style
   )
+
+  + {$selector-class-prefix + '-description'}
+    margin-top $description-gap
 
 {$selector-class-prefix + '-description-header'}
   display flex
@@ -85,9 +89,6 @@ description-size-style(size)
 {$selector-class-prefix + '-description-item-wrapper'}
   display flex
   padding-bottom $description-item-gap
-
-{$selector-class-prefix + '-description-item-label'}
-  white-space nowrap
 
 {$selector-class-prefix + '-description-item-content'}
   flex 1
