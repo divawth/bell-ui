@@ -14,7 +14,7 @@ class="${prefix}space
 {{/if}}
 >
   {{#each @children}}
-    {{#if !this.isComment}}
+    {{#if this.type !== 2}}
       <div
         class="${prefix}space-item"
         {{#if itemStyle}}

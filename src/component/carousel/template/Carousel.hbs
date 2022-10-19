@@ -12,7 +12,7 @@ class="${prefix}carousel
     class="${prefix}carousel-list"
   >
     {{#each @children}}
-      {{#if !this.isComment}}
+      {{#if this.type !== 2}}
         <ResizeObserver delay="1000">
           <div class="${prefix}carousel-item">
             {{>this}}
