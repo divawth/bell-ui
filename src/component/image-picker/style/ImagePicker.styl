@@ -9,15 +9,22 @@ $image-picker-image-size-padding = 2px 4px
 
 {$selector-class-prefix + '-image-picker-card'}
   display block
+  border 1px solid $brand-divider
   background-color $brand-bg-light
   box-sizing content-box
   position relative
   user-select none
-  border 1px solid $brand-divider
+  transition border-color $form-control-transition-duration, background-color $form-control-transition-duration
+
   if $border-radius-default > 0
     border-radius $border-radius-default
+
   &[draggable="true"]
     cursor move
+
+  &:hover
+    border-color $brand-primary
+    background-color $brand-bg-hover
 
 {$selector-class-prefix + '-image-picker-item'} img
   ui-clickable()
