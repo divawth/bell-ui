@@ -5,6 +5,7 @@ build/
 src/
 yarn.*
 *.sketch
+*.yaml
 global.d.ts
 tsconfig.json
 rollup.config.js
