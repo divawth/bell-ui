@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.31.1
+ * bell-ui.js v0.31.2
  * (c) 2018-2022 
  * Released under the MIT License.
  */
@@ -2464,6 +2464,7 @@
   // capslock 20
   // cmd 91、93
   // 方向键 37-40
+  // 小键盘数字键 96-105
   function isHelper(keyCode) {
       return keyCode >= 37 && keyCode <= 40
           || keyCode >= 16 && keyCode <= 18
@@ -2480,7 +2481,8 @@
       return keyCode === 109 || keyCode === 189;
   }
   function isNumber(keyCode) {
-      return keyCode >= 48 && keyCode <= 57;
+      return (keyCode >= 48 && keyCode <= 57)
+          || (keyCode >= 96 && keyCode <= 105);
   }
 
   var InputNumber = Yox.define({
@@ -4600,7 +4602,7 @@
       },
   });
 
-  var template$z = (function(){var $0,$1=void 0,$3=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_O,_P,_N){_N.push(function(_M){_p(_K,'inlineStyle',_O.inlineStyle).value?_M.nativeStyles=_b(_p(_K,'inlineStyle',_O.inlineStyle).value):$1;return _M}({children:function(){var _N=[];_i(_p(_K,'$slot_children',_O.$slot_children),function(_K,_O,_P,_Q){!_r(_K,'isComment',_O.isComment).value?_N.push(function(_M){_p(_K,'itemStyle',_O.itemStyle).value?_M.nativeStyles=_b(_p(_K,'itemStyle',_O.itemStyle).value):$1;return _M}({children:function(){var _N=[];($0=_q(_K,_K.length-1).value,$0?_N.push($0):$1);return _N.length?_N:$1}(),context:_D,nativeAttrs:{class:'bell-space-item'},operator:_y,tag:'div',type:3})):_N.push({isPure:$3,operator:_x,text:'',type:2});});return _N.length?_N:$1}(),context:_D,nativeAttrs:{class:'bell-space'+(_p(_K,'vertical',_O.vertical).value?' bell-space-vertical':' bell-space-horizontal')+(_p(_K,'align',_O.align).value?' bell-space-align-'+_v(_p(_K,'align',_O.align).value):'')+(_p(_K,'autoWrap',_O.autoWrap).value?' bell-space-auto-wrap':'')+(_p(_K,'block',_O.block).value?' bell-space-block':'')+(_p(_K,'className',_O.className).value?' '+_v(_p(_K,'className',_O.className).value):'')},operator:_y,tag:'div',type:3}));}})();
+  var template$z = (function(){var $0,$1=void 0,$3=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_O,_P,_N){_N.push(function(_M){_p(_K,'inlineStyle',_O.inlineStyle).value?_M.nativeStyles=_b(_p(_K,'inlineStyle',_O.inlineStyle).value):$1;return _M}({children:function(){var _N=[];_i(_p(_K,'$slot_children',_O.$slot_children),function(_K,_O,_P,_Q){_r(_K,'type',_O.type).value!==2?_N.push(function(_M){_p(_K,'itemStyle',_O.itemStyle).value?_M.nativeStyles=_b(_p(_K,'itemStyle',_O.itemStyle).value):$1;return _M}({children:function(){var _N=[];($0=_q(_K,_K.length-1).value,$0?_N.push($0):$1);return _N.length?_N:$1}(),context:_D,nativeAttrs:{class:'bell-space-item'},operator:_y,tag:'div',type:3})):_N.push({isPure:$3,operator:_x,text:'',type:2});});return _N.length?_N:$1}(),context:_D,nativeAttrs:{class:'bell-space'+(_p(_K,'vertical',_O.vertical).value?' bell-space-vertical':' bell-space-horizontal')+(_p(_K,'align',_O.align).value?' bell-space-align-'+_v(_p(_K,'align',_O.align).value):'')+(_p(_K,'autoWrap',_O.autoWrap).value?' bell-space-auto-wrap':'')+(_p(_K,'block',_O.block).value?' bell-space-block':'')+(_p(_K,'className',_O.className).value?' '+_v(_p(_K,'className',_O.className).value):'')},operator:_y,tag:'div',type:3}));}})();
 
   var Space = Yox.define({
       template: template$z,
@@ -8816,7 +8818,7 @@
       }
   });
 
-  var template$16 = (function(){var $0,$1=void 0,$3=!0,$5={class:'bell-carousel-item'},$6={class:'bell-carousel-list'},$7=0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_O,_P,_N){_N.push(function(_M){_p(_K,'inlineStyle',_O.inlineStyle).value?_M.nativeStyles=_b(_p(_K,'inlineStyle',_O.inlineStyle).value):$1;return _M}({children:function(){var _N=[];_N.push({children:function(){var _N=[];_i(_p(_K,'$slot_children',_O.$slot_children),function(_K,_O,_P,_Q){!_r(_K,'isComment',_O.isComment).value?_N.push({context:_D,operator:_z,props:{delay:'1000'},slots:{$slot_children:function(_L){var _N=[];_N.push({children:function(){var _N=[];($0=_q(_K,_K.length-1).value,$0?_N.push($0):$1);return _N.length?_N:$1}(),context:_D,nativeAttrs:$5,operator:_y,tag:'div',type:3});return _N.length?_N:$1}},tag:'ResizeObserver',type:4}):_N.push({isPure:$3,operator:_x,text:'',type:2});});return _N.length?_N:$1}(),context:_D,nativeAttrs:$6,operator:_y,ref:'list',tag:'div',type:3});_p(_K,'count',_O.count).value>1?_N.push({children:function(){var _N=[];_j($7,_p(_K,'count',_O.count).value,$1,function(_K,_O,_P,_Q,i){_N.push(function(_M){_s(_K,0,'trigger').value===_s(_K,0,'RAW_CLICK').value?_l(_M,'events','click',_e('click','go(i)','click','','go',{execute:function(_R,_S){return [i]}})):_l(_M,'events','mouseenter',_e('mouseenter','go(i)','mouseenter','','go',{execute:function(_R,_S){return [i]}}));return _M}({context:_D,nativeAttrs:{class:'bell-carousel-indicator-item'+(_s(_K,0,'index').value===i?' bell-carousel-indicator-item-active':'')},operator:_y,tag:'div',type:3}));});return _N.length?_N:$1}(),context:_D,nativeAttrs:{class:'bell-carousel-indicator'+(_p(_K,'indicatorType',_O.indicatorType).value?' bell-carousel-indicator-'+_v(_p(_K,'indicatorType',_O.indicatorType).value):'')+(_p(_K,'indicatorPosition',_O.indicatorPosition).value?' bell-carousel-indicator-'+_v(_p(_K,'indicatorPosition',_O.indicatorPosition).value):'')},operator:_y,tag:'div',type:3}):_N.push({isPure:$3,operator:_x,text:'',type:2});return _N.length?_N:$1}(),context:_D,nativeAttrs:{class:'bell-carousel'+(_p(_K,'direction',_O.direction).value?' bell-carousel-'+_v(_p(_K,'direction',_O.direction).value):'')+(_p(_K,'className',_O.className).value?' '+_v(_p(_K,'className',_O.className).value):'')},operator:_y,tag:'div',type:3}));}})();
+  var template$16 = (function(){var $0,$1=void 0,$3=!0,$5={class:'bell-carousel-item'},$6={class:'bell-carousel-list'},$7=0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_O,_P,_N){_N.push(function(_M){_p(_K,'inlineStyle',_O.inlineStyle).value?_M.nativeStyles=_b(_p(_K,'inlineStyle',_O.inlineStyle).value):$1;return _M}({children:function(){var _N=[];_N.push({children:function(){var _N=[];_i(_p(_K,'$slot_children',_O.$slot_children),function(_K,_O,_P,_Q){_r(_K,'type',_O.type).value!==2?_N.push({context:_D,operator:_z,props:{delay:'1000'},slots:{$slot_children:function(_L){var _N=[];_N.push({children:function(){var _N=[];($0=_q(_K,_K.length-1).value,$0?_N.push($0):$1);return _N.length?_N:$1}(),context:_D,nativeAttrs:$5,operator:_y,tag:'div',type:3});return _N.length?_N:$1}},tag:'ResizeObserver',type:4}):_N.push({isPure:$3,operator:_x,text:'',type:2});});return _N.length?_N:$1}(),context:_D,nativeAttrs:$6,operator:_y,ref:'list',tag:'div',type:3});_p(_K,'count',_O.count).value>1?_N.push({children:function(){var _N=[];_j($7,_p(_K,'count',_O.count).value,$1,function(_K,_O,_P,_Q,i){_N.push(function(_M){_s(_K,0,'trigger').value===_s(_K,0,'RAW_CLICK').value?_l(_M,'events','click',_e('click','go(i)','click','','go',{execute:function(_R,_S){return [i]}})):_l(_M,'events','mouseenter',_e('mouseenter','go(i)','mouseenter','','go',{execute:function(_R,_S){return [i]}}));return _M}({context:_D,nativeAttrs:{class:'bell-carousel-indicator-item'+(_s(_K,0,'index').value===i?' bell-carousel-indicator-item-active':'')},operator:_y,tag:'div',type:3}));});return _N.length?_N:$1}(),context:_D,nativeAttrs:{class:'bell-carousel-indicator'+(_p(_K,'indicatorType',_O.indicatorType).value?' bell-carousel-indicator-'+_v(_p(_K,'indicatorType',_O.indicatorType).value):'')+(_p(_K,'indicatorPosition',_O.indicatorPosition).value?' bell-carousel-indicator-'+_v(_p(_K,'indicatorPosition',_O.indicatorPosition).value):'')},operator:_y,tag:'div',type:3}):_N.push({isPure:$3,operator:_x,text:'',type:2});return _N.length?_N:$1}(),context:_D,nativeAttrs:{class:'bell-carousel'+(_p(_K,'direction',_O.direction).value?' bell-carousel-'+_v(_p(_K,'direction',_O.direction).value):'')+(_p(_K,'className',_O.className).value?' '+_v(_p(_K,'className',_O.className).value):'')},operator:_y,tag:'div',type:3}));}})();
 
   var Carousel = Yox.define({
       template: template$16,
@@ -12680,7 +12682,7 @@
   /**
    * 版本
    */
-  var version = "0.31.1";
+  var version = "0.31.2";
   /**
    * 安装插件
    */

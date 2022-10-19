@@ -9,6 +9,7 @@
 // capslock 20
 // cmd 91、93
 // 方向键 37-40
+// 小键盘数字键 96-105
 export function isHelper(keyCode: number) {
   return keyCode >= 37 && keyCode <= 40
   || keyCode >= 16 && keyCode <= 18
@@ -28,5 +29,6 @@ export function isMinus(keyCode: number) {
 }
 
 export function isNumber(keyCode: number) {
-  return keyCode >= 48 && keyCode <= 57
+  return (keyCode >= 48 && keyCode <= 57)
+    || (keyCode >= 96 && keyCode <= 105)
 }
