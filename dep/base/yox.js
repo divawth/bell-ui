@@ -1,5 +1,5 @@
 /**
- * yox.js v1.0.0-alpha.401
+ * yox.js v1.0.0-alpha.404
  * (c) 2017-2022 musicode
  * Released under the MIT License.
  */
@@ -85,6 +85,9 @@
   var KEYPATH_ROOT = '~';
   var KEYPATH_PARENT = '..';
   var KEYPATH_CURRENT = RAW_THIS;
+  var NODE_TYPE_ELEMENT = 1;
+  var NODE_TYPE_TEXT = 3;
+  var NODE_TYPE_COMMENT = 8;
   /**
    * Single instance for window in browser
    */
@@ -730,6 +733,19 @@
       return indexOf(str, part) >= 0;
   }
   /**
+   * str 转成 value 为 true 的 map
+   *
+   * @param str
+   * @param separator
+   */
+  function toMap$1(str, separator) {
+      var map = Object.create(NULL$1);
+      each$2(str.split(separator || ','), function (item) {
+          map[item] = TRUE$1;
+      });
+      return map;
+  }
+  /**
    * 判断长度大于 0 的字符串
    *
    * @param str
@@ -756,6 +772,7 @@
     upper: upper,
     lower: lower,
     has: has$1,
+    toMap: toMap$1,
     falsy: falsy$1
   });
 
@@ -1483,6 +1500,7 @@
   var MODEL_DESTROY = '$model_destroy';
   var EVENT_DESTROY = '$event_destroy';
   var DIRECTIVE_HOOKS = '$directive_hooks';
+  var DIRECTIVE_UPDATING = '$directive_updating';
 
   function addEvent$1(api, element, component, data, key, lazy, event) {
       var name = event.name;
@@ -1519,7 +1537,7 @@
           delete data[EVENT_DESTROY + key];
       };
   }
-  function afterCreate$4(api, vnode) {
+  function afterCreate$5(api, vnode) {
       var events = vnode.events;
       if (events) {
           var element = vnode.node, component = vnode.component, lazy = vnode.lazy, data = vnode.data;
@@ -1528,7 +1546,7 @@
           }
       }
   }
-  function afterUpdate$3(api, vnode, oldVNode) {
+  function afterUpdate$4(api, vnode, oldVNode) {
       var newEvents = vnode.events, oldEvents = oldVNode.events;
       if (newEvents !== oldEvents) {
           var element = vnode.node, component = vnode.component, lazy = vnode.lazy, data = vnode.data;
@@ -1565,7 +1583,7 @@
           }
       }
   }
-  function beforeDestroy$2(api, vnode) {
+  function beforeDestroy$3(api, vnode) {
       var events = vnode.events, data = vnode.data;
       if (events) {
           for (var key in events) {
@@ -1579,9 +1597,9 @@
 
   var eventHook = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    afterCreate: afterCreate$4,
-    afterUpdate: afterUpdate$3,
-    beforeDestroy: beforeDestroy$2
+    afterCreate: afterCreate$5,
+    afterUpdate: afterUpdate$4,
+    beforeDestroy: beforeDestroy$3
   });
 
   function debounceIfNeeded(fn, lazy) {
@@ -1712,13 +1730,13 @@
           };
       }
   }
-  function afterCreate$3(api, vnode) {
+  function afterCreate$4(api, vnode) {
       var model = vnode.model;
       if (model) {
           addModel(api, vnode.node, vnode.component, vnode.data, vnode);
       }
   }
-  function afterUpdate$2(api, vnode, oldVNode) {
+  function afterUpdate$3(api, vnode, oldVNode) {
       var data = vnode.data, newModel = vnode.model, oldModel = oldVNode.model;
       if (newModel) {
           var element = vnode.node, component = vnode.component;
@@ -1745,7 +1763,7 @@
           data[MODEL_DESTROY]();
       }
   }
-  function beforeDestroy$1(api, vnode) {
+  function beforeDestroy$2(api, vnode) {
       var data = vnode.data, destroy = data[MODEL_DESTROY];
       if (destroy) {
           destroy();
@@ -1754,12 +1772,12 @@
 
   var modelHook = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    afterCreate: afterCreate$3,
-    afterUpdate: afterUpdate$2,
-    beforeDestroy: beforeDestroy$1
+    afterCreate: afterCreate$4,
+    afterUpdate: afterUpdate$3,
+    beforeDestroy: beforeDestroy$2
   });
 
-  function afterCreate$2(api, vnode) {
+  function afterCreate$3(api, vnode) {
       var nativeAttrs = vnode.nativeAttrs;
       if (nativeAttrs) {
           var element = vnode.node;
@@ -1768,7 +1786,7 @@
           }
       }
   }
-  function afterUpdate$1(api, vnode, oldVNode) {
+  function afterUpdate$2(api, vnode, oldVNode) {
       var newNativeAttrs = vnode.nativeAttrs, oldNativeAttrs = oldVNode.nativeAttrs;
       if (newNativeAttrs !== oldNativeAttrs) {
           var element = vnode.node;
@@ -1794,11 +1812,11 @@
 
   var nativeAttrHook = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    afterCreate: afterCreate$2,
-    afterUpdate: afterUpdate$1
+    afterCreate: afterCreate$3,
+    afterUpdate: afterUpdate$2
   });
 
-  function afterCreate$1(api, vnode) {
+  function afterCreate$2(api, vnode) {
       var nativeStyles = vnode.nativeStyles;
       if (nativeStyles) {
           var elementStyle = vnode.node.style;
@@ -1807,7 +1825,7 @@
           }
       }
   }
-  function afterUpdate(api, vnode, oldVNode) {
+  function afterUpdate$1(api, vnode, oldVNode) {
       var newNativeStyles = vnode.nativeStyles, oldNativeStyles = oldVNode.nativeStyles;
       if (newNativeStyles !== oldNativeStyles) {
           var elementStyle = vnode.node.style;
@@ -1833,8 +1851,79 @@
 
   var nativeStyleHook = /*#__PURE__*/Object.freeze({
     __proto__: null,
+    afterCreate: afterCreate$2,
+    afterUpdate: afterUpdate$1
+  });
+
+  function callDirectiveCreate(data, vnode, directive) {
+      data[DIRECTIVE_HOOKS + directive.name] = directive.create(vnode.component || vnode.node, directive, vnode);
+  }
+  function callDirectiveHook(data, vnode, directive, hookName) {
+      var hooks = data[DIRECTIVE_HOOKS + directive.name], hook = hooks && hooks[hookName];
+      if (hook) {
+          hook(directive, vnode);
+      }
+  }
+  function afterCreate$1(api, vnode) {
+      var directives = vnode.directives;
+      if (directives) {
+          var data = vnode.data;
+          for (var name in directives) {
+              callDirectiveCreate(data, vnode, directives[name]);
+          }
+      }
+  }
+  function beforeUpdate$1(api, vnode, oldVNode) {
+      var newDirectives = vnode.directives, oldDirectives = oldVNode.directives, data = vnode.data;
+      // 先触发 beforeDestroy 比较符合直觉
+      if (oldDirectives) {
+          var newValue = newDirectives || EMPTY_OBJECT;
+          for (var name in oldDirectives) {
+              if (newValue[name] === UNDEFINED$1) {
+                  callDirectiveHook(data, vnode, oldDirectives[name], 'beforeDestroy');
+              }
+          }
+      }
+      if (newDirectives) {
+          var oldValue = oldDirectives || EMPTY_OBJECT, updatingDirectives = [];
+          for (var name$1 in newDirectives) {
+              var directive = newDirectives[name$1];
+              if (oldValue[name$1] === UNDEFINED$1) {
+                  callDirectiveCreate(data, vnode, directive);
+              }
+              else if (directive.value !== oldValue[name$1].value) {
+                  callDirectiveHook(data, vnode, directive, 'beforeUpdate');
+                  updatingDirectives.push(directive);
+              }
+          }
+          data[DIRECTIVE_UPDATING] = updatingDirectives;
+      }
+  }
+  function afterUpdate(api, vnode, oldVNode) {
+      var data = vnode.data, directives = data[DIRECTIVE_UPDATING];
+      if (directives) {
+          for (var i = 0, length = directives.length; i < length; i++) {
+              callDirectiveHook(data, vnode, directives[i], 'afterUpdate');
+          }
+          data[DIRECTIVE_UPDATING] = UNDEFINED$1;
+      }
+  }
+  function beforeDestroy$1(api, vnode) {
+      var directives = vnode.directives;
+      if (directives) {
+          var data = vnode.data;
+          for (var name in directives) {
+              callDirectiveHook(data, vnode, directives[name], 'beforeDestroy');
+          }
+      }
+  }
+
+  var directiveHook = /*#__PURE__*/Object.freeze({
+    __proto__: null,
     afterCreate: afterCreate$1,
-    afterUpdate: afterUpdate
+    beforeUpdate: beforeUpdate$1,
+    afterUpdate: afterUpdate,
+    beforeDestroy: beforeDestroy$1
   });
 
   function afterCreate(api, vnode) {
@@ -1899,36 +1988,6 @@
     beforeDestroy: beforeDestroy
   });
 
-  function createDirective$1(vnode) {
-      var directives = vnode.directives;
-      if (directives) {
-          var node = vnode.component || vnode.node;
-          if (node) {
-              var data = vnode.data;
-              for (var key in directives) {
-                  var directive = directives[key];
-                  var create = directive.create;
-                  data[DIRECTIVE_HOOKS + directive.name] = create(node, directive, vnode);
-              }
-          }
-      }
-  }
-  function callDirectiveHooks(vnode, name) {
-      var directives = vnode.directives;
-      if (directives) {
-          var data = vnode.data;
-          for (var key in directives) {
-              var directive = directives[key], hooks = data[DIRECTIVE_HOOKS + directive.name];
-              if (hooks) {
-                  var hook = hooks[name];
-                  if (hook) {
-                      hook(directive, vnode);
-                  }
-              }
-          }
-      }
-  }
-
   function getFragmentHostNode(api, vnode) {
       if (vnode.type === VNODE_TYPE_FRAGMENT
           || vnode.type === VNODE_TYPE_SLOT) {
@@ -1952,7 +2011,7 @@
       vnode.node = node;
       vnode.parentNode = oldVNode.parentNode;
       if (vnode.text !== oldVNode.text) {
-          api.setText(node, vnode.text, vnode.isStyle, vnode.isOption);
+          api.setNodeText(node, vnode.text);
       }
   }
   function elementVNodeEnterOperator(vnode) {
@@ -2036,7 +2095,8 @@
       nativeStyleHook,
       refHook,
       eventHook,
-      modelHook ];
+      modelHook,
+      directiveHook ];
   var vnodeHooksLength = vnodeHooksList.length;
   function callVNodeHooks(name, args) {
       for (var i = 0; i < vnodeHooksLength; i++) {
@@ -2053,36 +2113,35 @@
               addVNodes(api, node, vnode.children);
           }
           else if (vnode.text) {
-              api.setText(node, vnode.text, vnode.isStyle, vnode.isOption);
+              api.setElementText(node, vnode.text);
           }
           else if (vnode.html) {
-              api.setHtml(node, vnode.html, vnode.isStyle, vnode.isOption);
+              api.setHtml(node, vnode.html);
           }
           if (!vnode.isPure) {
               vnode.data = {};
           }
           callVNodeHooks('afterCreate', [api, vnode]);
-          createDirective$1(vnode);
       },
       update: function(api, vnode, oldVNode) {
           var node = oldVNode.node;
           vnode.node = node;
           vnode.parentNode = oldVNode.parentNode;
           vnode.data = oldVNode.data;
+          if (!vnode.isPure && oldVNode.isPure) {
+              vnode.data = {};
+          }
           callVNodeHooks('beforeUpdate', [api, vnode, oldVNode]);
-          callDirectiveHooks(vnode, 'beforeUpdate');
           var text = vnode.text;
           var html = vnode.html;
           var children = vnode.children;
-          var isStyle = vnode.isStyle;
-          var isOption = vnode.isOption;
           var oldText = oldVNode.text, oldHtml = oldVNode.html, oldChildren = oldVNode.children;
           if (string$1(text)) {
               if (oldChildren) {
                   removeVNodes(api, oldChildren);
               }
               if (text !== oldText) {
-                  api.setText(node, text, isStyle, isOption);
+                  api.setElementText(node, text);
               }
           }
           else if (string$1(html)) {
@@ -2090,7 +2149,7 @@
                   removeVNodes(api, oldChildren);
               }
               if (html !== oldHtml) {
-                  api.setHtml(node, html, isStyle, isOption);
+                  api.setHtml(node, html);
               }
           }
           else if (children) {
@@ -2103,7 +2162,7 @@
               // 有新的没旧的 - 新增节点
               else {
                   if (oldText || oldHtml) {
-                      api.setText(node, EMPTY_STRING, isStyle);
+                      api.setElementText(node, EMPTY_STRING);
                   }
                   addVNodes(api, node, children);
               }
@@ -2114,17 +2173,15 @@
           }
           // 有旧的 text 没有新的 text
           else if (oldText || oldHtml) {
-              api.setText(node, EMPTY_STRING, isStyle);
+              api.setElementText(node, EMPTY_STRING);
           }
           callVNodeHooks('afterUpdate', [api, vnode, oldVNode]);
-          callDirectiveHooks(vnode, 'afterUpdate');
       },
       destroy: function(api, vnode) {
           if (vnode.isPure) {
               return;
           }
           callVNodeHooks('beforeDestroy', [api, vnode]);
-          callDirectiveHooks(vnode, 'beforeDestroy');
           var children = vnode.children;
           if (children) {
               for (var i = 0, length = children.length; i < length; i++) {
@@ -2185,7 +2242,6 @@
               return;
           }
           callVNodeHooks('beforeUpdate', [api, vnode, oldVNode]);
-          callDirectiveHooks(vnode, 'beforeUpdate');
           var component = vnode.component;
           var slots = vnode.slots;
           if (component) {
@@ -2205,13 +2261,11 @@
               }
           }
           callVNodeHooks('afterUpdate', [api, vnode, oldVNode]);
-          callDirectiveHooks(vnode, 'afterUpdate');
       },
       destroy: function(api, vnode) {
           var component = vnode.component;
           if (component) {
               callVNodeHooks('beforeDestroy', [api, vnode]);
-              callDirectiveHooks(vnode, 'beforeDestroy');
               component.destroy();
               // 移除时，组件可能已经发生过变化，即 shadow 不是创建时那个对象了
               vnode.shadow = component.$vnode;
@@ -2335,7 +2389,6 @@
           vnode.data = {};
           vnode.node = getFragmentHostNode(api, vnode);
           callVNodeHooks('afterCreate', [api, vnode]);
-          createDirective$1(vnode);
       },
       update: function(api, vnode, oldVNode) {
           var parentNode = oldVNode.parentNode;
@@ -2343,14 +2396,11 @@
           vnode.parentNode = parentNode;
           vnode.data = oldVNode.data;
           callVNodeHooks('beforeUpdate', [api, vnode, oldVNode]);
-          callDirectiveHooks(vnode, 'beforeUpdate');
           vnodeUpdateChildrenOperator(api, parentNode, vnode, oldVNode);
           callVNodeHooks('afterUpdate', [api, vnode, oldVNode]);
-          callDirectiveHooks(vnode, 'afterUpdate');
       },
       destroy: function(api, vnode) {
           callVNodeHooks('beforeDestroy', [api, vnode]);
-          callDirectiveHooks(vnode, 'beforeDestroy');
           vnodeDestroyChildrenOperator(api, vnode);
       },
       insert: vnodeInsertChildrenOperator,
@@ -2383,7 +2433,6 @@
       vnode.shadow = child.$vnode;
       data[LOADING] = FALSE$1;
       callVNodeHooks('afterCreate', [api, vnode]);
-      createDirective$1(vnode);
       return child;
   }
   function createVNode(api, vnode) {
@@ -2405,7 +2454,6 @@
       operator.insert(api, parentNode, vnode, before);
       vnode.parentNode = parentNode;
       callVNodeHooks('afterMount', [api, vnode]);
-      callDirectiveHooks(vnode, 'afterMount');
       operator.enter(vnode);
   }
   function removeVNodes(api, vnodes, startIndex, endIndex) {
@@ -2569,19 +2617,19 @@
           parentNode: api.parent(node),
       };
       switch (node.nodeType) {
-          case 1:
+          case NODE_TYPE_ELEMENT:
               vnode.data = {};
               vnode.tag = api.tag(node);
               vnode.type = VNODE_TYPE_ELEMENT;
               vnode.operator = elementVNodeOperator;
               break;
-          case 3:
+          case NODE_TYPE_TEXT:
               vnode.isPure = TRUE$1;
               vnode.text = node.nodeValue;
               vnode.type = VNODE_TYPE_TEXT;
               vnode.operator = textVNodeOperator;
               break;
-          case 8:
+          case NODE_TYPE_COMMENT:
               vnode.isPure = TRUE$1;
               vnode.text = node.nodeValue;
               vnode.type = VNODE_TYPE_COMMENT;
@@ -2611,8 +2659,6 @@
           operator: vnode.operator,
           tag: vnode.tag,
           isSvg: vnode.isSvg,
-          isStyle: vnode.isStyle,
-          isOption: vnode.isOption,
           isStatic: vnode.isStatic,
           isPure: vnode.isPure,
           slots: vnode.slots,
@@ -2764,8 +2810,6 @@
           dynamicTag: dynamicTag,
           isSvg: isSvg,
           isStyle: isStyle,
-          // 只有 <option> 没有 value 属性时才为 true
-          isOption: FALSE$1,
           isStatic: isNative,
           isNative: isNative,
           isVirtual: isVirtual,
@@ -2824,25 +2868,18 @@
       };
   }
 
-  function split2Map(str) {
-      var map = Object.create(NULL$1);
-      each$2(str.split(','), function (item) {
-          map[item] = TRUE$1;
-      });
-      return map;
-  }
   var // 首字母大写，或中间包含 -
   componentNamePattern = /^[A-Z]|-/, 
   // HTML 实体（中间最多 6 位，没见过更长的）
   htmlEntityPattern = /&[#\w\d]{2,6};/, 
   // 常见的自闭合标签
-  selfClosingTagNames = split2Map('area,base,embed,track,source,param,input,col,img,br,hr') , 
+  selfClosingTagNames = toMap$1('area,base,embed,track,source,param,input,col,img,br,hr') , 
   // 常见的 svg 标签
-  svgTagNames = split2Map('svg,g,defs,desc,metadata,symbol,use,image,path,rect,circle,line,ellipse,polyline,polygon,text,tspan,tref,textpath,marker,pattern,clippath,mask,filter,cursor,view,animate,font,font-face,glyph,missing-glyph,animateColor,animateMotion,animateTransform,textPath,foreignObject') , 
+  svgTagNames = toMap$1('svg,g,defs,desc,metadata,symbol,use,image,path,rect,circle,line,ellipse,polyline,polygon,text,tspan,tref,textpath,marker,pattern,clippath,mask,filter,cursor,view,animate,font,font-face,glyph,missing-glyph,animateColor,animateMotion,animateTransform,textPath,foreignObject') , 
   // 常见的数字类型的属性（width,height,cellpadding,cellspacing 支持百分比，因此不计入数字类型）
-  numberAttributeNames = split2Map('min,minlength,max,maxlength,step,size,rows,cols,tabindex,colspan,rowspan,frameborder') , 
+  numberAttributeNames = toMap$1('min,minlength,max,maxlength,step,size,rows,cols,tabindex,colspan,rowspan,frameborder') , 
   // 常见的布尔类型的属性
-  booleanAttributeNames = split2Map('disabled,checked,required,multiple,readonly,autofocus,autoplay,reversed,selected,controls,default,loop,muted,novalidate,draggable,contenteditable,hidden,spellcheck,allowfullscreen') ;
+  booleanAttributeNames = toMap$1('disabled,checked,required,multiple,readonly,autofocus,autoplay,reversed,selected,controls,default,loop,muted,novalidate,draggable,contenteditable,hidden,spellcheck,allowfullscreen') ;
   function isSelfClosing(tagName) {
       return selfClosingTagNames[tagName] !== UNDEFINED$1;
   }
@@ -2930,9 +2967,8 @@
       return createElement$2(staticTag, dynamicTag, isSvg, isStyle, isComponent);
   }
   function compatElement(element) {
-      var tag = element.tag;
       var attrs = element.attrs;
-      var hasType = FALSE$1, hasValue = FALSE$1;
+      var hasType = FALSE$1;
       if (attrs) {
           each$2(attrs, function (attr) {
               var name = attr.type === ATTRIBUTE
@@ -2940,9 +2976,6 @@
                   : UNDEFINED$1;
               if (name === 'type') {
                   hasType = TRUE$1;
-              }
-              else if (name === 'value') {
-                  hasValue = TRUE$1;
               }
           });
       }
@@ -2954,12 +2987,8 @@
           attr.value = 'text/css';
           push(element.attrs || (element.attrs = []), attr);
       }
-      // 低版本 IE 需要给 option 标签强制加 value
-      else if (tag === 'option' && !hasValue) {
-          element.isOption = TRUE$1;
-      }
   }
-  function setElementText(element, text) {
+  function setElementText$1(element, text) {
       if (string$1(text)) {
           if (htmlEntityPattern.test(text)) {
               element.html = text;
@@ -4430,12 +4459,12 @@
           // 需要在这特殊处理的是 html 实体
           // 但这只是 WEB 平台的特殊逻辑，所以丢给 platform 处理
           if (element.isNative
-              && setElementText(element, child.text)) {
+              && setElementText$1(element, child.text)) {
               element.children = UNDEFINED$1;
           }
       }, processElementSingleExpression = function (element, child) {
           if (element.isNative) {
-              if (child.safe && setElementText(element, child.expr)
+              if (child.safe && setElementText$1(element, child.expr)
                   || !child.safe && setElementHtml(element, child.expr)) {
                   element.children = UNDEFINED$1;
               }
@@ -4620,7 +4649,7 @@
               replaceChild(element);
           }
           // 处理浏览器兼容问题
-          else if (tag !== TAG_SLOT) {
+          else if (element.isNative) {
               compatElement(element);
           }
       }, checkAttribute = function (element, attr) {
@@ -5527,7 +5556,9 @@
 
   var QUOTE_DOUBLE = '"', QUOTE_SINGLE = "'";
   // 下面这些值需要根据外部配置才能确定
-  var isUglify$1 = UNDEFINED$1, isMinify = UNDEFINED$1, varId = 0, varMap = {}, varCache = {}, VAR_PREFIX = EMPTY_STRING, TEMP = EMPTY_STRING, UNDEFINED = EMPTY_STRING, NULL = EMPTY_STRING, TRUE = EMPTY_STRING, FALSE = EMPTY_STRING, SPACE = EMPTY_STRING, INDENT = EMPTY_STRING, BREAK_LINE = EMPTY_STRING;
+  var isUglify$1 = UNDEFINED$1, isMinify = UNDEFINED$1, 
+  // 保留字，避免 IE 出现 { class: 'xx' } 报错
+  reservedWords = toMap$1('abstract,goto,native,static,enum,implements,package,super,byte,export,import,private,protected,public,synchronized,char,extends,int,throws,class,final,interface,transient,yield,let,const,float,double,boolean,long,short,volatile,default'), varId = 0, varMap = {}, varCache = {}, VAR_PREFIX = EMPTY_STRING, TEMP = EMPTY_STRING, UNDEFINED = EMPTY_STRING, NULL = EMPTY_STRING, TRUE = EMPTY_STRING, FALSE = EMPTY_STRING, SPACE = EMPTY_STRING, INDENT = EMPTY_STRING, BREAK_LINE = EMPTY_STRING;
   var Primitive = function(value) {
       this.value = value;
   };
@@ -5839,7 +5870,7 @@
       return ("" + quote + (value.replace(/\n\s*/g, '\\n')) + quote);
   }
   function toObjectPair(key, value) {
-      if (!/^[\w$]+$/.test(key)) {
+      if (!/^[\w$]+$/.test(key) || reservedWords[key]) {
           key = toStringLiteral(key);
       }
       return (key + ":" + SPACE + value);
@@ -6774,12 +6805,6 @@
               ? toBinary(renderSlot, '||', outputChildren)
               : renderSlot;
       }
-      if (node.isOption) {
-          vnode.set('isOption', PRIMITIVE_TRUE);
-      }
-      if (node.isStyle) {
-          vnode.set('isStyle', PRIMITIVE_TRUE);
-      }
       if (node.isSvg) {
           vnode.set('isSvg', PRIMITIVE_TRUE);
       }
@@ -7613,7 +7638,12 @@
 
   var guid$1 = 0, 
   // 这里先写 IE9 支持的接口
-  textContent = 'textContent', innerHTML = 'innerHTML', cssFloat = 'cssFloat', createEvent = function (event, node) {
+  // 文本或注释节点设置内容的属性
+  textContent = 'textContent', 
+  // 元素节点设置 text 的属性
+  innerText = textContent, 
+  // 元素节点设置 html 的属性
+  innerHTML = 'innerHTML', cssFloat = 'cssFloat', createEvent = function (event, node) {
       return event;
   }, findElement = function (selector) {
       var node = DOCUMENT.querySelector(selector);
@@ -7767,25 +7797,27 @@
   }
   var find = findElement;
   function tag(node) {
-      if (node.nodeType === 1) {
+      if (node.nodeType === NODE_TYPE_ELEMENT) {
           return lower(node.tagName);
       }
   }
-  function getText(node) {
+  function getNodeText(node) {
       return node[textContent];
   }
-  function setText(node, text, isStyle, isOption) {
-      {
-          node[textContent] = text;
-      }
+  function setNodeText(node, text) {
+      node[textContent] = text;
+  }
+  function getElementText(node) {
+      return node[innerText];
+  }
+  function setElementText(node, text) {
+      node[innerText] = text;
   }
   function getHtml(node) {
       return node[innerHTML];
   }
-  function setHtml(node, html, isStyle, isOption) {
-      {
-          node[innerHTML] = html;
-      }
+  function setHtml(node, html) {
+      node[innerHTML] = html;
   }
   var addClass = addElementClass;
   var removeClass = removeElementClass;
@@ -7887,8 +7919,10 @@
     next: next,
     find: find,
     tag: tag,
-    getText: getText,
-    setText: setText,
+    getNodeText: getNodeText,
+    setNodeText: setNodeText,
+    getElementText: getElementText,
+    setElementText: setElementText,
     getHtml: getHtml,
     setHtml: setHtml,
     addClass: addClass,
@@ -9404,7 +9438,7 @@
   /**
    * core 版本
    */
-  Yox.version = "1.0.0-alpha.401";
+  Yox.version = "1.0.0-alpha.404";
   /**
    * 方便外部共用的通用逻辑，特别是写插件，减少重复代码
    */
