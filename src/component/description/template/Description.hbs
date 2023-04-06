@@ -41,7 +41,10 @@ class="${prefix}description
                 >
                   {{this.label}}
                 </div>
-                <div class="${prefix}description-item-content">
+                <div
+                  class="${prefix}description-item-content
+                  {{#if this.highlight}} ${prefix}description-item-content-highlight{{/if}}"
+                >
                   <slot name="{{this.name}}" />
                 </div>
               </div>
@@ -61,7 +64,8 @@ class="${prefix}description
               {{this.label}}
             </td>
             <td
-              class="${prefix}description-cell ${prefix}description-item-content"
+              class="${prefix}description-cell ${prefix}description-item-content
+              {{#if this.highlight}} ${prefix}description-item-content-highlight{{/if}}"
               {{#if this.span > 1}}
                 colspan="{{this.span * 2 - 1}}"
               {{/if}}

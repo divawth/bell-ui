@@ -3,6 +3,7 @@ import Yox from 'yox'
 import {
   RAW_STRING,
   RAW_NUMERIC,
+  RAW_BOOLEAN,
 } from '../constant'
 
 export default Yox.define({
@@ -15,6 +16,9 @@ export default Yox.define({
     },
     span: {
       type: RAW_NUMERIC,
+    },
+    highlight: {
+      type: RAW_BOOLEAN,
     }
   },
 

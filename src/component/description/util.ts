@@ -6,6 +6,7 @@ type DescriptionItem = {
   label: string
   name: string
   span: number
+  highlight: boolean
 }
 
 export function addSlots2Props(instance: YoxInterface, children: VNode[], props: Record<string, any>, column: number) {
@@ -20,7 +21,7 @@ export function addSlots2Props(instance: YoxInterface, children: VNode[], props:
     function (vnode: any) {
       if (vnode.tag === 'DescriptionItem') {
 
-        const { label, span } = vnode.props
+        const { label, span, highlight } = vnode.props
         const name = 'cell' + index++
 
         if (!columnArray) {
@@ -37,6 +38,7 @@ export function addSlots2Props(instance: YoxInterface, children: VNode[], props:
           label,
           name,
           span: spanCount,
+          highlight,
         }
 
         columnArray.push(columnItem)

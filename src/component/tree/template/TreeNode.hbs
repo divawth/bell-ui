@@ -51,7 +51,7 @@
       {{/if}}
     </div>
 
-    {{#if checkable}}
+    {{#if node.checkable !== false && checkable}}
       <Checkbox
         checked="{{checked}}"
         disabled="{{node.disabled}}"
