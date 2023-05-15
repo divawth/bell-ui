@@ -172,59 +172,6 @@ export default Yox.define({
       }
       this.changeValue()
     },
-    handleKeydown(event: CustomEventInterface) {
-      event.stop()
-
-      if (this.get('isComposition')) {
-        return
-      }
-
-      const { metaKey, ctrlKey, shiftKey, keyCode } = event.originalEvent as KeyboardEvent
-      // 组合键可放行
-      if (metaKey || ctrlKey || shiftKey || isHelper(keyCode)) {
-        return
-      }
-
-      // 在这控制一些非法字符，可以避免光标因为重置 value 而跳到最后的问题
-
-      const textInputElement = this.getTextInput()
-
-      const isFirstChar = textInputElement.selectionStart === textInputElement.selectionEnd
-        && textInputElement.selectionStart === 0
-
-      const inputStringValue = this.get('inputStringValue')
-
-      if (isFirstChar) {
-        if (inputStringValue.indexOf('-') < 0) {
-          // 第一个字符，只能输入 - 和 数字
-          if (isNumber(keyCode) || isMinus(keyCode)) {
-            return
-          }
-        }
-        event.prevent()
-      }
-      else {
-        const dotIndex = inputStringValue.indexOf('.')
-
-        // 不在首位时，只能输入 . 和数字
-        if (isNumber(keyCode)) {
-          const customPrecision = this.get('customPrecision')
-          const precisionLength = dotIndex > 0 ? inputStringValue.substr(dotIndex + 1).length : 0
-          if (customPrecision >= 0 && precisionLength >= customPrecision) {
-            event.prevent()
-          }
-        }
-        else if (isDot(keyCode)) {
-          if (dotIndex > 0) {
-            event.prevent()
-          }
-        }
-        else {
-          event.prevent()
-        }
-      }
-
-    },
     handleKeyup(event: CustomEventInterface) {
       event.stop()
     },
