@@ -8,7 +8,7 @@
     type="{{type}}"
     loading="{{loading}}"
     disabled="{{disabled}}"
-    on-click="onButtonClick()"
+    on-click="handleButtonClick()"
   >
     <slot />
   </Button>
@@ -45,7 +45,7 @@
           {{/if}}"
 
           {{#if !this.disabled}}
-            on-click="onItemClick(this, index)"
+            on-click="handleItemClick(this, index)"
           {{/if}}
         >
           {{this.text}}

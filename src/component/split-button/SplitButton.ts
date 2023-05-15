@@ -103,7 +103,7 @@ export default Yox.define({
   },
 
   methods: {
-    onButtonClick(event: CustomEventInterface) {
+    handleButtonClick(event: CustomEventInterface) {
       event.stop()
       fireClickEvent(event)
       this.fire(
@@ -113,8 +113,11 @@ export default Yox.define({
         }
       )
     },
-    onItemClick(item, index) {
+    handleItemClick(item, index) {
       this.set('isMenuVisible', FALSE)
+      if (item.onClick) {
+        item.onClick()
+      }
       this.fire(
         {
           type: 'select',
