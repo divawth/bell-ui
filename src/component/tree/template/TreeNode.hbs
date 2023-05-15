@@ -66,8 +66,10 @@
       {{#if !node.disabled}}
         {{#if selectable}}
           on-click="onSelectClick()"
-        {{else if checkable}}
+        {{else if node.checkable !== false && checkable}}
           on-click="onCheckClick()"
+        {{else if !isLeaf && !loading}}
+          on-click="onExpandClick()"
         {{/if}}
       {{/if}}
     >
