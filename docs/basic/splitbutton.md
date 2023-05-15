@@ -15,6 +15,7 @@ export default {
     menu: [
       { text: '创建' },
       { text: '删除', disabled: true },
+      { text: '删除', onClick() { alert('delete') }}
     ]
   },
   methods: {
