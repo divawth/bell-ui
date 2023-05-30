@@ -22,7 +22,6 @@ import {
 
 import {
   TRUE,
-  FALSE,
   RAW_DATE,
   RAW_STRING,
   RAW_NUMBER,
@@ -74,11 +73,8 @@ export default Yox.define({
 
   computed: {
     date(): SimpleDate {
-      const checkedDate = this.get('checkedDate')
       return toSimpleDate(
-        checkedDate
-          ? toTimestamp(checkedDate)
-          : this.get('timestamp')
+        this.get('timestamp')
       )
     },
     datasource(): DateRow[] {
@@ -132,6 +128,7 @@ export default Yox.define({
         event.stop()
         // @ts-ignore
         const date = new Date(this.get('timestamp'))
+        date.setDate(1)
         date.setMonth(data.month - 1)
         // @ts-ignore
         this.set({
@@ -143,10 +140,19 @@ export default Yox.define({
   ],
 
   methods: {
-    offset(offset: number) {
-      this.set(
-        'timestamp',
-        offsetMonth(this.get('timestamp'), offset)
+    increaseMonth(offset: number) {
+      const timestamp = offsetMonth(this.get('timestamp'), offset)
+      this.set({
+        timestamp,
+      })
+      this.fire(
+        {
+          type: 'defaultDateChange',
+          ns: 'week',
+        },
+        {
+          timestamp,
+        }
       )
     },
     click(colIndex: number) {

@@ -10,14 +10,14 @@
 
     <div class="${prefix}date-picker-header">
       <div class="${prefix}date-picker-prev">
-        <span class="${prefix}date-picker-header-button" on-click="decrease('year', 10)">
+        <span class="${prefix}date-picker-header-button" on-click="increaseYear(-10)">
           <Icon
             name="arrow-left-line"
             className="${prefix}date-picker-header-icon"
           />
         </span>
 
-        <span class="${prefix}date-picker-header-button" on-click="decrease('year', 1)">
+        <span class="${prefix}date-picker-header-button" on-click="increaseYear(-1)">
           <Icon
             name="arrow-left-s-line"
             className="${prefix}date-picker-header-icon"
@@ -38,14 +38,14 @@
       </span>
 
       <div class="${prefix}date-picker-next">
-        <span class="${prefix}date-picker-header-button" on-click="increase('year', 1)">
+        <span class="${prefix}date-picker-header-button" on-click="increaseYear(1)">
           <Icon
             name="arrow-right-s-line"
             className="${prefix}date-picker-header-icon"
           />
         </span>
 
-        <span class="${prefix}date-picker-header-button" on-click="increase('year', 10)">
+        <span class="${prefix}date-picker-header-button" on-click="increaseYear(10)">
           <Icon
             name="arrow-right-line"
             className="${prefix}date-picker-header-icon"

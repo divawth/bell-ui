@@ -144,6 +144,7 @@ export default Yox.define({
         event.stop()
         // @ts-ignore
         const date = new Date(this.get('timestamp'))
+        date.setDate(1)
         date.setMonth(data.month - 1)
         // @ts-ignore
         this.set({
@@ -155,10 +156,19 @@ export default Yox.define({
   ],
 
   methods: {
-    offset(offset: number) {
-      this.set(
-        'timestamp',
-        offsetMonth(this.get('timestamp'), offset)
+    increaseMonth(offset: number) {
+      const timestamp = offsetMonth(this.get('timestamp'), offset)
+      this.set({
+        timestamp,
+      })
+      this.fire(
+        {
+          type: 'defaultDateChange',
+          ns: 'date',
+        },
+        {
+          timestamp,
+        }
       )
     },
     click(item: SimpleDate) {

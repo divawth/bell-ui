@@ -10,14 +10,14 @@
 
     <div class="${prefix}date-picker-header">
       <div class="${prefix}date-picker-prev">
-        <span class="${prefix}date-picker-header-button" on-click="offset(-12)">
+        <span class="${prefix}date-picker-header-button" on-click="increaseMonth(-12)">
           <Icon
             name="arrow-left-line"
             className="${prefix}date-picker-header-icon"
           />
         </span>
 
-        <span class="${prefix}date-picker-header-button" on-click="offset(-1)">
+        <span class="${prefix}date-picker-header-button" on-click="increaseMonth(-1)">
           <Icon
             name="arrow-left-s-line"
             className="${prefix}date-picker-header-icon"
@@ -49,14 +49,14 @@
       </span>
 
       <div class="${prefix}date-picker-next">
-        <span class="${prefix}date-picker-header-button" on-click="offset(12)">
+        <span class="${prefix}date-picker-header-button" on-click="increaseMonth(12)">
           <Icon
             name="arrow-right-s-line"
             className="${prefix}date-picker-header-icon"
           />
         </span>
 
-        <span class="${prefix}date-picker-header-button" on-click="offset(1)">
+        <span class="${prefix}date-picker-header-button" on-click="increaseMonth(1)">
           <Icon
             name="arrow-right-line"
             className="${prefix}date-picker-header-icon"

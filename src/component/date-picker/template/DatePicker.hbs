@@ -104,7 +104,7 @@
 
     {{#if type === RAW_TYPE_DATE}}
       <DateView
-        defaultDate="{{defaultSimpleDate.timestamp}}"
+        defaultDate="{{defaultStartSimpleDate.timestamp}}"
         checkedDate="{{value}}"
         disabledDate="{{disabledDate}}"
         canPickYear
@@ -113,27 +113,27 @@
     {{else if type === RAW_TYPE_DATE_RANGE}}
       <DateRange
         splitPanel="{{splitPanel}}"
-        defaultStartDate="{{defaultSimpleDate.timestamp}}"
+        defaultStartDate="{{defaultStartSimpleDate.timestamp}}"
         checkedStartDate="{{value[0]}}"
-        defaultEndDate="{{defaultSimpleDate.timestamp}}"
+        defaultEndDate="{{defaultEndSimpleDate.timestamp}}"
         checkedEndDate="{{value[1]}}"
         disabledDate="{{disabledDate}}"
       />
     {{else if type === RAW_TYPE_WEEK}}
       <DateWeek
-        defaultDate="{{defaultSimpleDate.timestamp}}"
+        defaultDate="{{defaultStartSimpleDate.timestamp}}"
         checkedDate="{{value[0]}}"
         canPickYear
         canPickMonth
       />
     {{else if type === RAW_TYPE_YEAR}}
       <DateYear
-        defaultDate="{{defaultSimpleDate.timestamp}}"
+        defaultDate="{{defaultStartSimpleDate.timestamp}}"
         checkedDate="{{value}}"
       />
     {{else if type === RAW_TYPE_MONTH}}
       <DateMonth
-        defaultDate="{{defaultSimpleDate.timestamp}}"
+        defaultDate="{{defaultStartSimpleDate.timestamp}}"
         checkedDate="{{value}}"
         canPickYear
       />

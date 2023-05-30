@@ -111,6 +111,18 @@ export default Yox.define({
   },
 
   methods: {
+    increaseYear(offset: number) {
+      const year = this.increase('year', offset) as number
+      this.fire(
+        {
+          type: 'defaultDateChange',
+          ns: 'month',
+        },
+        {
+          year,
+        }
+      )
+    },
     click(item: SimpleMonth) {
       this.fire(
         {

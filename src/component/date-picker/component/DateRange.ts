@@ -170,40 +170,67 @@ export default Yox.define({
 
   methods: {
     offsetStart(offset: number) {
-      this.set(
-        'startTimestamp',
-        offsetMonth(
-          this.get('startTimestamp'),
+
+      let startTimestamp = offsetMonth(
+        this.get('startTimestamp'),
+        offset
+      )
+      let endTimestamp = this.get('endTimestamp')
+
+      if (!this.get('splitPanel')) {
+        endTimestamp = offsetMonth(
+          endTimestamp,
           offset
         )
-      )
-      if (!this.get('splitPanel')) {
-        this.set(
-          'endTimestamp',
-          offsetMonth(
-            this.get('endTimestamp'),
-            offset
-          )
-        )
       }
+
+      this.set({
+        startTimestamp,
+        endTimestamp,
+      })
+
+      this.fire(
+        {
+          type: 'defaultDateChange',
+          ns: 'range',
+        },
+        {
+          startTimestamp,
+          endTimestamp,
+        }
+      )
+
     },
     offsetEnd(offset: number) {
-      this.set(
-        'endTimestamp',
-        offsetMonth(
-          this.get('endTimestamp'),
+
+      let endTimestamp = offsetMonth(
+        this.get('endTimestamp'),
+        offset
+      )
+      let startTimestamp = this.get('startTimestamp')
+      if (!this.get('splitPanel')) {
+        startTimestamp = offsetMonth(
+          startTimestamp,
           offset
         )
-      )
-      if (!this.get('splitPanel')) {
-        this.set(
-          'startTimestamp',
-          offsetMonth(
-            this.get('startTimestamp'),
-            offset
-          )
-        )
       }
+
+      this.set({
+        startTimestamp,
+        endTimestamp,
+      })
+
+      this.fire(
+        {
+          type: 'defaultDateChange',
+          ns: 'range',
+        },
+        {
+          startTimestamp,
+          endTimestamp,
+        }
+      )
+
     },
     hover(item: SimpleDate) {
       const pinDate = this.get('pinDate')

@@ -149,7 +149,9 @@ export default Yox.define({
 
       isFocus: FALSE,
       isVisible: FALSE,
-      formatText: props.format || defaultFormat[props.type || RAW_TYPE_DATE]
+      formatText: props.format || defaultFormat[props.type || RAW_TYPE_DATE],
+      defaultStartDate: this.get('defaultDate'),
+      defaultEndDate: this.get('defaultDate'),
     }
   },
 
@@ -183,9 +185,13 @@ export default Yox.define({
         return result
       }
     },
-    defaultSimpleDate(): SimpleDate {
-      const defaultDate = this.get('defaultDate')
-      return toSimpleDate(toTimestamp(defaultDate))
+    defaultStartSimpleDate(): SimpleDate {
+      const defaultStartDate = this.get('defaultStartDate')
+      return toSimpleDate(toTimestamp(defaultStartDate))
+    },
+    defaultEndSimpleDate(): SimpleDate {
+      const defaultEndDate = this.get('defaultEndDate')
+      return toSimpleDate(toTimestamp(defaultEndDate))
     },
     formatedValues(): string[] {
 
@@ -216,6 +222,17 @@ export default Yox.define({
       }
     },
     {
+      type: 'defaultDateChange',
+      ns: 'date',
+      listener(event, data) {
+        event.stop()
+        // @ts-ignore
+        this.defaultDateChange(
+          new Date(data.timestamp)
+        )
+      }
+    },
+    {
       type: 'change',
       ns: 'year',
       listener(event, data) {
@@ -227,15 +244,38 @@ export default Yox.define({
       }
     },
     {
+      type: 'defaultDateChange',
+      ns: 'year',
+      listener(event, data) {
+        event.stop()
+        const defaultDate = new Date()
+        defaultDate.setFullYear(data.year)
+        // @ts-ignore
+        this.defaultDateChange(defaultDate)
+      }
+    },
+    {
       type: 'change',
       ns: 'month',
       listener(event, data: SimpleDate) {
         event.stop()
         const date = new Date()
         date.setFullYear(data.year)
+        date.setDate(1)
         date.setMonth(data.month - 1)
         // @ts-ignore
         this.dateChange(toTimestamp(date), MONTH_FORMAT)
+      }
+    },
+    {
+      type: 'defaultDateChange',
+      ns: 'month',
+      listener(event, data) {
+        event.stop()
+        const defaultDate = new Date()
+        defaultDate.setFullYear(data.year)
+        // @ts-ignore
+        this.defaultDateChange(defaultDate)
       }
     },
     {
@@ -248,6 +288,17 @@ export default Yox.define({
       }
     },
     {
+      type: 'defaultDateChange',
+      ns: 'week',
+      listener(event, data) {
+        event.stop()
+        // @ts-ignore
+        this.defaultDateChange(
+          new Date(data.timestamp)
+        )
+      }
+    },
+    {
       type: 'change',
       ns: 'range',
       listener(event, data: SimpleDate) {
@@ -257,6 +308,20 @@ export default Yox.define({
       }
     },
     {
+      type: 'defaultDateChange',
+      ns: 'range',
+      listener(event, data) {
+        event.stop()
+        // @ts-ignore
+        this.defaultDateChange(
+          new Date(data.startTimestamp),
+          new Date(data.endTimestamp)
+        )
+      }
+    },
+    {
+      type: 'outside',
+      ns: 'popover',
       listener(event) {
 
         event.stop()
@@ -264,9 +329,7 @@ export default Yox.define({
         // @ts-ignore
         this.set('isVisible', FALSE)
 
-      },
-      type: 'outside',
-      ns: 'popover',
+      }
     }
   ],
 
@@ -295,6 +358,7 @@ export default Yox.define({
         TRUE
       )
 
+      // @ts-ignore
       this.fireChange(value)
 
     },
@@ -304,6 +368,7 @@ export default Yox.define({
       event.stop()
 
       this.removeAt('value', index)
+      // @ts-ignore
       this.fireChange(this.get('value'))
 
     },
@@ -316,6 +381,7 @@ export default Yox.define({
           Yox.logger.warn(`shortcuts value 传值错误`)
           return
         }
+        // @ts-ignore
         this.dateRangeChange(
           toTimestamp(value[0]),
           toTimestamp(value[1])
@@ -331,10 +397,18 @@ export default Yox.define({
           Yox.logger.warn(`shortcuts value 需返回数组类型`)
           return
         }
+        // @ts-ignore
         this.dateChange(
           toTimestamp(value as any)
         )
       }
+    },
+
+    defaultDateChange(defaultStartDate: Date, defaultEndDate: Date | void) {
+      this.set({
+        defaultStartDate,
+        defaultEndDate,
+      })
     },
 
     dateChange(timestamp: number, dateFormat = DATE_FORMAT) {
@@ -360,16 +434,19 @@ export default Yox.define({
           )
           if (!existed) {
             me.append('value', date)
+            // @ts-ignore
             me.fireChange(me.get('value'))
           }
         }
         else {
           me.append('value', date)
+          // @ts-ignore
           me.fireChange(me.get('value'))
         }
       }
       else {
         me.set('value', date)
+        // @ts-ignore
         me.fireChange(date)
       }
 
@@ -388,6 +465,7 @@ export default Yox.define({
       const value = [new Date(start), new Date(end)]
 
       this.set('value', value)
+      // @ts-ignore
       this.fireChange(value)
 
       if (!this.get('multiple')) {

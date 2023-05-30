@@ -8,7 +8,7 @@ class="${prefix}date-picker-year ${prefix}date-picker-panel
 >
 
   <div class="${prefix}date-picker-header">
-    <span class="${prefix}date-picker-header-button ${prefix}date-picker-prev" on-click="decrease('year', count)">
+    <span class="${prefix}date-picker-header-button ${prefix}date-picker-prev" on-click="increaseYear(-count)">
       <Icon
         name="arrow-left-s-line"
         className="${prefix}date-picker-header-icon"
@@ -29,7 +29,7 @@ class="${prefix}date-picker-year ${prefix}date-picker-panel
     </span>
     年
 
-    <span class="${prefix}date-picker-header-button ${prefix}date-picker-next" on-click="increase('year', count)">
+    <span class="${prefix}date-picker-header-button ${prefix}date-picker-next" on-click="increaseYear(count)">
       <Icon
         name="arrow-right-s-line"
         className="${prefix}date-picker-header-icon"
