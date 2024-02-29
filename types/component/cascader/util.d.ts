@@ -3,4 +3,5 @@ export declare function formatOptions(options: any[] | void, values: any[] | voi
     selectedOptions: any;
     indeterminateOptions: any[];
 };
+export declare function searchOptions(options: any[] | void, checkedOptions: any[], query: string): any[];
 export declare function setCheckedOptions(options: any[], checkedOptions: any[], indeterminateOptions: any[], values: any[], checked: any[]): void;

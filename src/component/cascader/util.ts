@@ -1,4 +1,6 @@
-import { TRUE } from '../constant'
+import Yox from 'yox'
+
+import { FALSE, TRUE } from '../constant'
 import { getNodesProps, renderNodesProps, setTreeCheckedKey } from '../util'
 
 export function formatOptions(
@@ -37,6 +39,101 @@ export function formatOptions(
     selectedOptions: checkedOptions[0] || [],
     indeterminateOptions,
   }
+
+}
+
+export function searchOptions(
+  options: any[] | void,
+  checkedOptions: any[],
+  query: string,
+) {
+
+  if (!options) {
+    options = []
+  }
+
+  const list = []
+
+  const flatten = function (option: any, stack: any[], level: number, index: number) {
+    stack.push(option)
+    if (option.children) {
+      Yox.array.each(
+        option.children,
+        function (option, index) {
+          flatten(option, Yox.object.copy(stack), level + 1, index)
+        }
+      )
+    }
+    else {
+      list.push({
+        options: stack,
+        level,
+        index,
+      })
+    }
+  }
+
+  // 把树形结构压平
+  Yox.array.each(
+    options,
+    function (option, index) {
+      flatten(option, [], 1, index)
+    }
+  )
+
+  const result = []
+  const selectedMap = {}
+
+  Yox.array.each(
+    checkedOptions,
+    function (item) {
+      const key = renderNodesProps(
+        item.map(function (child: any) {
+          return child.value
+        })
+      )
+      selectedMap[key] = TRUE
+    }
+  )
+
+  Yox.array.each(
+    list,
+    function (item) {
+
+      const texts = []
+      const values = []
+
+      let disabled = FALSE
+
+      Yox.array.each(
+        item.options,
+        function (option: any) {
+          texts.push(option.text)
+          values.push(option.value)
+          if (option.disabled) {
+            disabled = TRUE
+          }
+        }
+      )
+
+      const text = renderNodesProps(texts)
+      if (text.indexOf(query) >= 0) {
+        result.push({
+          options: item.options,
+          level: item.level,
+          index: item.index,
+          texts,
+          values,
+          text,
+          disabled,
+          checked: selectedMap[renderNodesProps(values)],
+        })
+      }
+
+    }
+  )
+
+  return result
 
 }
 

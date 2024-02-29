@@ -7,6 +7,7 @@ import Tag from '../tag/Tag'
 import Icon from '../icon/Icon'
 import Empty from '../empty/Empty'
 import Popover from '../popover/Popover'
+import Checkbox from '../checkbox/Checkbox'
 import CascaderOptions from './CascaderOptions'
 
 import {
@@ -52,6 +53,7 @@ import {
 import {
   setCheckedOptions,
   formatOptions,
+  searchOptions,
 } from './util'
 
 export default Yox.define({
@@ -92,6 +94,9 @@ export default Yox.define({
     showClear: {
       type: RAW_BOOLEAN,
     },
+    showSearch: {
+      type: RAW_BOOLEAN,
+    },
     block: {
       type: RAW_BOOLEAN,
     },
@@ -126,6 +131,9 @@ export default Yox.define({
       RAW_CUSTOM,
       isFocus: FALSE,
       isVisible: FALSE,
+      isSearching: FALSE,
+      query: '',
+      queryWidth: 0,
       loadingOptions: [],
       checkedOptions: data.checkedOptions,
       selectedOptions: data.selectedOptions,
@@ -134,6 +142,13 @@ export default Yox.define({
   },
 
   computed: {
+    searchResult(): any[] {
+      return searchOptions(
+        this.get('options'),
+        this.get('checkedOptions'),
+        this.get('query'),
+      )
+    },
     actualOptions(): any[] {
 
       const showCheckedStrategy = this.get('showCheckedStrategy')
@@ -228,6 +243,32 @@ export default Yox.define({
         return result
       }
     },
+    searchInputStyle(): object | void {
+      const width = this.get('queryWidth')
+      if (width) {
+        return {
+          width: toPixel(width)
+        }
+      }
+    },
+  },
+
+  watchers: {
+    query(value) {
+      if (value) {
+        const { searchMirror } = this.$refs
+        if (searchMirror) {
+          this.set({
+            queryWidth: (searchMirror as HTMLSpanElement).offsetWidth
+          })
+        }
+      }
+      else {
+        this.set({
+          queryWidth: 0,
+        })
+      }
+    }
   },
 
   events: {
@@ -254,64 +295,125 @@ export default Yox.define({
     },
     select: {
       listener(event, data) {
-
         event.stop()
-
-        const me = this
-        const isLeafOption = data.isLeaf
-
-        me.set({
-          selectedOptions: data.options,
-        })
-
-        if (me.get('multiple')) {
-          if (isLeafOption) {
-            me.setOptionChecked(
-              data.values,
-              !data.checked
-            )
-          }
-        }
-        else {
-          if (isLeafOption || me.get('changeOnSelect')) {
-            me.setCheckedOptions([data.options])
-          }
-          if (isLeafOption) {
-            this.set({
-              isVisible: FALSE,
-            })
-          }
-        }
-
+        this.selectOption(data)
       },
       ns: 'cascaderOption',
     },
     check: {
       listener(event, data) {
-
         event.stop()
-
         this.setOptionChecked(data.values, data.checked)
-
       },
       ns: 'cascaderOption',
     },
     outside: {
       listener(event) {
-
         event.stop()
-
-        this.set('isVisible', FALSE)
-
+        this.hideOverlay()
       },
       ns: 'popover',
     },
   },
 
   methods: {
+    selectOption(data: any) {
+      const me = this
+      const isLeafOption = data.isLeaf
+
+      me.set({
+        selectedOptions: data.options,
+      })
+
+      if (me.get('multiple')) {
+        if (isLeafOption) {
+          me.setOptionChecked(
+            data.values,
+            !data.checked
+          )
+        }
+      }
+      else {
+        if (isLeafOption || me.get('changeOnSelect')) {
+          me.setCheckedOptions([data.options])
+        }
+        if (isLeafOption) {
+          this.hideOverlay()
+        }
+      }
+    },
+    hideOverlay() {
+      const me = this
+      me.set({
+        isVisible: FALSE,
+      })
+      // Popover 需要 nextTick 才会隐藏浮层
+      // 这里等隐藏后再改变搜索状态，不然会引起浮层内容切换，会有闪烁问题
+      if (me.get('isSearching')) {
+        me.nextTick(function () {
+          me.set({
+            isSearching: FALSE,
+            query: '',
+          })
+        })
+      }
+    },
     onClick(event?: CustomEventInterface) {
-      this.toggle('isVisible')
+      const me = this
+      const isVisible = me.get('isVisible')
+      if (me.get('showSearch')) {
+        me.set({
+          isSearching: TRUE,
+          isVisible: TRUE,
+        })
+        me.nextTick(function () {
+          const searchInput = this.$refs.searchInput as HTMLInputElement
+          searchInput.focus()
+        })
+      }
+      else {
+        me.set({
+          isVisible: !isVisible,
+        })
+      }
       fireClickEvent(event)
+    },
+    onSearchInputKeydown(event: CustomEventInterface) {
+      event.stop()
+
+      const query = this.get('query')
+      const actualValues = this.get('actualValues')
+      if (query || actualValues.length === 0) {
+        return
+      }
+
+      const originalEvent = event.originalEvent as KeyboardEvent
+      if (originalEvent.keyCode === 8) {
+        // 删除最后一个选中项
+        this.setOptionChecked(
+          actualValues[actualValues.length - 1],
+          FALSE
+        )
+      }
+
+    },
+    onSearchResultClick(event: CustomEventInterface, data: any) {
+      event.stop()
+      if (this.get('multiple')) {
+        this.selectOption({
+          options: data.options,
+          values: data.values,
+          checked: data.checked,
+          isLeaf: TRUE,
+        })
+      }
+      else {
+        this.selectOption({
+          options: data.options,
+          values: data.values,
+          isLeaf: TRUE,
+        })
+      }
     },
     onClearClick(event: CustomEventInterface) {
 
@@ -331,7 +433,6 @@ export default Yox.define({
       event.stop()
 
       const value = this.get(`actualValues.${index}`)
-
       this.setOptionChecked(value, FALSE)
 
     },
@@ -414,6 +515,7 @@ export default Yox.define({
     Icon,
     Empty,
     Popover,
+    Checkbox,
     CascaderOptions,
   },
 

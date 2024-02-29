@@ -119,7 +119,12 @@ export default Yox.define({
       if (value && this.get('visible')) {
         this.fireClose()
       }
-    }
+    },
+    widthAlign() {
+      if (this.get('visible')) {
+        this.refreshOverlayRect()
+      }
+    },
   },
 
   methods: {

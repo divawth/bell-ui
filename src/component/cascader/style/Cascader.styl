@@ -10,17 +10,17 @@ select-size-style(size)
   ui-set('padding-right', $ui-horizontal-gap + size['icon-size'] + size['icon-right'])
 
   {$selector-class-prefix + '-cascader-value'},
-  {$selector-class-prefix + '-cascader-placeholder'}
+  {$selector-class-prefix + '-cascader-placeholder'},
+  {$selector-class-prefix + '-cascader-search-normal-input'}
     ui-set('padding-left', size['padding-horizontal'])
 
-  {$selector-class-prefix + '-cascader-values'}
-    ui-set('padding', size['padding-vertical'] 0 size['padding-vertical'] $ui-horizontal-gap)
-    ui-set('margin-bottom', -1 * size['tag-gap-vertical'])
+  {$selector-class-prefix + '-cascader-search-append-input'},
+  {$selector-class-prefix + '-cascader-value-tag'}
+    ui-set('height', size['tag-height'])
 
-    > {$selector-class-prefix + '-tag'}
-      ui-set('height', size['tag-height'])
-      ui-set('margin-right', size['tag-gap-horizontal'])
-      ui-set('margin-bottom', size['tag-gap-vertical'])
+  {$selector-class-prefix + '-cascader-values'}
+    ui-set('gap', size['tag-gap-vertical'] size['tag-gap-horizontal'])
+    ui-set('padding', size['padding-vertical'] 0 size['padding-vertical'] $ui-horizontal-gap)
 
   {$selector-class-prefix + '-cascader-arrow-icon'},
   {$selector-class-prefix + '-cascader-clear-icon'}
@@ -50,6 +50,53 @@ select-brand-style(style)
     hash: $status-brand-hash,
     each: select-brand-style
   )
+
+{$selector-class-prefix + '-cascader-search-normal-input'},
+{$selector-class-prefix + '-cascader-search-append-input'}
+  ui-input-el()
+  border 0
+  padding 0
+  max-width 100%
+
+{$selector-class-prefix + '-cascader-search-normal-input'}
+  display block
+
+{$selector-class-prefix + '-cascader-search-append-input'}
+  width 4px
+
+{$selector-class-prefix + '-cascader-search-append-input'},
+{$selector-class-prefix + '-cascader-value-tag'}
+  vertical-align top
+
+{$selector-class-prefix + '-cascader-search-input-mirror'}
+  position fixed
+  top -1000px
+  left -1000px
+
+{$selector-class-prefix + '-cascader-search-list'}
+  flex 1
+
+{$selector-class-prefix + '-cascader-search-item'}
+  display flex
+  align-items center
+
+{$selector-class-prefix + '-cascader-search-item-single'}
+  justify-content space-between
+
+{$selector-class-prefix + '-cascader-search-checkbox'}
+  margin-right $ui-icon-text-gap
+
+{$selector-class-prefix + '-cascader-search-check-icon'}
+  color $brand-primary
+
+{$selector-class-prefix + '-cascader-search-empty'}
+  display flex
+  justify-content center
+  flex 1
+
+{$selector-class-prefix + '-cascader-values'}
+  display flex
+  flex-wrap wrap
 
 {$selector-class-prefix + '-cascader-overlay'}
   {$selector-class-prefix + '-empty'}
@@ -111,6 +158,10 @@ ui-form-button(
   $selector-class-prefix + '-cascader-arrow-icon'
 )
 
+{$selector-class-prefix + '-cascader-searchable'}
+  &{$selector-class-prefix + '-cascader-enabled'}
+    cursor text
+
 ui-dropdown-overlay(
   $selector-class-prefix + '-cascader-overlay',
   $selector-class-prefix + '-cascader-options',
@@ -118,6 +169,17 @@ ui-dropdown-overlay(
   $selector-class-prefix + '-cascader-option-selected',
   $selector-class-prefix + '-cascader-option-enabled',
   $selector-class-prefix + '-cascader-option-disabled',
+  '',
+  $brand-primary,
+  $brand-bg-active
+)
+
+ui-dropdown-overlay-list(
+  $selector-class-prefix + '-cascader-search-list',
+  $selector-class-prefix + '-cascader-search-item',
+  $selector-class-prefix + '-cascader-search-item-selected',
+  $selector-class-prefix + '-cascader-search-item-enabled',
+  $selector-class-prefix + '-cascader-search-item-disabled',
   '',
   $brand-primary,
   $brand-bg-active

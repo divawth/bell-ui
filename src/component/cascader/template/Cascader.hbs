@@ -4,7 +4,7 @@
   trigger="{{RAW_CUSTOM}}"
   visible="{{isVisible}}"
   triggerMutable="{{multiple}}"
-  widthAlign="{{!options || !options.length}}"
+  widthAlign="{{!options || !options.length || query}}"
   gap="5"
 >
 
@@ -15,6 +15,7 @@
     {{#if block}} ${prefix}cascader-block{{/if}}
     {{#if isVisible}} ${prefix}cascader-opened{{/if}}
     {{#if showClear}} ${prefix}cascader-with-clear{{/if}}
+    {{#if showSearch}} ${prefix}cascader-searchable{{/if}}
     {{#if isReversed}} ${prefix}cascader-reversed{{/if}}
     {{#if disabled}} ${prefix}cascader-disabled
     {{else}} ${prefix}cascader-enabled
@@ -35,9 +36,18 @@
 
     {{#if actualOptions.length === 0}}
 
-      <div class="${prefix}cascader-placeholder">
-        {{placeholder}}
-      </div>
+      {{#if isSearching}}
+        <input
+          ref="searchInput"
+          model="query"
+          class="${prefix}cascader-search-normal-input"
+          placeholder="{{placeholder}}"
+        >
+      {{else}}
+        <div class="${prefix}cascader-placeholder">
+          {{placeholder}}
+        </div>
+      {{/if}}
 
     {{else if multiple}}
 
@@ -45,22 +55,50 @@
         {{#each actualOptions:index}}
           <Tag
             closable
+            className="${prefix}cascader-value-tag"
             on-close="onOptionRemove($event, index)"
           >
             {{actualTexts[index]}}
           </Tag>
         {{/each}}
+        {{#if isSearching}}
+          <input
+            ref="searchInput"
+            model="query"
+            class="${prefix}cascader-search-append-input"
+            on-keydown="onSearchInputKeydown()"
+            style="{{searchInputStyle}}"
+          >
+        {{/if}}
       </div>
 
     {{else}}
 
-      <div
-        class="${prefix}cascader-value"
-        title="{{actualTexts[0]}}"
-      >
-        {{actualTexts[0]}}
-      </div>
+      {{#if isSearching}}
+        <input
+          ref="searchInput"
+          model="query"
+          class="${prefix}cascader-search-normal-input"
+          placeholder="{{actualOptions.length === 0 ? placeholder : actualTexts[0]}}"
+        >
+      {{else}}
+        <div
+          class="${prefix}cascader-value"
+          title="{{actualTexts[0]}}"
+        >
+          {{actualTexts[0]}}
+        </div>
+      {{/if}}
 
+    {{/if}}
+
+    {{#if isSearching}}
+      <span
+        ref="searchMirror"
+        class="${prefix}cascader-search-input-mirror"
+      >
+        {{query}}
+      </span>
     {{/if}}
 
     {{#if showClear && actualOptions.length}}
@@ -82,16 +120,60 @@
     slot="overlay"
     class="${prefix}cascader-overlay"
   >
-    <CascaderOptions
-      level="{{0}}"
-      options="{{options}}"
-      multiple="{{multiple}}"
-      loadData="{{loadData}}"
-      loadingValues="{{loadingValues}}"
-      checkedValues="{{checkedValues}}"
-      selectedValues="{{selectedValues}}"
-      indeterminateValues="{{indeterminateValues}}"
-    />
+    {{#if query}}
+      {{#if searchResult.length > 0}}
+        <div class="${prefix}cascader-search-list">
+          {{#each searchResult}}
+            <div
+              class="${prefix}cascader-search-item
+              {{#if this.disabled}} ${prefix}cascader-search-item-disabled
+              {{else}} ${prefix}cascader-search-item-enabled
+              {{/if}}
+              {{#if this.checked}} ${prefix}cascader-search-item-selected{{/if}}
+              {{#if !~/multiple}} ${prefix}cascader-search-item-single{{/if}}"
+              title="{{this.text}}"
+              on-click="onSearchResultClick($event, this)"
+            >
+              {{#if ~/multiple}}
+                <Checkbox
+                  checked="{{this.checked}}"
+                  disabled="{{this.disabled}}"
+                  className="${prefix}cascader-search-checkbox"
+                  on-change="onSearchResultClick($event, this)"
+                />
+                {{this.text}}
+              {{else}}
+                {{this.text}}
+
+                {{#if this.checked}}
+                  <Icon
+                    name="check-line"
+                    className="${prefix}cascader-search-check-icon"
+                  />
+                {{/if}}
+              {{/if}}
+            </div>
+          {{/each}}
+        </div>
+      {{else}}
+        <div class="${prefix}cascader-search-empty">
+          <Empty simple>
+            暂无数据
+          </Empty>
+        </div>
+      {{/if}}
+    {{else}}
+      <CascaderOptions
+        level="{{0}}"
+        options="{{options}}"
+        multiple="{{multiple}}"
+        loadData="{{loadData}}"
+        loadingValues="{{loadingValues}}"
+        checkedValues="{{checkedValues}}"
+        selectedValues="{{selectedValues}}"
+        indeterminateValues="{{indeterminateValues}}"
+      />
+    {{/if}}
   </div>
 
 </Popover>

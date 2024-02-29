@@ -11,6 +11,7 @@ import ResizeObserver from '../resize-observer/ResizeObserver'
 
 import {
   TRUE,
+  FALSE,
   UNDEFINED,
   RAW_ARRAY,
   RAW_STRING,
@@ -80,7 +81,7 @@ export default Yox.define({
     Yox.array.each(
       this.get('columns'),
       function (item: any) {
-        if (item.defaultSortOrder) {
+        if (item.visible !== FALSE && item.defaultSortOrder) {
           sortKey = item.key
           sortOrder = item.defaultSortOrder
         }
@@ -88,6 +89,7 @@ export default Yox.define({
     )
 
     return {
+      FALSE,
       SORT_ORDER_ASC,
       SORT_ORDER_DESC,
 
@@ -218,22 +220,27 @@ export default Yox.define({
         return
       }
 
+      let colIndex = 0
       let colWidths: number[] = [], noWidths: number[] = [], widthSum = 0
 
       Yox.array.each(
         columns,
-        function (col: any, index) {
+        function (col: any) {
+          if (col.visible === FALSE) {
+            return
+          }
           if (col.width > 0) {
-            colWidths[index] = col.width
+            colWidths[colIndex] = col.width
             widthSum += col.width
           }
           else if (col.key === 'selection') {
-            colWidths[index] = 50
+            colWidths[colIndex] = 50
             widthSum += 50
           }
           else {
-            noWidths.push(index)
+            noWidths.push(colIndex)
           }
+          colIndex++
         }
       )
 

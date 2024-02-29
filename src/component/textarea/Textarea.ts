@@ -29,7 +29,8 @@ import {
 } from '../constant'
 
 import {
-  oneOf, toPixel,
+  oneOf,
+  toPixel,
 } from '../util'
 
 const sizes = {}

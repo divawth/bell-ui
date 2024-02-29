@@ -32,7 +32,9 @@ export default Yox.define({
     },
     text: {
       type: RAW_STRING,
-      required: TRUE,
+    },
+    title: {
+      type: RAW_STRING,
     },
     disabled: {
       type: RAW_BOOLEAN,
@@ -55,6 +57,19 @@ export default Yox.define({
       isSelected: select
         ? isOptionSelected(select.get('value'), props.value)
         : FALSE
+    }
+  },
+
+  computed: {
+    innerTitle() {
+      const title = this.get('title')
+      if (title) {
+        return title
+      }
+      const text = this.get('text')
+      if (typeof text === 'string') {
+        return text
+      }
     }
   },
 

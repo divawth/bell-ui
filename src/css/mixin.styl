@@ -96,6 +96,8 @@ ui-input()
   border 1px solid $brand-border
   border-radius $border-radius-default
   background-color $brand-bg
+  display block
+  font-size $font-size-default
   width 100%
   ui-input-el()
 
@@ -115,14 +117,10 @@ ui-input-faker()
     ui-input-hover($brand-primary)
 
 ui-input-el()
-  width 100%
-  border-radius $border-radius-default
   box-sizing border-box
   outline none
-  display block
   cursor text
   color $brand-title
-  font-size $font-size-default
   transition border-color $form-control-transition-duration, box-shadow $form-control-transition-duration
 
   ui-placeholder($brand-placeholder)
@@ -341,8 +339,7 @@ ui-form-button-brand(style, $selector-enabled, $selector-opened)
   &:focus
     ui-focus(style['shadow-color'])
 
-ui-dropdown-overlay(
-  $selector-base,
+ui-dropdown-overlay-list(
   $selector-list,
   $selector-item,
   $selector-item-active,
@@ -350,14 +347,8 @@ ui-dropdown-overlay(
   $selector-item-disabled,
   $selector-item-divided,
   $active-color,
-  $active-bg-color)
-
-  {$selector-base}
-    font-size $font-size-default
-    line-height $ui-multiple-line-height
-    background-color $brand-bg
-    box-shadow $brand-layer-shadow
-
+  $active-bg-color
+)
   {$selector-list}
     padding $dropdown-overlay-inset 0
 
@@ -409,3 +400,31 @@ ui-dropdown-overlay(
 
       if $active-bg-color
         background-color $active-bg-color
+
+ui-dropdown-overlay(
+  $selector-base,
+  $selector-list,
+  $selector-item,
+  $selector-item-active,
+  $selector-item-enabled,
+  $selector-item-disabled,
+  $selector-item-divided,
+  $active-color,
+  $active-bg-color)
+
+  {$selector-base}
+    font-size $font-size-default
+    line-height $ui-multiple-line-height
+    background-color $brand-bg
+    box-shadow $brand-layer-shadow
+
+  ui-dropdown-overlay-list(
+    $selector-list,
+    $selector-item,
+    $selector-item-active,
+    $selector-item-enabled,
+    $selector-item-disabled,
+    $selector-item-divided,
+    $active-color,
+    $active-bg-color
+  )
