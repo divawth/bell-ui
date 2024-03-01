@@ -14,16 +14,19 @@
     on-click="onClick()"
   {{/if}}
 >
-  <div class="${prefix}cascader-option-text">
+  <div class="${prefix}cascader-option-content">
     {{#if checkable}}
       <Checkbox
         checked="{{checked}}"
         indeterminate="{{indeterminate}}"
         disabled="{{!interactive}}"
+        className="${prefix}cascader-option-checkbox"
         on-change="onCheckboxChange()"
       />
     {{/if}}
-    {{option.text}}
+    <div class="${prefix}cascader-option-text">
+      {{option.text}}
+    </div>
   </div>
 
   {{#if loading}}

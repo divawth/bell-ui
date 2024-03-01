@@ -94,11 +94,24 @@ $table-row-highlight = #ebf7ff
 {$selector-class-prefix + '-table-sort-active'}
   color $brand-title
 
-{$selector-class-prefix + '-table-left'}
+{$selector-class-prefix + '-table-cell'},
+{$selector-class-prefix + '-table-cell-align-left'}
   text-align left
 
-{$selector-class-prefix + '-table-center'}
+{$selector-class-prefix + '-table-cell-align-center'}
   text-align center
 
-{$selector-class-prefix + '-table-right'}
+{$selector-class-prefix + '-table-cell-align-right'}
   text-align right
+
+{$selector-class-prefix + '-table-cell-fixed-left'},
+{$selector-class-prefix + '-table-cell-fixed-right'}
+  position sticky
+  z-index $zindex-normal
+  background-color $brand-bg
+
+{$selector-class-prefix + '-table-cell-fixed-left'}
+  left 0
+
+{$selector-class-prefix + '-table-cell-fixed-right'}
+  right 0

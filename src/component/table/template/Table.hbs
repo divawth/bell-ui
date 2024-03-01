@@ -19,7 +19,7 @@
 
   {{#if colWidths}}
 
-    <table>
+    <table style="{{scrollWidthStyle}}">
       <colgroup>
         {{#each colWidths}}
           <col width="{{this}}">
@@ -28,46 +28,46 @@
 
       <thead class="${prefix}table-header">
         <tr>
-          {{#each columns}}
-            {{#if this.visible !== FALSE}}
-              <td
-                {{#if this.align}}
-                  class="${prefix}table-{{this.align}}"
-                {{/if}}
-              >
-                {{#if this.key === 'selection'}}
-                  {{#if list.length > 0}}
-                    <Checkbox
-                      checked="{{~/allChecked}}"
-                      on-change="allCheckedChange()"
-                    />
-                  {{else}}
-                    <Checkbox
-                      disabled
-                    />
-                  {{/if}}
+          {{#each renderColumns}}
+            <th
+              class="${prefix}table-cell
+              {{#if this.align}} ${prefix}table-cell-align-{{this.align}}{{/if}}
+              {{#if this.fixed}} ${prefix}table-cell-fixed-{{this.fixed}}{{/if}}
+              {{#if this.lastFixed}} ${prefix}table-cell-last-fixed-{{this.lastFixed}}{{/if}}"
+              style="{{this.style}}"
+            >
+              {{#if this.key === 'selection'}}
+                {{#if list.length > 0}}
+                  <Checkbox
+                    checked="{{~/allChecked}}"
+                    on-change="allCheckedChange()"
+                  />
                 {{else}}
-                  {{this.title}}
-                  {{#if this.sortable}}
-                    <div
-                      class="${prefix}table-sorter"
-                      on-click="sortColumn(this.key, ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_DESC ? ~/SORT_ORDER_ASC : ~/SORT_ORDER_DESC)"
-                    >
-                      <Icon
-                        name="arrow-up-s-fill"
-                        className="${prefix}table-sort-asc
-                          {{#if ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_ASC}} ${prefix}table-sort-active{{/if}}"
-                      />
-                      <Icon
-                        name="arrow-down-s-fill"
-                        className="${prefix}table-sort-desc
-                          {{#if ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_DESC}} ${prefix}table-sort-active{{/if}}"
-                      />
-                    </div>
-                  {{/if}}
+                  <Checkbox
+                    disabled
+                  />
                 {{/if}}
-              </td>
-            {{/if}}
+              {{else}}
+                {{this.title}}
+                {{#if this.sortable}}
+                  <div
+                    class="${prefix}table-sorter"
+                    on-click="sortColumn(this.key, ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_DESC ? ~/SORT_ORDER_ASC : ~/SORT_ORDER_DESC)"
+                  >
+                    <Icon
+                      name="arrow-up-s-fill"
+                      className="${prefix}table-sort-asc
+                        {{#if ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_ASC}} ${prefix}table-sort-active{{/if}}"
+                    />
+                    <Icon
+                      name="arrow-down-s-fill"
+                      className="${prefix}table-sort-desc
+                        {{#if ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_DESC}} ${prefix}table-sort-active{{/if}}"
+                    />
+                  </div>
+                {{/if}}
+              {{/if}}
+            </th>
           {{/each}}
         </tr>
       </thead>
@@ -77,15 +77,16 @@
           <slot>
             {{#each list:index}}
             <tr>
-              {{#each ~/columns}}
-                {{#if this.visible !== FALSE}}
+              {{#each ~/renderColumns}}
 
-                  {{#if this.actions && this.actions.length}}
+                {{#if this.actions && this.actions.length}}
 
                   <td
-                    {{#if this.align}}
-                      class="${prefix}table-{{this.align}}"
-                    {{/if}}
+                    class="${prefix}table-cell
+                    {{#if this.align}} ${prefix}table-cell-align-{{this.align}}{{/if}}
+                    {{#if this.fixed}} ${prefix}table-cell-fixed-{{this.fixed}}{{/if}}
+                    {{#if this.lastFixed}} ${prefix}table-cell-last-fixed-{{this.lastFixed}}{{/if}}"
+                    style="{{this.style}}"
                   >
                     {{#each this.actions}}
                       <Button
@@ -102,48 +103,53 @@
                     {{/each}}
                   </td>
 
-                  {{else if list[ index ][ this.key ] !== undefined}}
+                {{else if list[ index ][ this.key ] !== undefined}}
 
-                    <td
-                      {{#if this.align}}
-                        class="${prefix}table-{{this.align}}"
-                      {{/if}}
-                    >
-                      {{#if this.dangerous}}
-                        <div>
-                          {{{list[ index ][ this.key ]}}}
-                        </div>
-                      {{else}}
-                        {{list[ index ][ this.key ]}}
-                      {{/if}}
-                    </td>
+                  <td
+                    class="${prefix}table-cell
+                    {{#if this.align}} ${prefix}table-cell-align-{{this.align}}{{/if}}
+                    {{#if this.fixed}} ${prefix}table-cell-fixed-{{this.fixed}}{{/if}}
+                    {{#if this.lastFixed}} ${prefix}table-cell-last-fixed-{{this.lastFixed}}{{/if}}"
+                    style="{{this.style}}"
+                  >
+                    {{#if this.dangerous}}
+                      <div>
+                        {{{list[ index ][ this.key ]}}}
+                      </div>
+                    {{else}}
+                      {{list[ index ][ this.key ]}}
+                    {{/if}}
+                  </td>
 
-                  {{else if this.key === 'selection'}}
+                {{else if this.key === 'selection'}}
 
-                    <td
-                      {{#if this.align}}
-                        class="${prefix}table-{{this.align}}"
-                      {{/if}}
-                    >
-                      <Checkbox
-                        checked="{{inArray(selection, list[ index ].key)}}"
-                        on-change="rowCheckedChange($event, $data, index)"
-                      />
-                    </td>
+                  <td
+                    class="${prefix}table-cell
+                    {{#if this.align}} ${prefix}table-cell-align-{{this.align}}{{/if}}
+                    {{#if this.fixed}} ${prefix}table-cell-fixed-{{this.fixed}}{{/if}}
+                    {{#if this.lastFixed}} ${prefix}table-cell-last-fixed-{{this.lastFixed}}{{/if}}"
+                    style="{{this.style}}"
+                  >
+                    <Checkbox
+                      checked="{{inArray(selection, list[ index ].key)}}"
+                      on-change="rowCheckedChange($event, $data, index)"
+                    />
+                  </td>
 
-                  {{else}}
+                {{else}}
 
-                    <td
-                      {{#if this.align}}
-                        class="${prefix}table-{{this.align}}"
-                      {{/if}}
-                    >
-                      {{this.key}} is not found.
-                    </td>
-
-                  {{/if}}
+                  <td
+                    class="${prefix}table-cell
+                    {{#if this.align}} ${prefix}table-cell-align-{{this.align}}{{/if}}
+                    {{#if this.fixed}} ${prefix}table-cell-fixed-{{this.fixed}}{{/if}}
+                    {{#if this.lastFixed}} ${prefix}table-cell-last-fixed-{{this.lastFixed}}{{/if}}"
+                    style="{{this.style}}"
+                  >
+                    {{this.key}} is not found.
+                  </td>
 
                 {{/if}}
+
               {{/each}}
             </tr>
             {{/each}}

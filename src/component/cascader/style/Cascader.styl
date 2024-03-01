@@ -1,6 +1,6 @@
 @import '../../../env'
 
-$cascader-options-min-width = 111px
+$cascader-options-min-width = 140px
 $cascader-options-min-height = 180px
 
 select-size-style(size)
@@ -59,7 +59,7 @@ select-brand-style(style)
   max-width 100%
 
 {$selector-class-prefix + '-cascader-search-normal-input'}
-  display block
+  ui-block()
 
 {$selector-class-prefix + '-cascader-search-append-input'}
   width 4px
@@ -83,11 +83,12 @@ select-brand-style(style)
 {$selector-class-prefix + '-cascader-search-item-single'}
   justify-content space-between
 
-{$selector-class-prefix + '-cascader-search-checkbox'}
-  margin-right $ui-icon-text-gap
-
 {$selector-class-prefix + '-cascader-search-check-icon'}
   color $brand-primary
+
+{$selector-class-prefix + '-cascader-search-item-text'} > em
+  color $brand-highlight
+  font-style normal
 
 {$selector-class-prefix + '-cascader-search-empty'}
   display flex
@@ -122,12 +123,17 @@ select-brand-style(style)
   justify-content space-between
   align-items center
 
-{$selector-class-prefix + '-cascader-option-text'}
+{$selector-class-prefix + '-cascader-option-content'}
   display flex
   align-items center
 
-  {$selector-class-prefix + '-checkbox'}
-    margin-right $ui-icon-text-gap
+{$selector-class-prefix + '-cascader-option-text'}
+  ui-ellipsis()
+  max-width 156px
+
+{$selector-class-prefix + '-cascader-search-checkbox'},
+{$selector-class-prefix + '-cascader-option-checkbox'}
+  margin-right $ui-icon-text-gap
 
 {$selector-class-prefix + '-cascader-option-expand'},
 {$selector-class-prefix + '-cascader-option-loading'}
@@ -163,9 +169,13 @@ ui-form-button(
     cursor text
 
 ui-dropdown-overlay(
-  $selector-class-prefix + '-cascader-overlay',
+  $selector-class-prefix + '-cascader-overlay'
+)
+
+ui-dropdown-overlay-list(
   $selector-class-prefix + '-cascader-options',
   $selector-class-prefix + '-cascader-option',
+  $selector-class-prefix + '-cascader-option-text',
   $selector-class-prefix + '-cascader-option-selected',
   $selector-class-prefix + '-cascader-option-enabled',
   $selector-class-prefix + '-cascader-option-disabled',
@@ -177,6 +187,7 @@ ui-dropdown-overlay(
 ui-dropdown-overlay-list(
   $selector-class-prefix + '-cascader-search-list',
   $selector-class-prefix + '-cascader-search-item',
+  $selector-class-prefix + '-cascader-search-item-text',
   $selector-class-prefix + '-cascader-search-item-selected',
   $selector-class-prefix + '-cascader-search-item-enabled',
   $selector-class-prefix + '-cascader-search-item-disabled',

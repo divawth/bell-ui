@@ -141,9 +141,13 @@
                   className="${prefix}cascader-search-checkbox"
                   on-change="onSearchResultClick($event, this)"
                 />
-                {{this.text}}
+                <div class="${prefix}cascader-search-item-text">
+                  {{{this.text}}}
+                </div>
               {{else}}
-                {{this.text}}
+                <div class="${prefix}cascader-search-item-text">
+                  {{{this.text}}}
+                </div>
 
                 {{#if this.checked}}
                   <Icon

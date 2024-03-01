@@ -42,6 +42,13 @@ export function formatOptions(
 
 }
 
+function searchOption(text: string, query: string): string {
+  const pattern = new RegExp(query, 'gi')
+  return text.replace(pattern, function ($0) {
+    return '<em>' + $0 + '</em>'
+  })
+}
+
 export function searchOptions(
   options: any[] | void,
   checkedOptions: any[],
@@ -116,15 +123,16 @@ export function searchOptions(
         }
       )
 
-      const text = renderNodesProps(texts)
-      if (text.indexOf(query) >= 0) {
+      const originalText = renderNodesProps(texts)
+      const searchText = searchOption(originalText, query)
+      if (originalText !== searchText) {
         result.push({
           options: item.options,
           level: item.level,
           index: item.index,
+          text: searchText,
           texts,
           values,
-          text,
           disabled,
           checked: selectedMap[renderNodesProps(values)],
         })

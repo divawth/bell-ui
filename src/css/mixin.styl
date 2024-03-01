@@ -339,9 +339,17 @@ ui-form-button-brand(style, $selector-enabled, $selector-opened)
   &:focus
     ui-focus(style['shadow-color'])
 
+ui-dropdown-overlay($selector-base)
+  {$selector-base}
+    font-size $font-size-default
+    line-height $ui-multiple-line-height
+    background-color $brand-bg
+    box-shadow $brand-layer-shadow
+
 ui-dropdown-overlay-list(
   $selector-list,
   $selector-item,
+  $selector-item-text,
   $selector-item-active,
   $selector-item-enabled,
   $selector-item-disabled,
@@ -364,7 +372,6 @@ ui-dropdown-overlay-list(
       background-color $brand-bg-hover
 
   {$selector-item}
-    ui-ellipsis()
     padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
     transition background-color $form-control-transition-duration, color $form-control-transition-duration
 
@@ -384,6 +391,9 @@ ui-dropdown-overlay-list(
           right 0
           height $dropdown-overlay-inset
 
+  {$selector-item-text}
+    ui-ellipsis()
+
   {$selector-item-enabled}
     color $brand-content
     ui-clickable()
@@ -401,30 +411,3 @@ ui-dropdown-overlay-list(
       if $active-bg-color
         background-color $active-bg-color
 
-ui-dropdown-overlay(
-  $selector-base,
-  $selector-list,
-  $selector-item,
-  $selector-item-active,
-  $selector-item-enabled,
-  $selector-item-disabled,
-  $selector-item-divided,
-  $active-color,
-  $active-bg-color)
-
-  {$selector-base}
-    font-size $font-size-default
-    line-height $ui-multiple-line-height
-    background-color $brand-bg
-    box-shadow $brand-layer-shadow
-
-  ui-dropdown-overlay-list(
-    $selector-list,
-    $selector-item,
-    $selector-item-active,
-    $selector-item-enabled,
-    $selector-item-disabled,
-    $selector-item-divided,
-    $active-color,
-    $active-bg-color
-  )

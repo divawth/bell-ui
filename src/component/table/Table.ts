@@ -17,6 +17,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
+  RAW_OBJECT,
   RAW_STYLE_TYPE,
 } from '../constant'
 
@@ -59,6 +60,9 @@ export default Yox.define({
     simple: {
       type: RAW_BOOLEAN,
     },
+    scroll: {
+      type: RAW_OBJECT,
+    },
     height: {
       type: RAW_NUMERIC,
     },
@@ -100,6 +104,59 @@ export default Yox.define({
   },
 
   computed: {
+    renderColumns(): any[] {
+
+      const columns = this.get('columns')
+      const result = columns
+      .filter(function (item: any) {
+        return item.visible !== FALSE
+      })
+      .map(function (item: any) {
+        return Yox.object.copy(item)
+      })
+
+      let fixedLeft = 0
+      let fixedRight = 0
+      let lastFixedLeftCol
+      let lastFixedRightCol
+      const length = result.length
+
+      for (let i = 0; i < length; i++) {
+        const col = result[i]
+        if (col.fixed === 'left') {
+          lastFixedLeftCol = col
+          col.style = {
+            left: toPixel(fixedLeft)
+          }
+          fixedLeft += col.width || 0
+        }
+        else {
+          break
+        }
+      }
+      for (let i = length - 1; i >= 0; i--) {
+        const col = result[i]
+        if (col.fixed === 'right') {
+          lastFixedRightCol = col
+          col.style = {
+            right: toPixel(fixedRight)
+          }
+          fixedRight += col.width || 0
+        }
+        else {
+          break
+        }
+      }
+
+      if (lastFixedLeftCol) {
+        lastFixedLeftCol.lastFixed = 'left'
+      }
+      if (lastFixedRightCol) {
+        lastFixedRightCol.lastFixed = 'right'
+      }
+
+      return result
+    },
     allChecked: {
       deps: ['selection', 'selection.length'],
       get(): boolean {
@@ -122,6 +179,22 @@ export default Yox.define({
           selection = []
         }
         this.set('selection', selection)
+      }
+    },
+    scrollWidthStyle(): object | void {
+      const scrollWidth = this.get('scroll.x')
+      if (scrollWidth > 0) {
+        return {
+          width: toPixel(scrollWidth)
+        }
+      }
+    },
+    scrollHeightStyle(): object | void {
+      const scrollHeight = this.get('scroll.y')
+      if (scrollHeight > 0) {
+        return {
+          height: toPixel(scrollHeight)
+        }
       }
     },
     inlineStyle(): object[] | void {
