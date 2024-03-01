@@ -36,13 +36,13 @@ $table-row-highlight = #ebf7ff
 {$selector-class-prefix + '-table-bordered'}
   border 1px solid $brand-border
 
-  td + td
+  {$selector-class-prefix + '-table-cell'} + {$selector-class-prefix + '-table-cell'}
     border-left 1px solid $brand-divider
 
 {$selector-class-prefix + '-table-header'}
   border-bottom 1px solid $brand-divider
 
-  td
+  {$selector-class-prefix + '-table-cell'}
     color $brand-title
     font-size $font-size-default
     line-height $ui-multiple-line-height
@@ -60,7 +60,7 @@ $table-row-highlight = #ebf7ff
   tr + tr
     border-top 1px solid $brand-divider
 
-  td
+  {$selector-class-prefix + '-table-cell'}
     text-overflow ellipsis
     vertical-align middle
     padding $table-body-cell-padding-vertical $table-body-cell-padding-horizontal
