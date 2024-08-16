@@ -39,12 +39,14 @@
               {{#if this.key === 'selection'}}
                 {{#if list.length > 0}}
                   <Checkbox
+                    disabled="{{false}}"
                     checked="{{~/allChecked}}"
                     on-change="allCheckedChange()"
                   />
                 {{else}}
                   <Checkbox
                     disabled
+                    checked="{{false}}"
                   />
                 {{/if}}
               {{else}}
