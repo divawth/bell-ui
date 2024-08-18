@@ -54,6 +54,9 @@ export default Yox.define({
     selection: {
       type: RAW_ARRAY,
     },
+    customAllChecked: {
+      type: RAW_BOOLEAN,
+    },
     stripe: {
       type: RAW_BOOLEAN,
     },
@@ -158,8 +161,12 @@ export default Yox.define({
       return result
     },
     allChecked: {
-      deps: ['selection', 'selection.length'],
+      deps: ['customAllChecked', 'selection', 'selection.length'],
       get(): boolean {
+        const customAllChecked = this.get('customAllChecked')
+        if (typeof customAllChecked === 'boolean') {
+          return customAllChecked;
+        }
         const selection = this.get('selection')
         const list = this.get('list')
         return selection && list
@@ -167,6 +174,20 @@ export default Yox.define({
           && selection.length === list.length
       },
       set(checked): void {
+        const customAllChecked = this.get('customAllChecked')
+        if (typeof customAllChecked === 'boolean' && customAllChecked !== checked) {
+          this.fire(
+            {
+              type: 'allCheckedChange',
+              ns: 'table',
+            },
+            {
+              allChecked: checked,
+            }
+          )
+          return
+        }
+
         let selection = this.get('selection')
         if (checked) {
           selection = this.get('list').map(

@@ -14025,6 +14025,9 @@ var SORT_ORDER_DESC = 'desc';
         selection: {
             type: RAW_ARRAY,
         },
+        customAllChecked: {
+            type: RAW_BOOLEAN,
+        },
         stripe: {
             type: RAW_BOOLEAN,
         },
@@ -14115,8 +14118,12 @@ var SORT_ORDER_DESC = 'desc';
             return result;
         },
         allChecked: {
-            deps: ['selection', 'selection.length'],
+            deps: ['customAllChecked', 'selection', 'selection.length'],
             get: function () {
+                var customAllChecked = this.get('customAllChecked');
+                if (typeof customAllChecked === 'boolean') {
+                    return customAllChecked;
+                }
                 var selection = this.get('selection');
                 var list = this.get('list');
                 return selection && list
@@ -14124,6 +14131,16 @@ var SORT_ORDER_DESC = 'desc';
                     && selection.length === list.length;
             },
             set: function (checked) {
+                var customAllChecked = this.get('customAllChecked');
+                if (typeof customAllChecked === 'boolean' && customAllChecked !== checked) {
+                    this.fire({
+                        type: 'allCheckedChange',
+                        ns: 'table',
+                    }, {
+                        allChecked: checked,
+                    });
+                    return;
+                }
                 var selection = this.get('selection');
                 if (checked) {
                     selection = this.get('list').map(function (item) {
@@ -15015,7 +15032,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.32.9";
+var version = "0.33.0";
 /**
  * 安装插件
  */

@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.32.9
+ * bell-ui.js v0.33.0
  * (c) 2018-2024 
  * Released under the MIT License.
  */
@@ -12166,6 +12166,9 @@
           selection: {
               type: RAW_ARRAY,
           },
+          customAllChecked: {
+              type: RAW_BOOLEAN,
+          },
           stripe: {
               type: RAW_BOOLEAN,
           },
@@ -12256,8 +12259,12 @@
               return result;
           },
           allChecked: {
-              deps: ['selection', 'selection.length'],
+              deps: ['customAllChecked', 'selection', 'selection.length'],
               get: function () {
+                  var customAllChecked = this.get('customAllChecked');
+                  if (typeof customAllChecked === 'boolean') {
+                      return customAllChecked;
+                  }
                   var selection = this.get('selection');
                   var list = this.get('list');
                   return selection && list
@@ -12265,6 +12272,16 @@
                       && selection.length === list.length;
               },
               set: function (checked) {
+                  var customAllChecked = this.get('customAllChecked');
+                  if (typeof customAllChecked === 'boolean' && customAllChecked !== checked) {
+                      this.fire({
+                          type: 'allCheckedChange',
+                          ns: 'table',
+                      }, {
+                          allChecked: checked,
+                      });
+                      return;
+                  }
                   var selection = this.get('selection');
                   if (checked) {
                       selection = this.get('list').map(function (item) {
@@ -12999,7 +13016,7 @@
   /**
    * 版本
    */
-  var version = "0.32.9";
+  var version = "0.33.0";
   /**
    * 安装插件
    */
